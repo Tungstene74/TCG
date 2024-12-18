@@ -1,9 +1,6 @@
 package interface_;
 
 import javax.swing.* ;
-
-import ex2.FenetreLitEntier.TexteListener;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -11,19 +8,25 @@ public class Connection extends JFrame implements ActionListener{
 	
 	JButton seconnecter,creercompte;
 	JTextField usernamefield, passworldfield;
-	JPanel text,boutons;
+	JPanel tout,boutons;
 	
 	public Connection() {
 		this.setTitle ("Traiding Chess Game");
-		this.setSize (300, 200);
+		this.setSize (500, 500);
+		this.setLayout(new BorderLayout());
+		JPanel tout = new JPanel(new GridBagLayout());
 
-
-		
+		//this.setLayout(new FlowLayout());
 		//this.setLocation(randomInt1, randomInt2);
-		this.text = new JPanel();
-		this.text.setLayout(new GridLayout(2,1));
+		GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); // Espacement entre les composants
+        /*
+		this.tout = new JPanel();
+		this.tout.setLayout(new GridBagLayout(3,1));
 		this.boutons = new JPanel();
 		this.boutons.setLayout(new GridLayout(1,2));
+		*/
+		//this.getContentPane().add(BorderLayout.CENTER,tout); 
 		
 		seconnecter = new JButton ("Se connecter");
 		creercompte = new JButton ("Creer un compte");
@@ -34,16 +37,51 @@ public class Connection extends JFrame implements ActionListener{
 		seconnecter.addActionListener(this);
 		usernamefield.addActionListener(this); //new TexteListener()
 		passworldfield.addActionListener(this); //new TexteListener()
+		/*
+		boutons.add(seconnecter,0);
+		boutons.add(creercompte,1);
+		tout.add(usernamefield,0);
+		tout.add(passworldfield,1);
+		tout.add(boutons,2);
+		*/
 		
-		text.add(usernamefield);
-		text.add(passworldfield);
-		boutons.add(seconnecter);
-		boutons.add(creercompte);
+		gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        tout.add(usernamefield, gbc);
+
+        // Ligne 2 : Champ "Mot de passe"
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        tout.add(passworldfield, gbc);
+
+        // Ligne 3 : Panneau des boutons
+        boutons = new JPanel(new GridLayout(1, 2, 10, 0)); // Boutons côte à côte avec un écart
+        boutons.add(seconnecter);
+        boutons.add(creercompte);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER; // Centre les boutons
+        tout.add(boutons, gbc);
+
+        // Ajout du panneau principal au centre de la fenêtre
+        this.getContentPane().add(tout, BorderLayout.CENTER);
+
+        // Configuration finale de la fenêtre
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+	        /*
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().add(text);
-		this.getContentPane().add(boutons);
+		this.getContentPane().add(tout);
+		//tout.add(boutons, BorderLayout.SOUTH);
+		//this.getContentPane().add(boutons);
+		this.getContentPane().add(tout, BorderLayout.CENTER);
 		this.setVisible(true); 
-	}
+		*/
+
 	
 	public void actionPerformed(ActionEvent event) {	
 		if (event.getSource()==seconnecter) {
@@ -58,31 +96,5 @@ public class Connection extends JFrame implements ActionListener{
 			//on uvre la fenêtre pour creer un compte
 		}
 	} 
-	
-	/*
-	class TexteListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent Event) {
-			String username= usernamefield.getText();
-			String passworld = passworldfield.getText();
-
-			try {
-				Integer.parseInt(text);
-			}
-			catch (NumberFormatException e){
-				b=false;
-			}
-
-			if (b==false) {
-				s=text+" n'est pas un entier !";
-				JOptionPane.showMessageDialog(null, s); 
-			}
-			else {
-				s=text+" est un entier !";
-				JOptionPane.showMessageDialog(null, s); 
-			}
-			
-		}
-	}*/
 }
 	
