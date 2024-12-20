@@ -1,4 +1,4 @@
-package ClasseMetier;
+package classeMetier;
 
 import java.util.ArrayList;
 
