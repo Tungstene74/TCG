@@ -8,21 +8,23 @@ public class Piece {
 	//private ArrayList<int[]> mouvement; //les vecteur mouvement en [(x,y),…]
 	private String nom; //nom de la pièce
 	private Pouvoir pouvoir; // nom du pouvoir
+	private ArrayList<Mouvement> mouvements;
 	private int x; // position sur le plateaux en x 
 	private int y; // position sur le plateaux en y
 	private String image; // url de l'image
 	//private static int Nbp=0; // pour comptre le nombre de pièce 
 
-	public Piece(int idPiece, String nom, Pouvoir pouvoir, String image){
+	public Piece(int idPiece, String nom,ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image){
 		this.idPiece=idPiece;
 		this.pouvoir=pouvoir;
+		this.mouvements=mouvements;
 		this.nom=nom;
 		this.x=-1;
 		this.y=-1;
 		this.image=image;
 	}
 
-	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvement, Pouvoir pouvoir, String image, int x, int y){
+	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, int x, int y){
 		this.idPiece=idPiece;
 		this.mouvements=mouvements;
 		this.pouvoir=pouvoir;
@@ -104,10 +106,6 @@ public class Piece {
 	}
 	
 	*/
-
-
-
-
 
 }
 

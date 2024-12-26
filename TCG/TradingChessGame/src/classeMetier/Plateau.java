@@ -15,6 +15,19 @@ public class Plateau {
 		ArrayList<Piece> listepieces = new ArrayList<Piece>();
 	}
 	
+	public ArrayList<ArrayList<Piece>> Matrice() {
+		public Piece getPiece(int x, int y) {
+			Piece pieceCherche=null;
+			for(Piece piece : listepieces) {
+				if (piece.getX()==x && piece.getY()==y) {
+					pieceCherche=piece;
+					break;
+				}
+			}
+			return pieceCherche;
+		}
+	}
+	
 	public void add(Piece piece) {
 		listepieces.add(piece);
 	}
