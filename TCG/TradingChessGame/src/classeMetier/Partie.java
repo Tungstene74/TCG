@@ -3,6 +3,7 @@ package classeMetier;
 import java.util.Timer;
 import classeDAO.*;
 import interface_.*;
+import pieces.*;
 
 public class Partie {
 	
@@ -13,8 +14,7 @@ public class Partie {
 		
 		//initialisation du plateau
 		Plateau plateau=new Plateau();
-		plateau.add(new Piece("Tour"));
-		
+		Tour t1 = new Tour(0);
+		plateau.add(t1);
 	}
-
 }

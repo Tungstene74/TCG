@@ -9,8 +9,8 @@ public class Piece {
 	private ArrayList<Mouvement> mouvements;
 	private String nom; //nom de la pièce
 	private Pouvoir pouvoir; // nom du pouvoir
-	//private int x; // position sur le plateaux en x 
-	//private int y; // position sur le plateaux en y
+	private int x; // position sur le plateaux en x 
+	private int y; // position sur le plateaux en y
 	private String image; // url de l'image
 	//private static int Nbp=0; // pour comptre le nombre de pièce 
 
@@ -19,12 +19,11 @@ public class Piece {
 		this.mouvements=mouvements;
 		this.pouvoir=pouvoir;
 		this.nom=nom;
-		//this.x=-1;
-		//this.y=-1;
+		this.x=-1;
+		this.y=-1;
 		this.image=image;
 	}
 
-	/*
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvement, Pouvoir pouvoir, String image, int x, int y){
 		this.idPiece=idPiece;
 		this.mouvements=mouvements;
@@ -34,7 +33,21 @@ public class Piece {
 		this.y=y;
 		this.image=image;
 	}
-	*/
+	
+	public ArrayList<int[]> casesAteignables(Plateau plateau){
+		ArrayList<int[]> listeCoord= new ArrayList<int[]>();
+		for (Mouvement mouvement:mouvements) { //pour pour chaques mouvements possibles
+			for (int new_x=0;new_x<=7;new_x++) { //pour chaques colonnes
+				for (int new_y=0;new_y<=7;new_y++) { //pour chaques lignes
+					if (mouvement.estPossible(this.x,this.y,new_x,new_y,plateau)) {
+						int[] co= {x,y};
+						listeCoord.add(co);
+					}
+				}
+			}
+		}
+		return listeCoord;
+	}
 
 	/*
 	    public Piece(int idP, ArrayList<int[]> mouvement, String pouvoirs, String Nom, int x, int y, String image){
