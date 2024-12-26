@@ -9,7 +9,7 @@ public class SingleConnection {
 	private static Connection connect;
 
 	public SingleConnection() {
-		String databaseName="absences";
+		String databaseName="echec";
 		
 		SingleConnection.connect=null;
 		
