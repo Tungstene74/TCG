@@ -6,10 +6,11 @@ import interface_.*;
 
 public class Partie {
 	
-	private String couleur;
+	private int id_partie;
+	private int tour_joueur;
 	
-	public Partie(String couleur) {
-		this.couleur=couleur;
+	public Partie(int couleur) {
+		this.tour_joueur=couleur;
 		
 		//initialisation du plateau
 		Plateau plateau=new Plateau();

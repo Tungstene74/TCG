@@ -6,7 +6,6 @@ public class Piece {
 	//private int idB; //id sur le plateaux
 	private int idPiece; //id de la pièce
 	//private ArrayList<int[]> mouvement; //les vecteur mouvement en [(x,y),…]
-	private ArrayList<Mouvement> mouvements;
 	private String nom; //nom de la pièce
 	private Pouvoir pouvoir; // nom du pouvoir
 	//private int x; // position sur le plateaux en x 
@@ -14,9 +13,8 @@ public class Piece {
 	private String image; // url de l'image
 	//private static int Nbp=0; // pour comptre le nombre de pièce 
 
-	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image){
+	public Piece(int idPiece, String nom, Pouvoir pouvoir, String image){
 		this.idPiece=idPiece;
-		this.mouvements=mouvements;
 		this.pouvoir=pouvoir;
 		this.nom=nom;
 		//this.x=-1;
