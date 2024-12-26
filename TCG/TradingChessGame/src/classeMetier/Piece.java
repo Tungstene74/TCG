@@ -12,7 +12,7 @@ public class Piece {
 	private int x; // position sur le plateaux en x 
 	private int y; // position sur le plateaux en y
 	private String image; // url de l'image
-	//private static int Nbp=0; // pour comptre le nombre de pièce 
+	private static int Nbp=0; // pour comptre le nombre de pièce 
 
 	public Piece(int idPiece, String nom,ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image){
 		this.idPiece=idPiece;
@@ -22,6 +22,7 @@ public class Piece {
 		this.x=-1;
 		this.y=-1;
 		this.image=image;
+		Nbp+=1;
 	}
 
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, int x, int y){
@@ -32,6 +33,7 @@ public class Piece {
 		this.x=x;
 		this.y=y;
 		this.image=image;
+		Nbp+=1;
 	}
 	
 	public ArrayList<int[]> casesAteignables(Plateau plateau){
@@ -63,6 +65,15 @@ public class Piece {
 	    }
 	 */
 
+	public String getNom() {
+		return this.nom;
+	}
+	
+	public String toString() {
+		String txt=this.nom+" ("+this.x+", "+this.y+")";
+		return txt;
+	}
+	
 	public int getX(){
 		return this.x;
 	}
