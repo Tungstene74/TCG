@@ -8,8 +8,8 @@ public class MainTestTerminal {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Plateau plateau = new Plateau();
-		Tour t1 = new Tour(0,0,0);
+		Plateau plateau = new Plateau(0);
+		Tour t1 = new Tour("blanc",0,0);
 		System.out.println(t1.toString());
 		plateau.add(t1);
 		System.out.println(t1.getNom().charAt(0));

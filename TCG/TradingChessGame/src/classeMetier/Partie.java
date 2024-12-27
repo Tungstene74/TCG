@@ -61,5 +61,4 @@ public class Partie {
 		this.plateau.setId_partie(id_partie);
 	}
 	
-	
 }

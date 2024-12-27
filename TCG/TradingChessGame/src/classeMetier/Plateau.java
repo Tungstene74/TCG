@@ -141,7 +141,7 @@ public class Plateau {
 	}
 	
 	public void attributionCoord() {
-		for piece
+		//for piece
 	}
 }
 

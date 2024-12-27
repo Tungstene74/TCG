@@ -51,7 +51,7 @@ public class TCG extends JFrame{
 		basePanel.setLayout(gbl_panel);
 		
 		JLabel LogoEcranDemarrage = new JLabel("");
-		LogoEcranDemarrage.setIcon(new ImageIcon(MenuP.class.getResource("/image/logo4resized.jpg")));
+		LogoEcranDemarrage.setIcon(new ImageIcon(MenuP.class.getResource("/images/logo4resized.jpg")));
 		GridBagConstraints gbc_LogoEcranDemarrage = new GridBagConstraints();
 		gbc_LogoEcranDemarrage.insets = new Insets(0, 0, 5, 5);
 		gbc_LogoEcranDemarrage.gridx = 1;
