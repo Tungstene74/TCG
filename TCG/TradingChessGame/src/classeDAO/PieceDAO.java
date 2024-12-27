@@ -51,7 +51,8 @@ public class PieceDAO extends DAO<Piece>{
 				
 				Pouvoir pouvoir1 = new Pouvoir(pouvoir);
 				
-				return new Piece(idPiece,nom1,pouvoir1,image);
+				
+				return new Piece(idPiece,nom1,null, null, image, idPiece, idPiece);
 			}
 		}
 		catch(SQLException e) {
