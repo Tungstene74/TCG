@@ -51,7 +51,7 @@ public class TCG extends JFrame{
 		basePanel.setLayout(gbl_panel);
 		
 		JLabel LogoEcranDemarrage = new JLabel("");
-		LogoEcranDemarrage.setIcon(new ImageIcon(MenuP.class.getResource("/images/logo4resized.jpg")));
+		LogoEcranDemarrage.setIcon(new ImageIcon(TCG.class.getResource("/images/logo4resized.jpg")));
 		GridBagConstraints gbc_LogoEcranDemarrage = new GridBagConstraints();
 		gbc_LogoEcranDemarrage.insets = new Insets(0, 0, 5, 5);
 		gbc_LogoEcranDemarrage.gridx = 1;
@@ -161,7 +161,7 @@ public class TCG extends JFrame{
 		
 		//Dessin de l'échiquier
 		JPanel plateau = new JPanel();
-		plateau.setBackground(new Color(133, 6, 6));//code couleur pour les cases blanches
+		plateau.setBackground(new Color(133, 6, 6));
 		GridBagConstraints gbc_plateau = new GridBagConstraints();
 		gbc_plateau.fill = GridBagConstraints.BOTH;
 		gbc_plateau.gridx = 0;
@@ -178,7 +178,7 @@ public class TCG extends JFrame{
 		plateau.setLayout(gbl_plateau);
 		
 		JPanel echiquier = new JPanel();
-		echiquier.setBackground(Color.BLACK);//code couleur pour les cases blanches
+		echiquier.setBackground(Color.BLACK);
 		GridBagConstraints gbc_echiquier = new GridBagConstraints();
 		gbc_echiquier.fill = GridBagConstraints.BOTH;
 		gbc_echiquier.gridx = 1;
@@ -221,7 +221,7 @@ public class TCG extends JFrame{
 	private void menuProfil() {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] {X/3, X/3-10, X/3};
-		gbl_contentPane.rowHeights = new int[] {854};
+		gbl_contentPane.rowHeights = new int[] {Y};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0};
 		basePanel.setLayout(gbl_contentPane);
@@ -258,8 +258,6 @@ public class TCG extends JFrame{
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.rowHeights = new int[] {45, 150, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45};
 		gbl_panel.columnWidths = new int[] {X/9-5, X/9, X/9-5};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		panel.setLayout(gbl_panel);
 		
 		JLabel profil = new JLabel("PROFIL");
