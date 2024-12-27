@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Tour extends Piece{
 
-	public Tour(int idPiece) {
-		super(idPiece, "tour", new ArrayList<Mouvement>(), null, "");
+	public Tour(String couleur) {
+		super(1, "tour", new ArrayList<Mouvement>(), null, "");
 		// on définit les différents déplacements
 		Droite d = new Droite();
 		this.addMouvement(d);

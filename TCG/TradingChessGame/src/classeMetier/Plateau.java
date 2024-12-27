@@ -17,15 +17,14 @@ public class Plateau {
 	
 	public ArrayList<ArrayList<Piece>> Matrice() {
 		ArrayList<ArrayList<Piece>> matrice = new ArrayList<ArrayList<Piece>>();
-		ArrayList<Piece> ligne = new ArrayList<Piece>();
 		Piece piece = null;
 		for (int y=7;y>=0;y--) {
+			ArrayList<Piece> ligne = new ArrayList<Piece>();
 			for (int x=0;x<=7;x++) {
 				piece = this.getPiece(x, y);
 				ligne.add(piece);
-			matrice.add(ligne);
 			}
-			ligne.clear();
+			matrice.add(ligne);
 		}
 		return matrice;
 	}
@@ -108,4 +107,10 @@ public class Plateau {
 		}
 		return nb;
 	}
+	
+	public int creePiece(int id_piece) {
+		switch (id_piece) {
+	    case 1: add(new Tour());
+	}
+	
 }
