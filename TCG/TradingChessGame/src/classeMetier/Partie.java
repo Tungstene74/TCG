@@ -12,14 +12,15 @@ public class Partie {
 	private int id_deck;
 	private int id_joueur;
 	private int id_joueur2;
+	private Plateau plateau;
 	
 	public Partie(int couleur) {
 		this.tour_joueur=couleur;
 		
 		//initialisation du plateau
-		Plateau plateau=new Plateau();
+		this.plateau=new Plateau();
 		Tour t1 = new Tour(0);
-		plateau.add(t1);
+		this.plateau.add(t1);
 	}
 
 	public int getTour_joueur() {
@@ -48,6 +49,7 @@ public class Partie {
 		this.tour_joueur = tour_joueur;
 		this.id_deck = id_deck;
 		this.id_joueur = id_joueur;
+		this.plateau.setId_partie(id_partie);
 	}
 	
 	public Partie(int id_partie, int tour_joueur, int id_deck, int id_joueur, int id_deck2, int id_joueur2) {
@@ -56,6 +58,7 @@ public class Partie {
 		this.tour_joueur = tour_joueur;
 		this.id_deck = id_deck;
 		this.id_joueur = id_joueur;
+		this.plateau.setId_partie(id_partie);
 	}
 	
 	

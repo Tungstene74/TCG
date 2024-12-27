@@ -10,7 +10,25 @@ public class Plateau {
 	//#dilemme est-ce que je met les co des pieces en temps qu'attribut des pieces au bien en 
 	//tant que clef pour les trouver dans le hashmap
 	//à mon avis c'est mieux de faire avec le hashmap car la recherche sera instantannée 
+	private int id_partie;
 	
+	
+	public ArrayList<Piece> getListepieces() {
+		return listepieces;
+	}
+
+	public void setListepieces(ArrayList<Piece> listepieces) {
+		this.listepieces = listepieces;
+	}
+
+	public int getId_partie() {
+		return id_partie;
+	}
+
+	public void setId_partie(int id_partie) {
+		this.id_partie = id_partie;
+	}
+
 	public Plateau() {
 		listepieces = new ArrayList<Piece>();
 	}
