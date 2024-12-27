@@ -13,7 +13,7 @@ public class PartieDAO extends DAO<Partie>{
 	private ResultSet rs;
 
 	@Override
-	public Partie create(Partie obj) {
+	public Partie create(Partie obj) { //à partir d'une partie renvois une nouvelle partie avec les paramettre de la base de donné + ça l'ajoute dans la base de donné 
 		try {
 			String sqlQuery = "INSERT INTO `partie`(`tour_joueur`, `id_deck`, `id_joueur`,`id_deck2`, `id_joueur2`) "
 					+ "VALUES ('?','?','?','1','1')";
@@ -56,7 +56,7 @@ public class PartieDAO extends DAO<Partie>{
 		return new Partie(id_partie, obj.getTour_joueur(), obj.getId_deck(), obj.getId_joueur(), 1, 1);
 	}
 	
-	public Partie join(int id_partie,int id_joueur2,int id_deck2) {
+	public Partie join(int id_partie,int id_joueur2,int id_deck2) { //à partir d'id renvois une nouvelle partie avec ça version dans la base de donné 
 		try {
 			String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?;";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
@@ -106,7 +106,7 @@ public class PartieDAO extends DAO<Partie>{
 	}
 
 	@Override
-	public Partie update(Partie obj) {
+	public Partie update(Partie obj) { //à partir d'une partie renvois une nouvelle partie avec les mise à jour de la base de donné 
 		try {
 			String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?;";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
@@ -143,7 +143,7 @@ public class PartieDAO extends DAO<Partie>{
 	}
 
 	@Override
-	public void delete(Partie obj) {
+	public void delete(Partie obj) { //suprime la partie de la base de donné 
 		try {
 			String sqlQuery = "DELETE FROM `partie` WHERE id_partie=?";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
