@@ -12,20 +12,22 @@ public class Plateau {
 	//à mon avis c'est mieux de faire avec le hashmap car la recherche sera instantannée 
 	
 	public Plateau() {
-		ArrayList<Piece> listepieces = new ArrayList<Piece>();
+		listepieces = new ArrayList<Piece>();
 	}
 	
 	public ArrayList<ArrayList<Piece>> Matrice() {
-		public Piece getPiece(int x, int y) {
-			Piece pieceCherche=null;
-			for(Piece piece : listepieces) {
-				if (piece.getX()==x && piece.getY()==y) {
-					pieceCherche=piece;
-					break;
-				}
+		ArrayList<ArrayList<Piece>> matrice = new ArrayList<ArrayList<Piece>>();
+		ArrayList<Piece> ligne = new ArrayList<Piece>();
+		Piece piece = null;
+		for (int y=7;y>=0;y--) {
+			for (int x=0;x<=7;x++) {
+				piece = this.getPiece(x, y);
+				ligne.add(piece);
+			matrice.add(ligne);
 			}
-			return pieceCherche;
+			ligne.clear();
 		}
+		return matrice;
 	}
 	
 	public void add(Piece piece) {
