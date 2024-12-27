@@ -4,15 +4,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import pieces.*;
+
 public class Plateau {
 	private ArrayList<Piece> listepieces;
 	//private HashMap<int[], Piece> dictCoordPiece = new HashMap<>();
 	//#dilemme est-ce que je met les co des pieces en temps qu'attribut des pieces au bien en 
 	//tant que clef pour les trouver dans le hashmap
 	//à mon avis c'est mieux de faire avec le hashmap car la recherche sera instantannée 
+	private int id_partie;
 	
-	public Plateau() {
+	
+	public ArrayList<Piece> getListepieces() {
+		return listepieces;
+	}
+
+	public void setListepieces(ArrayList<Piece> listepieces) {
+		this.listepieces = listepieces;
+	}
+
+	public int getId_partie() {
+		return id_partie;
+	}
+
+	public void setId_partie(int id_partie) {
+		this.id_partie = id_partie;
+	}
+
+	public Plateau(int id_partie) {
 		listepieces = new ArrayList<Piece>();
+		this.id_partie=id_partie;
 	}
 	
 	public ArrayList<ArrayList<Piece>> Matrice() {
@@ -107,10 +128,21 @@ public class Plateau {
 		}
 		return nb;
 	}
-	
-	public int creePiece(int id_piece) {
+
+	public void creePiece(int id_piece, String couleur) {
 		switch (id_piece) {
-	    case 1: add(new Tour());
+			case 0: // pion
+			case 1: add(new Tour(couleur));
+			case 2: //cavalier
+			case 3: //fou
+			case 4: //dame
+			case 5: //roi
+		}
 	}
 	
+	public void attributionCoord() {
+		for piece
+	}
 }
+
+

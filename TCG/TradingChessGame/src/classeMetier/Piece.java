@@ -13,8 +13,13 @@ public class Piece {
 	private int y; // position sur le plateaux en y
 	private String image; // url de l'image
 	private static int Nbp=0; // pour comptre le nombre de pièce 
+	private String couleur;
 
-	public Piece(int idPiece, String nom,ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image){
+	public String getCouleur() {
+		return couleur;
+	}
+
+	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image){
 		this.idPiece=idPiece;
 		this.pouvoir=pouvoir;
 		this.mouvements=mouvements;
@@ -22,10 +27,23 @@ public class Piece {
 		this.x=-1;
 		this.y=-1;
 		this.image=image;
+		this.couleur=null;
+		Nbp+=1;
+	}
+	
+	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, String couleur){
+		this.idPiece=idPiece;
+		this.pouvoir=pouvoir;
+		this.mouvements=mouvements;
+		this.nom=nom;
+		this.x=-1;
+		this.y=-1;
+		this.image=image;
+		this.couleur=couleur;
 		Nbp+=1;
 	}
 
-	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, int x, int y){
+	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, String couleur, int x, int y){
 		this.idPiece=idPiece;
 		this.mouvements=mouvements;
 		this.pouvoir=pouvoir;
@@ -33,6 +51,7 @@ public class Piece {
 		this.x=x;
 		this.y=y;
 		this.image=image;
+		this.couleur=couleur;
 		Nbp+=1;
 	}
 	
@@ -88,6 +107,10 @@ public class Piece {
 
 	public void setX(int X){
 		this.x= X;
+	}
+
+	public int getIdPiece() {
+		return idPiece;
 	}
 
 	public void setY(int Y){
