@@ -108,7 +108,9 @@ public class PlateauDAO extends DAO<Plateau>{
 	public void updateMoi(Plateau obj) {
 		ArrayList<Piece> listepieces = new ArrayList<Piece>();
 		try {
-			String sqlQuery = "SELECT * FROM `variable_partie`, `pièces` WHERE variable_partie.id_piece=pièces.id_piece AND id_partie='?'";
+			String sqlQuery = "SELECT * FROM `variable_partie` "
+					+ "WHERE id_partie='?' "
+					+ "ORDER BY id_piece_partie";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
 			st.setString(1,Integer.toString(obj.getId_partie()));
 			rs = st.executeQuery();
@@ -117,16 +119,14 @@ public class PlateauDAO extends DAO<Plateau>{
 			System.err.println("Erreur requete SQLvvvvvv");
 			e.printStackTrace();
 		}
-
-		int id_deck  = 0;
-		int id_joueur  = 0;
-		int tour_joueur  = 0;
 		// Affichage du resultat
 		try {
 			while(rs.next()) {
-				// TODO Auto-generated method stub
-				//Je dois créer une pièce a partir de ce que j'ai dans la basse de donné et l'ajouter dans listepieces
-				
+				int id_piece  = Integer.parseInt(rs.getString("id_piece "));
+				String Couleur  = rs.getString("Couleur ");
+				int x  = Integer.parseInt(rs.getString("x "));
+				int y  = Integer.parseInt(rs.getString("y "));
+				listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));
 				
 			}
 		}
@@ -134,12 +134,21 @@ public class PlateauDAO extends DAO<Plateau>{
 			System.err.println("Erreur de parcours de ResultSet");
 			e.printStackTrace();
 		}
+		obj.setListepieces(listepieces);
 	}
 
 	@Override
 	public void delete(Plateau obj) {
-		
-		
+		try {
+			String sqlQuery = "DELETE FROM `variable_partie` WHERE id_partie=?";
+			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+			st3.setString(1,Integer.toString(obj.getId_partie()));
+			rs = st3.getGeneratedKeys();
+		}
+		catch(SQLException e) {
+			System.err.println("Erreur requete SQL");
+			e.printStackTrace();
+		}
 	}
 
 }
