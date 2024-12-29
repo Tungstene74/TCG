@@ -2,6 +2,8 @@ package classeMetier;
 
 import java.util.HashMap;
 
+import classeDAO.JoueurDAO;
+
 public class Joueur {
 	private int id_joueur;
 	private String identifiant;
@@ -68,7 +70,7 @@ public class Joueur {
 		Argent = argent;
 	}
 
-	public Joueur(int id_joueur, String identifiant, String Mbp, int nbPartiesJ, int money, int nbPartiesG) {
+	public Joueur(int id_joueur, String identifiant, String Mbp, int nbPartiesJ, int money, int nbPartiesG,  HashMap<Integer, Integer> listepiece) {
 		super();
 		this.id_joueur = id_joueur;
 		this.identifiant = identifiant;
@@ -76,6 +78,7 @@ public class Joueur {
 		this.NbPartiesJ = nbPartiesJ;
 		this.NbPartiesG = nbPartiesG;
 		this.Argent = money;
+		this.listepiece = listepiece;
 	}
 	
 	public Joueur(String identifiant, String Mbp) {
@@ -85,6 +88,20 @@ public class Joueur {
 
 	}
 	
+	
+	public void addPiece(int id_piece) {
+		JoueurDAO J = new JoueurDAO();
+		if (this.listepiece.containsKey(id_piece)) {
+			int Nb=this.listepiece.get(id_piece)+1;
+			this.listepiece.remove(id_piece);
+			this.listepiece.put(id_piece, Nb);
+			J.missPiece(this.id_joueur,id_piece,Nb);
+		} else {
+			this.listepiece.put(id_piece, 1);
+			J.addPiece(this.id_joueur,id_piece,1);
+		}
+
+	}
 	
 	
 

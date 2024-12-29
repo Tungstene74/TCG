@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import classeMetier.Joueur;
 
@@ -92,7 +93,35 @@ public class JoueurDAO extends DAO<Joueur>{
 			System.err.println("Erreur de parcours de ResultSet");
 			e.printStackTrace();
 		}
-		return new Joueur(id_joueur, identifiant, mdp,  nbPartiesJ,  money, nbPartiesG);
+		HashMap<Integer, Integer> listepiece = new HashMap<Integer,Integer>();
+		
+		try {
+			String sqlQuery = "SELECT * FROM `possède` WHERE id_joueur=?";
+			PreparedStatement st = connect.prepareStatement(sqlQuery);
+			st.setString(1,Integer.toString(id_joueur));
+			rs = st.executeQuery();
+		}
+		catch(SQLException e) {
+			System.err.println("Erreur requete SQLvvvvvv");
+			e.printStackTrace();
+		}
+
+		// Affichage du resultat
+		try {
+			while(rs.next()) {
+				int id_piece  = Integer.parseInt(rs.getString("id_piece "));
+				int nombre  = Integer.parseInt(rs.getString("nombre "));
+				listepiece.put(id_piece, nombre);
+				
+			}
+		}
+		catch(SQLException e) {
+			System.err.println("Erreur de parcours de ResultSet");
+			e.printStackTrace();
+		}
+				
+				
+		return new Joueur(id_joueur, identifiant, mdp,  nbPartiesJ,  money, nbPartiesG,listepiece);
 		
 	}
 
@@ -108,9 +137,9 @@ public class JoueurDAO extends DAO<Joueur>{
 			st3.setString(2,Integer.toString(obj.getNbPartiesG()));
 			st3.setString(3,Integer.toString(obj.getNbPartiesJ()));
 			
-			st3.setString(1,Integer.toString(obj.getId_joueur()));
-			st3.setString(2,obj.getIdentifiant());
-			st3.setString(3,PasswordUtil.hashPassword(obj.getMbp()));
+			st3.setString(4,Integer.toString(obj.getId_joueur()));
+			st3.setString(5,obj.getIdentifiant());
+			st3.setString(6,PasswordUtil.hashPassword(obj.getMbp()));
 			rs = st3.getGeneratedKeys();
 		}
 		catch(SQLException e) {
@@ -134,9 +163,45 @@ public class JoueurDAO extends DAO<Joueur>{
 			System.err.println("Erreur requete SQL");
 			e.printStackTrace();
 		}
+	}
+		
+		public void addPiece(int id_joueur,int id_piece,int nombre) {
+			try {
+				String sqlQuery = "INSERT INTO `possède`(`id_joueur`, `id_piece`, `nombre`) VALUES ('?','?','?')";
+				PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+				st3.setString(1,Integer.toString(id_joueur));
+				st3.setString(2,Integer.toString(id_piece));
+				st3.setString(3,Integer.toString(nombre));
+				rs = st3.getGeneratedKeys();
+			}
+			catch(SQLException e) {
+				System.err.println("Erreur requete SQL");
+				e.printStackTrace();
+			}
+		}
+		
+		public void missPiece(int id_joueur,int id_piece,int nombre) {
+			try {
+				String sqlQuery = "UPDATE `possède` "
+						+ "SET `nombre`='?' "
+						+ "WHERE `id_joueur`='?' AND `id_piece`='?',";
+				PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+				
+				st3.setString(2,Integer.toString(id_joueur));
+				st3.setString(3,Integer.toString(id_piece));
+				st3.setString(1,Integer.toString(nombre));
+
+				rs = st3.getGeneratedKeys();
+			}
+			catch(SQLException e) {
+				System.err.println("Erreur requete SQL");
+				e.printStackTrace();
+			}
+		}
+		
 		
 	}
 	
 	
 
-}
+
