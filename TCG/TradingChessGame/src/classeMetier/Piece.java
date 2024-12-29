@@ -76,7 +76,7 @@ public class Piece {
 		for (int[] case_: listeCases) {
 			str+="("+case_[0]+","+case_[1]+"),";
 		}
-		str+="]";
+		str+="]";//
 		return str;
 	}
 	
