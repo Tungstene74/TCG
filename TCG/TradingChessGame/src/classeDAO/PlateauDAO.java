@@ -27,6 +27,7 @@ public class PlateauDAO extends DAO<Plateau>{
 				st3.setString(5,Integer.toString(piece.getX()));
 				st3.setString(6,Integer.toString(piece.getY()));
 				st3.setString(7,Integer.toString(0));
+				st3.executeUpdate();
 				rs = st3.getGeneratedKeys();
 			}
 			catch(SQLException e) {
@@ -76,6 +77,7 @@ public class PlateauDAO extends DAO<Plateau>{
 					st3.setString(5,Integer.toString(piece.getX()));
 					st3.setString(6,Integer.toString(piece.getY()));
 					st3.setString(7,Integer.toString(0));
+					st3.executeUpdate();
 					rs = st3.getGeneratedKeys();
 				}
 				catch(SQLException e) {
@@ -94,6 +96,7 @@ public class PlateauDAO extends DAO<Plateau>{
 					st3.setString(5,Integer.toString(piece.getY()));
 					st3.setString(6,Integer.toString(0));
 					st3.setString(7,Integer.toString(i));
+					st3.executeUpdate();
 					rs = st3.getGeneratedKeys();
 				}
 				catch(SQLException e) {
@@ -143,6 +146,7 @@ public class PlateauDAO extends DAO<Plateau>{
 			String sqlQuery = "DELETE FROM `variable_partie` WHERE id_partie=?";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			st3.setString(1,Integer.toString(obj.getId_partie()));
+			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
 		}
 		catch(SQLException e) {

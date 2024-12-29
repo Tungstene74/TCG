@@ -24,41 +24,19 @@ public class JoueurDAO extends DAO<Joueur>{
 			st3.setString(3,Integer.toString(obj.getArgent()));
 			st3.setString(4,Integer.toString(obj.getNbPartiesG()));
 			st3.setString(5,Integer.toString(obj.getNbPartiesJ()));
+			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
+			
+			if (rs.next()) {
+	            int id_joueur = rs.getInt(1); // La première colonne est l'ID généré
+	            obj.setId_joueur(id_joueur);
+	        }
+			
 		}
 		catch(SQLException e) {
 			System.err.println("Erreur requete SQL");
 			e.printStackTrace();
 		}
-		try {
-			String sqlQuery = "SELECT id_partie FROM `joueur` "
-					+ "WHERE identifiant=? AND mdp=? AND argent=? AND NbPartiesG='1' AND NbPartiesJ ='1';";
-			PreparedStatement st = connect.prepareStatement(sqlQuery);
-			st.setString(1,obj.getIdentifiant());
-			st.setString(2,PasswordUtil.hashPassword(obj.getMbp()));
-			st.setString(3,Integer.toString(obj.getArgent()));
-			st.setString(4,Integer.toString(obj.getNbPartiesG()));
-			st.setString(5,Integer.toString(obj.getNbPartiesJ()));
-			rs = st.executeQuery();
-		}
-		catch(SQLException e) {
-			System.err.println("Erreur requete SQLvvvvvv");
-			e.printStackTrace();
-		}
-
-		int id_joueur  = 0;
-		// Affichage du resultat
-		try {
-			while(rs.next()) {
-				id_joueur  = Integer.parseInt(rs.getString("id_partie "));
-				
-			}
-		}
-		catch(SQLException e) {
-			System.err.println("Erreur de parcours de ResultSet");
-			e.printStackTrace();
-		}
-		obj.setId_joueur(id_joueur);
 		return obj;
 	}
 	
@@ -140,6 +118,7 @@ public class JoueurDAO extends DAO<Joueur>{
 			st3.setString(4,Integer.toString(obj.getId_joueur()));
 			st3.setString(5,obj.getIdentifiant());
 			st3.setString(6,PasswordUtil.hashPassword(obj.getMbp()));
+			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
 		}
 		catch(SQLException e) {
@@ -157,6 +136,7 @@ public class JoueurDAO extends DAO<Joueur>{
 			st3.setString(1,Integer.toString(obj.getId_joueur()));
 			st3.setString(2,obj.getIdentifiant());
 			st3.setString(3,PasswordUtil.hashPassword(obj.getMbp()));
+			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
 		}
 		catch(SQLException e) {
@@ -172,6 +152,7 @@ public class JoueurDAO extends DAO<Joueur>{
 				st3.setString(1,Integer.toString(id_joueur));
 				st3.setString(2,Integer.toString(id_piece));
 				st3.setString(3,Integer.toString(nombre));
+				st3.executeUpdate();
 				rs = st3.getGeneratedKeys();
 			}
 			catch(SQLException e) {
@@ -191,6 +172,7 @@ public class JoueurDAO extends DAO<Joueur>{
 				st3.setString(3,Integer.toString(id_piece));
 				st3.setString(1,Integer.toString(nombre));
 
+				st3.executeUpdate();
 				rs = st3.getGeneratedKeys();
 			}
 			catch(SQLException e) {

@@ -21,6 +21,7 @@ public class PartieDAO extends DAO<Partie>{
 			st3.setString(1,Integer.toString(obj.getTour_joueur()));
 			st3.setString(2,Integer.toString(obj.getId_deck()));
 			st3.setString(3,Integer.toString(obj.getId_joueur()));
+			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
 		}
 		catch(SQLException e) {
@@ -33,6 +34,7 @@ public class PartieDAO extends DAO<Partie>{
 			st.setString(1,Integer.toString(obj.getTour_joueur()));
 			st.setString(2,Integer.toString(obj.getId_deck()));
 			st.setString(3,Integer.toString(obj.getId_joueur()));
+			st.executeUpdate();
 			rs = st.executeQuery();
 		}
 		catch(SQLException e) {
@@ -98,6 +100,7 @@ public class PartieDAO extends DAO<Partie>{
 			st3.setString(1,Integer.toString(id_deck2));
 			st3.setString(2,Integer.toString(id_joueur2));
 			st3.setString(3,Integer.toString(id_partie));
+			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
 		}
 		catch(SQLException e) {
@@ -156,6 +159,7 @@ public class PartieDAO extends DAO<Partie>{
 			String sqlQuery = "DELETE FROM `partie` WHERE id_partie=?";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			st3.setString(1,Integer.toString(obj.getId_partie()));
+			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
 		}
 		catch(SQLException e) {
