@@ -14,8 +14,16 @@ public class Partie {
 	private int id_joueur2;
 	private Plateau plateau;
 	
+<<<<<<< Upstream, based on branch 'main' of https://github.com/Tungstene74/TCG.git
 	public Partie(int couleur) {
 		this.tour_joueur=couleur;
+=======
+	public Partie(int tour_joueur, int id_deck, int id_joueur) {
+		this.tour_joueur=tour_joueur;
+		this.id_deck = id_deck;
+		this.id_joueur = id_joueur;
+		
+>>>>>>> 30ee77e oubli ratraper
 		//initialisation du plateau
 		this.plateau=new Plateau(id_partie);
 		
