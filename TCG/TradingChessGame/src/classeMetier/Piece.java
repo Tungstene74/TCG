@@ -106,6 +106,7 @@ public class Piece {
 	        this.y=y;
 	        this.image=image;
 	        piece.Nbp +=1;
+	        
 	    }
 	 */
 
