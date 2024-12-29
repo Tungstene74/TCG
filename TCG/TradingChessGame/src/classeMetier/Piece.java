@@ -14,6 +14,7 @@ public class Piece {
 	private String image; // url de l'image
 	private static int Nbp=0; // pour comptre le nombre de pièce 
 	private String couleur;
+	private String descriptionMvt;//Description du mouvement de la pièce
 
 	public String getCouleur() {
 		return couleur;
@@ -127,6 +128,7 @@ public class Piece {
 	        this.y=y;
 	        this.image=image;
 	        piece.Nbp +=1;
+	        
 	    }
 	 */
 
@@ -161,6 +163,14 @@ public class Piece {
 
 	public void setY(int y){
 		this.y= y;
+	}
+
+	public void setDescriptionMvt(String description){
+		this.descriptionMvt = description;
+	}
+
+	public String getDescriptionMvt(){
+		return this.descriptionMvt;
 	}
 	
 	public void addMouvement(Mouvement mouvement) {
