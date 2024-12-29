@@ -31,7 +31,7 @@ public class JoueurDAO extends DAO<Joueur>{
 			e.printStackTrace();
 		}
 		try {
-			String sqlQuery = "SELECT id_partie FROM `partie` "
+			String sqlQuery = "SELECT id_partie FROM `joueur` "
 					+ "WHERE identifiant=? AND mdp=? AND argent=? AND NbPartiesG='1' AND NbPartiesJ ='1';";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
 			st.setString(1,obj.getIdentifiant());
