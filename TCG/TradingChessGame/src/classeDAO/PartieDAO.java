@@ -52,8 +52,11 @@ public class PartieDAO extends DAO<Partie>{
 			System.err.println("Erreur de parcours de ResultSet");
 			e.printStackTrace();
 		}
+		obj.setId_partie(id_partie);
+		obj.setId_joueur2(0);
+		obj.setId_joueur2(0);
 		
-		return new Partie(id_partie, obj.getTour_joueur(), obj.getId_deck(), obj.getId_joueur(), 1, 1);
+		return obj;
 	}
 	
 	public Partie join(int id_partie,int id_joueur2,int id_deck2) { //à partir d'id renvois une nouvelle partie avec ça version dans la base de donné 
@@ -88,9 +91,9 @@ public class PartieDAO extends DAO<Partie>{
 		
 		try {
 			String sqlQuery = "UPDATE `partie` "
-					+ "SET `id_deck2`='?',"
-					+ "`id_joueur2`='?' "
-					+ "WHERE `id_partie`='?',";
+					+ "SET `id_deck2`=?,"
+					+ "`id_joueur2`=? "
+					+ "WHERE `id_partie`=?,";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			st3.setString(1,Integer.toString(id_deck2));
 			st3.setString(2,Integer.toString(id_joueur2));
@@ -139,6 +142,11 @@ public class PartieDAO extends DAO<Partie>{
 			System.err.println("Erreur de parcours de ResultSet");
 			e.printStackTrace();
 		}
+		obj.setId_deck(id_deck);
+		obj.setId_joueur(id_joueur);
+		obj.setTour_joueur(tour_joueur);
+		obj.setId_deck2(id_deck2);
+		
 		return new Partie(obj.getId_partie(), tour_joueur, id_deck, id_joueur, id_deck2, id_joueur2);
 	}
 

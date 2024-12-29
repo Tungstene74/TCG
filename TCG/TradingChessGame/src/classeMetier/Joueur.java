@@ -12,8 +12,18 @@ public class Joueur {
 	private int NbPartiesJ=0;
 	private int NbPartiesG=0;
 	private HashMap<Integer, Integer> listepiece = new HashMap<Integer,Integer>();
+	private String urlImage;
 	
 	
+	
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+
 	public String getMbp() {
 		return Mbp;
 	}
@@ -91,6 +101,7 @@ public class Joueur {
 	
 	public void addPiece(int id_piece) {
 		JoueurDAO J = new JoueurDAO();
+		J.open();
 		if (this.listepiece.containsKey(id_piece)) {
 			int Nb=this.listepiece.get(id_piece)+1;
 			this.listepiece.remove(id_piece);
@@ -100,6 +111,7 @@ public class Joueur {
 			this.listepiece.put(id_piece, 1);
 			J.addPiece(this.id_joueur,id_piece,1);
 		}
+		J.close();
 
 	}
 	

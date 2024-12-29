@@ -18,7 +18,7 @@ public class PlateauDAO extends DAO<Plateau>{
 			Piece piece = obj.getListepieces().get(i);
 			try {
 				String sqlQuery = "INSERT INTO `variable_partie`(`id_piece`, `id_partie`, `id_piece_partie`, `Couleur`, `x`, `y`, `pouvoir_utilise`) "
-						+ "VALUES ('?','?','?','?','?','?','?')";
+						+ "VALUES (?,?,?,?,?,?,?)";
 				PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 				st3.setString(1,Integer.toString(piece.getIdPiece()));
 				st3.setString(2,Integer.toString(obj.getId_partie()));
@@ -67,7 +67,7 @@ public class PlateauDAO extends DAO<Plateau>{
 			if (apparait == 0) {
 				try {
 					String sqlQuery = "INSERT INTO `variable_partie`(`id_piece`, `id_partie`, `id_piece_partie`, `Couleur`, `x`, `y`, `pouvoir_utilise`) "
-							+ "VALUES ('?','?','?','?','?','?','?')";
+							+ "VALUES (?,?,?,?,?,?,?)";
 					PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 					st3.setString(1,Integer.toString(piece.getIdPiece()));
 					st3.setString(2,Integer.toString(obj.getId_partie()));
@@ -84,8 +84,8 @@ public class PlateauDAO extends DAO<Plateau>{
 				}
 			}else if (apparait == 1) {
 				try {
-					String sqlQuery = "UPDATE `variable_partie` SET `id_piece`='?',`id_partie`='?',`Couleur`='?',`x`='?',`y`='?',`pouvoir_utilise`='?' "
-							+ "WHERE `id_piece_partie`='?'";
+					String sqlQuery = "UPDATE `variable_partie` SET `id_piece`=?,`id_partie`=?,`Couleur`=?,`x`=?,`y`=?,`pouvoir_utilise`=? "
+							+ "WHERE `id_piece_partie`=?";
 					PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 					st3.setString(1,Integer.toString(piece.getIdPiece()));
 					st3.setString(2,Integer.toString(obj.getId_partie()));
@@ -109,7 +109,7 @@ public class PlateauDAO extends DAO<Plateau>{
 		ArrayList<Piece> listepieces = new ArrayList<Piece>();
 		try {
 			String sqlQuery = "SELECT * FROM `variable_partie` "
-					+ "WHERE id_partie='?' "
+					+ "WHERE id_partie=? "
 					+ "ORDER BY id_piece_partie";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
 			st.setString(1,Integer.toString(obj.getId_partie()));

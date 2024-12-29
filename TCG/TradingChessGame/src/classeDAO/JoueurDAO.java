@@ -17,7 +17,7 @@ public class JoueurDAO extends DAO<Joueur>{
 	public Joueur create(Joueur obj) {
 		try {
 			String sqlQuery = "INSERT INTO `joueur`(`identifiant`, `mdp`, `argent`, `NbPartiesG`, `NbPartiesJ`) "
-					+ "VALUES ('?','?','?','?','?')";
+					+ "VALUES (?,?,?,?,?)";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			st3.setString(1,obj.getIdentifiant());
 			st3.setString(2,PasswordUtil.hashPassword(obj.getMbp()));
@@ -32,7 +32,7 @@ public class JoueurDAO extends DAO<Joueur>{
 		}
 		try {
 			String sqlQuery = "SELECT id_partie FROM `partie` "
-					+ "WHERE identifiant='?' AND mdp='?' AND argent='?' AND NbPartiesG='1' AND NbPartiesJ ='1';";
+					+ "WHERE identifiant=? AND mdp=? AND argent=? AND NbPartiesG='1' AND NbPartiesJ ='1';";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
 			st.setString(1,obj.getIdentifiant());
 			st.setString(2,PasswordUtil.hashPassword(obj.getMbp()));
@@ -65,7 +65,7 @@ public class JoueurDAO extends DAO<Joueur>{
 	public Joueur connection(String identifiant, String mdp) {
 		try {
 			String sqlQuery = "SELECT id_partie FROM `partie` "
-					+ "WHERE identifiant='?' AND mdp='?'";
+					+ "WHERE identifiant=? AND mdp=?";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
 			st.setString(1,identifiant);
 			st.setString(2,PasswordUtil.hashPassword(mdp));
@@ -129,8 +129,8 @@ public class JoueurDAO extends DAO<Joueur>{
 	public Joueur update(Joueur obj) {
 		try {
 			String sqlQuery = "UPDATE `joueur` "
-					+ "SET ,`argent`='?',`NbPartiesG`='?',`NbPartiesJ`='?' "
-					+ "WHERE `id_joueur`='?' AND `identifiant`='?' AND `mdp`='?'";
+					+ "SET ,`argent`=?,`NbPartiesG`=?,`NbPartiesJ`=? "
+					+ "WHERE `id_joueur`=? AND `identifiant`=? AND `mdp`=?";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			
 			st3.setString(1,Integer.toString(obj.getArgent()));
@@ -152,7 +152,7 @@ public class JoueurDAO extends DAO<Joueur>{
 	@Override
 	public void delete(Joueur obj) {
 		try {
-			String sqlQuery = "DELETE FROM `joueur` WHERE WHERE `id_joueur`='?' AND `identifiant`='?' AND `mdp`='?'";
+			String sqlQuery = "DELETE FROM `joueur` WHERE WHERE `id_joueur`=? AND `identifiant`=? AND `mdp`=?";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			st3.setString(1,Integer.toString(obj.getId_joueur()));
 			st3.setString(2,obj.getIdentifiant());
@@ -167,7 +167,7 @@ public class JoueurDAO extends DAO<Joueur>{
 		
 		public void addPiece(int id_joueur,int id_piece,int nombre) {
 			try {
-				String sqlQuery = "INSERT INTO `possède`(`id_joueur`, `id_piece`, `nombre`) VALUES ('?','?','?')";
+				String sqlQuery = "INSERT INTO `possède`(`id_joueur`, `id_piece`, `nombre`) VALUES (?,?,?)";
 				PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 				st3.setString(1,Integer.toString(id_joueur));
 				st3.setString(2,Integer.toString(id_piece));
@@ -183,8 +183,8 @@ public class JoueurDAO extends DAO<Joueur>{
 		public void missPiece(int id_joueur,int id_piece,int nombre) {
 			try {
 				String sqlQuery = "UPDATE `possède` "
-						+ "SET `nombre`='?' "
-						+ "WHERE `id_joueur`='?' AND `id_piece`='?',";
+						+ "SET `nombre`=? "
+						+ "WHERE `id_joueur`=? AND `id_piece`=?,";
 				PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 				
 				st3.setString(2,Integer.toString(id_joueur));
