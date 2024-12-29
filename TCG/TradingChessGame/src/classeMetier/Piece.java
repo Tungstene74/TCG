@@ -61,13 +61,37 @@ public class Piece {
 			for (int new_x=0;new_x<=7;new_x++) { //pour chaques colonnes
 				for (int new_y=0;new_y<=7;new_y++) { //pour chaques lignes
 					if (mouvement.estPossible(this.x,this.y,new_x,new_y,plateau)) {
-						int[] co= {x,y};
+						int[] co= {new_x,new_y};
 						listeCoord.add(co);
 					}
 				}
 			}
 		}
 		return listeCoord;
+	}
+	
+	public String casesAteignablesString(Plateau plateau) {
+		ArrayList<int[]> listeCases = casesAteignables(plateau);
+		String str="[";
+		for (int[] case_: listeCases) {
+			str+="("+case_[0]+","+case_[1]+"),";
+		}
+		str+="]";
+		return str;
+	}
+	
+	public Boolean deplace(int x, int y, Plateau plateau) {
+		return null;
+	}
+	
+	public Boolean mangeable(Piece piece) {
+		Boolean b=true;
+		if (piece!=null) {
+			if (piece.getCouleur()==this.couleur) {
+				b=false;
+			}
+		}
+		return b;
 	}
 
 	/*

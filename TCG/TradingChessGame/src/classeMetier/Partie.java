@@ -16,10 +16,11 @@ public class Partie {
 	
 	public Partie(int couleur) {
 		this.tour_joueur=couleur;
-		
 		//initialisation du plateau
-		this.plateau=new Plateau();
-		Tour t1 = new Tour(0);
+		this.plateau=new Plateau(id_partie);
+		
+		//test
+		Tour t1 = new Tour("blanc");
 		this.plateau.add(t1);
 	}
 

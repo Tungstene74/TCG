@@ -5,7 +5,7 @@ import mouvement.*;
 import java.util.ArrayList;
 
 public class Tour extends Piece{
-	// id=1
+	//id=1;
 
 	public Tour(String couleur) {
 		super(1, "tour", new ArrayList<Mouvement>(), null, "",couleur);
@@ -18,5 +18,9 @@ public class Tour extends Piece{
 		super(1, "tour", new ArrayList<Mouvement>(), null, "",couleur,x,y);
 		Droite d = new Droite();
 		this.addMouvement(d);
+	}
+	
+	private void attributionDeplacement() {
+		//on attribut touts les déplacements de la pièce
 	}
 }
