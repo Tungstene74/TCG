@@ -8,7 +8,7 @@ public class MainTestTerminal {
 	
 	public static void affiche(Plateau plateau) {
 		ArrayList<ArrayList<Piece>> matrice= plateau.Matrice();
-		System.out.println(matrice.toString());
+		//System.out.println(matrice.toString());
 		for (ArrayList<Piece> ligne : matrice ) {
 			String strligne="";
 			for (Piece piece : ligne ) {
@@ -36,6 +36,11 @@ public class MainTestTerminal {
 		affiche(plateau);
 		
 		System.out.println(t1.casesAteignablesString(plateau));
+		
+		//plateau.add(t1, 1, 5);
+		plateau.deplace(2, 1, 1, 1);
+		
+		affiche(plateau);
 	}
 
 }
