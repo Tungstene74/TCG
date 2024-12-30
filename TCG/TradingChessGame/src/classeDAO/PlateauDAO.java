@@ -93,10 +93,10 @@ public class PlateauDAO extends DAO<Plateau>{
 		
 		// Affichage du resultat
 			while(rs.next()) {
-				int id_piece  = Integer.parseInt(rs.getString("id_piece "));
-				String Couleur  = rs.getString("Couleur ");
-				int x  = Integer.parseInt(rs.getString("x "));
-				int y  = Integer.parseInt(rs.getString("y "));
+				int id_piece  = Integer.parseInt(rs.getString("id_piece"));
+				String Couleur  = rs.getString("Couleur");
+				int x  = Integer.parseInt(rs.getString("x"));
+				int y  = Integer.parseInt(rs.getString("y"));
 				listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));
 				
 			}

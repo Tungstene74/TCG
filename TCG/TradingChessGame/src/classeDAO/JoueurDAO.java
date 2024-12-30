@@ -69,8 +69,8 @@ public class JoueurDAO extends DAO<Joueur>{
 		// Affichage du resultat
 
 			while(rs.next()) {
-				int id_piece  = Integer.parseInt(rs.getString("id_piece "));
-				int nombre  = Integer.parseInt(rs.getString("nombre "));
+				int id_piece  = Integer.parseInt(rs.getString("id_piece"));
+				int nombre  = Integer.parseInt(rs.getString("nombre"));
 				listepiece.put(id_piece, nombre);
 				
 			}

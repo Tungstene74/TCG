@@ -31,10 +31,30 @@ public class Main {
 		}catch (SQLException e) {
             e.printStackTrace();
         }
+try {
+
+			
+			Partie D1 = new Partie(0, 1, 1);
+			
+			PartieDAO D = new PartieDAO();
+			D.open();
+			D.create(D1);
+			
+			System.out.println(D1.getId_joueur());
+			
+			Partie D2 = new Partie(0, 1, 2);
+			
+			D.create(D2);
+			D.close();
+			
+			System.out.println(D2.getId_joueur());
+			}catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 		try {
 
 			
-			Partie D1 = new Partie(0, 1, 2);
+			Partie D1 = new Partie(0, 1, 1);
 			
 			PartieDAO D = new PartieDAO();
 			D.open();

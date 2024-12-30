@@ -97,11 +97,11 @@ public class DeckDAO extends DAO<Deck> {
 		Deck D = null;
 		// Affichage du resultat
 		while(rs.next()) {			
-			id_deck  = Integer.parseInt(rs.getString("id_deck "));
-			nom = rs.getString("nom ");
-			id_joueur  = Integer.parseInt(rs.getString("id_joueur "));
+			id_deck  = Integer.parseInt(rs.getString("id_deck"));
+			nom = rs.getString("nom");
+			id_joueur  = Integer.parseInt(rs.getString("id_joueur"));
 			deckprincipal  = rs.getInt("deckprincipal") == 1;
-			id_piece  = Integer.parseInt(rs.getString("id_piece "));
+			id_piece  = Integer.parseInt(rs.getString("id_piece"));
 
 			
 			if (id_deck != id_deckPast) {

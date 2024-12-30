@@ -44,10 +44,10 @@ public class PieceDAO extends DAO<Piece>{
 		try {
 			while(rs.next()) {
 				int idPiece  = Integer.parseInt(rs.getString("idPiece "));
-				String nom1  = rs.getString("nom ");
-				String mouvements  = rs.getString("mouvements ");
-				String pouvoir  = rs.getString("pouvoir ");
-				String image  = rs.getString("image ");
+				String nom1  = rs.getString("nom");
+				String mouvements  = rs.getString("mouvements");
+				String pouvoir  = rs.getString("pouvoir");
+				String image  = rs.getString("image");
 				
 				Pouvoir pouvoir1 = new Pouvoir(pouvoir);
 				

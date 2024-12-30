@@ -35,7 +35,7 @@ public class PartieDAO extends DAO<Partie>{
 		int id_partie  = 0;
 		// Affichage du resultat
 		while(rs.next()) {
-			id_partie  = Integer.parseInt(rs.getString("id_partie "));
+			id_partie  = Integer.parseInt(rs.getString("id_partie"));
 
 		}
 
@@ -58,9 +58,9 @@ public class PartieDAO extends DAO<Partie>{
 		int tour_joueur  = 0;
 		// Affichage du resultat
 		while(rs.next()) {
-			id_deck  = Integer.parseInt(rs.getString("id_deck "));
-			id_joueur  = Integer.parseInt(rs.getString("id_joueur "));
-			tour_joueur  = Integer.parseInt(rs.getString("tour_joueur "));
+			id_deck  = Integer.parseInt(rs.getString("id_deck"));
+			id_joueur  = Integer.parseInt(rs.getString("id_joueur"));
+			tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
 
 
 		}
@@ -96,11 +96,11 @@ public class PartieDAO extends DAO<Partie>{
 		int tour_joueur  = 0;
 		// Affichage du resultat
 		while(rs.next()) {
-			id_deck  = Integer.parseInt(rs.getString("id_deck "));
-			id_joueur  = Integer.parseInt(rs.getString("id_joueur "));
-			id_deck2  = Integer.parseInt(rs.getString("id_deck2 "));
-			id_joueur2  = Integer.parseInt(rs.getString("id_joueur2 "));
-			tour_joueur  = Integer.parseInt(rs.getString("tour_joueur "));
+			id_deck  = Integer.parseInt(rs.getString("id_deck"));
+			id_joueur  = Integer.parseInt(rs.getString("id_joueur"));
+			id_deck2  = Integer.parseInt(rs.getString("id_deck2"));
+			id_joueur2  = Integer.parseInt(rs.getString("id_joueur2"));
+			tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
 
 
 		}
