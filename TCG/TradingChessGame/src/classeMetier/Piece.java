@@ -19,6 +19,11 @@ public class Piece {
 	public String getCouleur() {
 		return couleur;
 	}
+	
+	private String lienImage() {
+		String str=this.nom+this.couleur+".png";
+		return str;
+	}
 
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image){
 		this.idPiece=idPiece;
@@ -27,33 +32,46 @@ public class Piece {
 		this.nom=nom;
 		this.x=-1;
 		this.y=-1;
-		this.image=image;
+		this.image=lienImage();
 		this.couleur=null;
 		Nbp+=1;
 	}
 	
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, String couleur){
+		// attention la couleur doit être instancier avec une majuscule!
 		this.idPiece=idPiece;
 		this.pouvoir=pouvoir;
 		this.mouvements=mouvements;
 		this.nom=nom;
 		this.x=-1;
 		this.y=-1;
-		this.image=image;
+		this.image=lienImage();
 		this.couleur=couleur;
 		Nbp+=1;
 	}
 
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, String couleur, int x, int y){
+		// attention la couleur doit être instancier avec une majuscule!
 		this.idPiece=idPiece;
 		this.mouvements=mouvements;
 		this.pouvoir=pouvoir;
 		this.nom=nom;
 		this.x=x;
 		this.y=y;
-		this.image=image;
+		this.image=lienImage();
 		this.couleur=couleur;
 		Nbp+=1;
+	}
+	
+	public Boolean caseAteignable(Plateau plateau, int new_x, int new_y) { //pour voir si une case est ateignable
+		Boolean b=false;
+		ArrayList<int[]> listeCoord =this.casesAteignables(plateau);
+		for (int[] coord:listeCoord) {
+			if (coord[0]==new_x & coord[1]==new_y) {
+				b=true;
+			}
+		}
+		return b;
 	}
 	
 	public ArrayList<int[]> casesAteignables(Plateau plateau){
@@ -61,7 +79,7 @@ public class Piece {
 		for (Mouvement mouvement:mouvements) { //pour pour chaques mouvements possibles
 			for (int new_x=0;new_x<=7;new_x++) { //pour chaques colonnes
 				for (int new_y=0;new_y<=7;new_y++) { //pour chaques lignes
-					if (mouvement.estPossible(this.x,this.y,new_x,new_y,plateau)) {
+					if (mouvement.estPossible(this,new_x,new_y,plateau)) {
 						int[] co= {new_x,new_y};
 						listeCoord.add(co);
 					}
@@ -85,7 +103,18 @@ public class Piece {
 		return null;
 	}
 	
-	public Boolean mangeable(Piece piece) {
+	public Boolean mangeableOuNull(Plateau plateau, int x, int y) {
+		Piece piece=plateau.getPiece(x, y);
+		Boolean b=true;
+		if (piece!=null) {
+			if (piece.getCouleur()==this.couleur) {
+				b=false;
+			}
+		}
+		return b;
+	}
+	
+	public Boolean mangeableOuNull(Piece piece) {
 		Boolean b=true;
 		if (piece!=null) {
 			if (piece.getCouleur()==this.couleur) {
@@ -131,16 +160,16 @@ public class Piece {
 		return this.image;
 	}
 
-	public void setX(int X){
-		this.x= X;
+	public void setX(int x){
+		this.x= x;
 	}
 
 	public int getIdPiece() {
 		return idPiece;
 	}
 
-	public void setY(int Y){
-		this.x= Y;
+	public void setY(int y){
+		this.y= y;
 	}
 
 	public void setDescriptionMvt(String description){

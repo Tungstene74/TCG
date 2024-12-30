@@ -8,10 +8,6 @@ import pieces.*;
 
 public class Plateau {
 	private ArrayList<Piece> listepieces;
-	//private HashMap<int[], Piece> dictCoordPiece = new HashMap<>();
-	//#dilemme est-ce que je met les co des pieces en temps qu'attribut des pieces au bien en 
-	//tant que clef pour les trouver dans le hashmap
-	//à mon avis c'est mieux de faire avec le hashmap car la recherche sera instantannée 
 	private int id_partie;
 	
 	
@@ -55,7 +51,7 @@ public class Plateau {
 	}
 	
 	public void add(Piece piece,int x,int y) {
-		if (x > 8 | x<1 | y > 8 | y<1) {
+		if (x>7 | x<0 | y>7 | y<0) {
 			throw new IndexOutOfBoundsException("Dépassement limite plateau");
 		}
 		else {
@@ -77,32 +73,54 @@ public class Plateau {
 		listepieces.remove(piece);
 	}
 	
+	public void deplace(Piece piece, int new_x, int new_y) {
+		if (new_x > 7 | new_x<0 | new_y > 7 | new_y<0) { //le plateau va de 0 à 7
+			throw new IndexOutOfBoundsException("Dépassement limite plateau");
+		}
+		else {
+			if (piece==null) {
+				throw new NullPointerException("La piece n'existe pas");
+			}
+			else {
+				if (!piece.caseAteignable(this, new_x, new_y)) {
+					throw new IllegalStateException("Déplacement interdit");
+				}
+				else {
+					Piece piece_mangee = this.getPiece(new_x,new_y); 
+					if (piece_mangee!=null) {
+						this.supp(piece_mangee);
+					}
+					piece.setX(new_x);
+					piece.setY(new_y);
+				}
+			}
+		}
+	}
+	
 	public void deplace(int x,int y, int new_x, int new_y) {
 		if (new_x > 7 | new_x<0 | new_y > 7 | new_y<0) { //le plateau va de 0 à 7
 			throw new IndexOutOfBoundsException("Dépassement limite plateau");
 		}
 		else {
-			Piece piece_manger = this.getPiece(new_x,new_y); 
-			if (piece_manger!=null) {
-				this.supp(piece_manger);
-			}
 			Piece piece = this.getPiece(x,y);
-			piece.setX(new_x);
-			piece.setY(new_y);
-			//this.add(piece, new_x, new_y);
-		
-		//Piece piece=dictCoordPiece.remove(co);
-		//dictCoordPiece.put(new_co,piece);
+			if (piece==null) {
+				throw new NullPointerException("Pas de pièce en ces coordonées");
+			}
+			else {
+				if (!piece.caseAteignable(this, new_x, new_y)) {
+					throw new IllegalStateException("Déplacement interdit");
+				}
+				else {
+					Piece piece_mangee = this.getPiece(new_x,new_y); 
+					if (piece_mangee!=null) {
+						this.supp(piece_mangee);
+					}
+					piece.setX(new_x);
+					piece.setY(new_y);
+				}
+			}
 		}
 	}
-	
-	/*
-	public int[] getCoord(Piece piece) {
-		Set<int[]> coordSet =dictCoordPiece.keySet();
-		int[] coord=coordSet
-		return CoordSet.
-		}
-	}*/
 	
 	public Piece getPiece(int x, int y) {
 		Piece pieceCherche=null;
