@@ -36,7 +36,7 @@ public class JoueurDAO extends DAO<Joueur>{
 	}
 	
 	public Joueur connection(String identifiant, String mdp) throws SQLException {
-			String sqlQuery = "SELECT id_partie FROM `partie` "
+			String sqlQuery = "SELECT * FROM `joueur` "
 					+ "WHERE identifiant=? AND mdp=?";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
 			st.setString(1,identifiant);
@@ -50,10 +50,10 @@ public class JoueurDAO extends DAO<Joueur>{
 		int nbPartiesG = 0;
 		// Affichage du resultat
 			while(rs.next()) {
-				id_joueur  = Integer.parseInt(rs.getString("id_partie "));
-				nbPartiesJ = Integer.parseInt(rs.getString("nbPartiesJ "));
-				nbPartiesG = Integer.parseInt(rs.getString("nbPartiesG "));
-				money = Integer.parseInt(rs.getString("argent "));				
+				id_joueur  = Integer.parseInt(rs.getString("id_joueur"));
+				nbPartiesJ = Integer.parseInt(rs.getString("nbPartiesJ"));
+				nbPartiesG = Integer.parseInt(rs.getString("nbPartiesG"));
+				money = Integer.parseInt(rs.getString("argent"));				
 			}
 		
 		

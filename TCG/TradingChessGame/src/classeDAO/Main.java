@@ -19,6 +19,8 @@ public class Main {
 		J.open();
 		J.create(J1);
 		
+		J.connection("Bill", "123");
+		
 		System.out.println(J1.getId_joueur());
 		
 		Joueur J2 = new Joueur("rock", "dfsdq");
@@ -30,8 +32,7 @@ public class Main {
             e.printStackTrace();
         }
 		try {
-			System.out.println("Hello World java");
-			System.out.println("Hello World java2");
+
 			
 			Partie D1 = new Partie(0, 1, 2);
 			
