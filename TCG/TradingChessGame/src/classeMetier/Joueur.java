@@ -1,5 +1,6 @@
 package classeMetier;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import classeDAO.JoueurDAO;
@@ -99,7 +100,7 @@ public class Joueur {
 	}
 	
 	
-	public void addPiece(int id_piece) {
+	public void addPiece(int id_piece) throws SQLException {
 		JoueurDAO J = new JoueurDAO();
 		J.open();
 		if (this.listepiece.containsKey(id_piece)) {

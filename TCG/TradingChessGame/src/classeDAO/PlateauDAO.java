@@ -13,10 +13,9 @@ public class PlateauDAO extends DAO<Plateau>{
 	private ResultSet rs;
 
 	@Override
-	public Plateau create(Plateau obj) {
+	public Plateau create(Plateau obj) throws SQLException {
 		for (int i = 0; i < obj.getListepieces().size(); i++) {
 			Piece piece = obj.getListepieces().get(i);
-			try {
 				String sqlQuery = "INSERT INTO `variable_partie`(`id_piece`, `id_partie`, `id_piece_partie`, `Couleur`, `x`, `y`, `pouvoir_utilise`) "
 						+ "VALUES (?,?,?,?,?,?,?)";
 				PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
@@ -29,45 +28,29 @@ public class PlateauDAO extends DAO<Plateau>{
 				st3.setString(7,Integer.toString(0));
 				st3.executeUpdate();
 				rs = st3.getGeneratedKeys();
-			}
-			catch(SQLException e) {
-				System.err.println("Erreur requete SQL");
-				e.printStackTrace();
-			}
 		}
 		return obj;
 	}
 
 	@Override
-	public Plateau update(Plateau obj) {
+	public Plateau update(Plateau obj) throws SQLException {
 		for (int i = 0; i < obj.getListepieces().size(); i++) {
-			try {
 				String sqlQuery = "SELECT * FROM `variable_partie` WHERE id_piece_partie=?;";
 				PreparedStatement st = connect.prepareStatement(sqlQuery);
 				st.setString(1,Integer.toString(obj.getId_partie()));
 				rs = st.executeQuery();
-			}
-			catch(SQLException e) {
-				System.err.println("Erreur requete SQLvvvvvv");
-				e.printStackTrace();
-			}
+			
 
 			int apparait  = 0;
 
 			// Affichage du resultat
-			try {
 				while(rs.next()) {
 					apparait = 1;
 				}
-			}
-			catch(SQLException e) {
-				System.err.println("Erreur de parcours de ResultSet");
-				e.printStackTrace();
-			}
+			
 			Piece piece = obj.getListepieces().get(i);
 			if (apparait == 0) {
-				try {
-					String sqlQuery = "INSERT INTO `variable_partie`(`id_piece`, `id_partie`, `id_piece_partie`, `Couleur`, `x`, `y`, `pouvoir_utilise`) "
+					sqlQuery = "INSERT INTO `variable_partie`(`id_piece`, `id_partie`, `id_piece_partie`, `Couleur`, `x`, `y`, `pouvoir_utilise`) "
 							+ "VALUES (?,?,?,?,?,?,?)";
 					PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 					st3.setString(1,Integer.toString(piece.getIdPiece()));
@@ -79,14 +62,9 @@ public class PlateauDAO extends DAO<Plateau>{
 					st3.setString(7,Integer.toString(0));
 					st3.executeUpdate();
 					rs = st3.getGeneratedKeys();
-				}
-				catch(SQLException e) {
-					System.err.println("Erreur requete SQL");
-					e.printStackTrace();
-				}
+				
 			}else if (apparait == 1) {
-				try {
-					String sqlQuery = "UPDATE `variable_partie` SET `id_piece`=?,`id_partie`=?,`Couleur`=?,`x`=?,`y`=?,`pouvoir_utilise`=? "
+					sqlQuery = "UPDATE `variable_partie` SET `id_piece`=?,`id_partie`=?,`Couleur`=?,`x`=?,`y`=?,`pouvoir_utilise`=? "
 							+ "WHERE `id_piece_partie`=?";
 					PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 					st3.setString(1,Integer.toString(piece.getIdPiece()));
@@ -98,32 +76,22 @@ public class PlateauDAO extends DAO<Plateau>{
 					st3.setString(7,Integer.toString(i));
 					st3.executeUpdate();
 					rs = st3.getGeneratedKeys();
-				}
-				catch(SQLException e) {
-					System.err.println("Erreur requete SQL");
-					e.printStackTrace();
-				}
+				
 			}
 		}
 		return obj;
 	}
 	
-	public void updateMoi(Plateau obj) {
+	public void updateMoi(Plateau obj) throws SQLException {
 		ArrayList<Piece> listepieces = new ArrayList<Piece>();
-		try {
 			String sqlQuery = "SELECT * FROM `variable_partie` "
 					+ "WHERE id_partie=? "
 					+ "ORDER BY id_piece_partie";
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
 			st.setString(1,Integer.toString(obj.getId_partie()));
 			rs = st.executeQuery();
-		}
-		catch(SQLException e) {
-			System.err.println("Erreur requete SQLvvvvvv");
-			e.printStackTrace();
-		}
+		
 		// Affichage du resultat
-		try {
 			while(rs.next()) {
 				int id_piece  = Integer.parseInt(rs.getString("id_piece "));
 				String Couleur  = rs.getString("Couleur ");
@@ -132,27 +100,18 @@ public class PlateauDAO extends DAO<Plateau>{
 				listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));
 				
 			}
-		}
-		catch(SQLException e) {
-			System.err.println("Erreur de parcours de ResultSet");
-			e.printStackTrace();
-		}
+		
 		obj.setListepieces(listepieces);
 	}
 
 	@Override
-	public void delete(Plateau obj) {
-		try {
+	public void delete(Plateau obj) throws SQLException {
 			String sqlQuery = "DELETE FROM `variable_partie` WHERE id_partie=?";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			st3.setString(1,Integer.toString(obj.getId_partie()));
 			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
-		}
-		catch(SQLException e) {
-			System.err.println("Erreur requete SQL");
-			e.printStackTrace();
-		}
+		
 	}
 
 }
