@@ -1,12 +1,2 @@
-<<<<<<< HEAD
-/mouvement/
-/classeMetier/
-/mouvementInfiniClassic/
-/pieces/
-/mouvementLimiteClassic/
-/mouvement1caseClassic/
-=======
-/classeMetier/
-/classeDAO/
->>>>>>> branch 'main' of https://github.com/Tungstene74/TCG.git
 /images/
+/interface_/
