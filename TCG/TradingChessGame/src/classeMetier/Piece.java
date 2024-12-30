@@ -19,6 +19,11 @@ public class Piece {
 	public String getCouleur() {
 		return couleur;
 	}
+	
+	private String lienImage() {
+		String str=this.nom+this.couleur+".png";
+		return str;
+	}
 
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image){
 		this.idPiece=idPiece;
@@ -27,31 +32,33 @@ public class Piece {
 		this.nom=nom;
 		this.x=-1;
 		this.y=-1;
-		this.image=image;
+		this.image=lienImage();
 		this.couleur=null;
 		Nbp+=1;
 	}
 	
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, String couleur){
+		// attention la couleur doit être instancier avec une majuscule!
 		this.idPiece=idPiece;
 		this.pouvoir=pouvoir;
 		this.mouvements=mouvements;
 		this.nom=nom;
 		this.x=-1;
 		this.y=-1;
-		this.image=image;
+		this.image=lienImage();
 		this.couleur=couleur;
 		Nbp+=1;
 	}
 
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, String couleur, int x, int y){
+		// attention la couleur doit être instancier avec une majuscule!
 		this.idPiece=idPiece;
 		this.mouvements=mouvements;
 		this.pouvoir=pouvoir;
 		this.nom=nom;
 		this.x=x;
 		this.y=y;
-		this.image=image;
+		this.image=lienImage();
 		this.couleur=couleur;
 		Nbp+=1;
 	}

@@ -2,7 +2,7 @@ package classeMetier;
 
 import java.util.ArrayList;
 
-import pieces.Tour;
+import pieces.*;
 
 public class MainTestTerminal {
 	
@@ -13,10 +13,10 @@ public class MainTestTerminal {
 			String strligne="";
 			for (Piece piece : ligne ) {
 				if (piece!=null) {
-					strligne+=piece.getNom().charAt(0)+" ";
+					strligne+=piece.getNom().charAt(0)+""+piece.getCouleur().charAt(0)+" ";//
 				}
 				else {
-					strligne+="/ ";
+					strligne+="-- ";
 				}
 			}
 			System.out.println(strligne);
@@ -26,11 +26,13 @@ public class MainTestTerminal {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Plateau plateau = new Plateau(0);
-		Tour t1 = new Tour("blanc",2,1);
-		Tour t2 = new Tour("blanc",4,1);
+		Tour t1 = new Tour("Blanc",2,1);
+		Tour t2 = new Tour("Blanc",4,1);
+		Fou f1 = new Fou("Blanc",5,3);
 		System.out.println(t1.toString());
 		plateau.add(t1);
 		plateau.add(t2);
+		plateau.add(f1);
 		System.out.println(t1.getNom().charAt(0));
 		
 		affiche(plateau);
@@ -41,6 +43,8 @@ public class MainTestTerminal {
 		plateau.deplace(2, 1, 1, 1);
 		
 		affiche(plateau);
+		
+		System.out.println(f1.casesAteignablesString(plateau));
 	}
 
 }
