@@ -3,6 +3,8 @@ package classeDAO;
 import java.sql.SQLException;
 
 import classeMetier.Joueur;
+import classeMetier.Partie;
+
 
 public class Main {
 
@@ -22,12 +24,33 @@ public class Main {
 		Joueur J2 = new Joueur("rock", "dfsdq");
 		
 		J.create(J2);
-		J.close();
 		
 		System.out.println(J2.getId_joueur());
 		}catch (SQLException e) {
             e.printStackTrace();
         }
+		try {
+			System.out.println("Hello World java");
+			System.out.println("Hello World java2");
+			
+			Partie D1 = new Partie(0, 1, 2);
+			
+			PartieDAO D = new PartieDAO();
+			D.open();
+			D.create(D1);
+			
+			System.out.println(D1.getId_joueur());
+			
+			Partie D2 = new Partie(0, 1, 2);
+			
+			D.create(D2);
+			D.close();
+			
+			System.out.println(D2.getId_joueur());
+			}catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+		
 		
 
 	}
