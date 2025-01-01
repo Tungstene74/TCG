@@ -158,6 +158,21 @@ public class Plateau {
 		}
 	}
 	
+	public Plateau copy() {
+		Plateau new_plateau=new Plateau(this.id_partie);
+		for (Piece piece:listepieces) {
+			new_plateau.add(piece.copy());
+		}
+		return null;
+	}
+	/*
+	public void metEnEchec(Piece piece, int nex_x, int new_y) {
+		Plateau plateau2 = this.
+		for (Piece piece:this.listepieces) {
+			
+		}
+	}*/
+	
 	public void plateauClassique() {
 		
 		//génération des pions

@@ -124,6 +124,11 @@ public class Piece {
 		}
 		return b;
 	}
+	
+	public Piece copy() {
+		Piece new_piece=new Piece(this.idPiece, this.nom, this.mouvements, this.pouvoirs, this.image,this.classe,this.couleur, this.x, this.y);
+		return new_piece;
+	}
 
 	/*
 	    public Piece(int idP, ArrayList<int[]> mouvement, String pouvoirs, String Nom, int x, int y, String image){
