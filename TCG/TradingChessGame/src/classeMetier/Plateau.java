@@ -158,8 +158,33 @@ public class Plateau {
 		}
 	}
 	
-	public void attributionCoord() {
-		//for piece
+	public void plateauClassique() {
+		
+		//génération des pions
+		for(int x=0;x<=7;x++) {
+			this.add(new Pion("blanc",x,1));
+			this.add(new Pion("noir",x,6));
+		}
+		
+		//génération des pieces blanches
+		this.add(new Tour("blanc",0,0));
+		this.add(new Cavalier("blanc",1,0));
+		this.add(new Fou("blanc",2,0));
+		this.add(new Dame("blanc",3,0));
+		this.add(new Roi("blanc",4,0));
+		this.add(new Fou("blanc",5,0));
+		this.add(new Cavalier("blanc",6,0));
+		this.add(new Tour("blanc",7,0));
+		
+		//génération des pieces noires
+		this.add(new Tour("noir",0,7));
+		this.add(new Cavalier("noir",1,7));
+		this.add(new Fou("noir",2,7));
+		this.add(new Dame("noir",3,7));
+		this.add(new Roi("noir",4,7));
+		this.add(new Fou("noir",5,7));
+		this.add(new Cavalier("noir",6,7));
+		this.add(new Tour("noir",7,7));
 	}
 }
 

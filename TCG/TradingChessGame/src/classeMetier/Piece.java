@@ -7,7 +7,7 @@ public class Piece {
 	private int idPiece; //id de la pièce
 	//private ArrayList<int[]> mouvement; //les vecteur mouvement en [(x,y),…]
 	private String nom; //nom de la pièce
-	private Pouvoir pouvoir; // nom du pouvoir
+	private ArrayList<Pouvoir> pouvoirs; // nom du pouvoir
 	private ArrayList<Mouvement> mouvements;
 	private int x; // position sur le plateaux en x 
 	private int y; // position sur le plateaux en y
@@ -15,6 +15,7 @@ public class Piece {
 	private static int Nbp=0; // pour comptre le nombre de pièce 
 	private String couleur;
 	private String descriptionMvt;//Description du mouvement de la pièce
+	private String classe;
 
 	public String getCouleur() {
 		return couleur;
@@ -25,9 +26,9 @@ public class Piece {
 		return str;
 	}
 
-	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image){
+	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, ArrayList<Pouvoir> pouvoirs, String image,String classe){
 		this.idPiece=idPiece;
-		this.pouvoir=pouvoir;
+		this.pouvoirs=pouvoirs;
 		this.mouvements=mouvements;
 		this.nom=nom;
 		this.x=-1;
@@ -37,10 +38,10 @@ public class Piece {
 		Nbp+=1;
 	}
 	
-	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, String couleur){
+	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, ArrayList<Pouvoir> pouvoirs, String image, String classe,String couleur){
 		// attention la couleur doit être instancier avec une majuscule!
 		this.idPiece=idPiece;
-		this.pouvoir=pouvoir;
+		this.pouvoirs=pouvoirs;
 		this.mouvements=mouvements;
 		this.nom=nom;
 		this.x=-1;
@@ -50,11 +51,11 @@ public class Piece {
 		Nbp+=1;
 	}
 
-	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, Pouvoir pouvoir, String image, String couleur, int x, int y){
+	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, ArrayList<Pouvoir> pouvoirs, String image,String classe, String couleur, int x, int y){
 		// attention la couleur doit être instancier avec une majuscule!
 		this.idPiece=idPiece;
 		this.mouvements=mouvements;
-		this.pouvoir=pouvoir;
+		this.pouvoirs=pouvoirs;
 		this.nom=nom;
 		this.x=x;
 		this.y=y;
@@ -182,6 +183,10 @@ public class Piece {
 	
 	public void addMouvement(Mouvement mouvement) {
 		this.mouvements.add(mouvement);
+	}
+	
+	public void addPouvoir(Pouvoir pouvoir) {
+		this.pouvoirs.add(pouvoir);
 	}
 	
 	/*

@@ -9,19 +9,14 @@ public class Tour extends Piece{
 	//id=1;
 
 	public Tour(String couleur) {
-		super(1, "tour", new ArrayList<Mouvement>(), null, "",couleur);
+		super(1, "tour", new ArrayList<Mouvement>(), null, "","tour",couleur);
 		// on définit les différents déplacements
-		MouvTour d = new MouvTour();
-		this.addMouvement(d);
+		this.addMouvement(new MouvTour());
 	}
 	
 	public Tour(String couleur, int x, int y) {
-		super(1, "tour", new ArrayList<Mouvement>(), null, "",couleur,x,y);
-		MouvTour d = new MouvTour();
-		this.addMouvement(d);
+		super(1, "tour", new ArrayList<Mouvement>(), null, "","tour",couleur,x,y);
+		this.addMouvement(new MouvTour());
 	}
 	
-	private void attributionDeplacement() {
-		//on attribut touts les déplacements de la pièce
-	}
 }
