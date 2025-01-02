@@ -35,21 +35,8 @@ public class Joueur {
 	
 	public Deck defaultDeck() {
 		Deck deckDefault = new Deck("Default",true,this.id_joueur);
+		deckDefault.defaultDeck();
 		this.listeDeck.add(deckDefault);
-		//génération des pions
-		for(int x=0;x<=7;x++) {
-			deckDefault.AddPiece(new Pion("blanc"));
-		}		
-		//génération des pieces blanches
-		deckDefault.AddPiece(new Tour("blanc"));
-		deckDefault.AddPiece(new Cavalier("blanc"));
-		deckDefault.AddPiece(new Fou("blanc"));
-		deckDefault.AddPiece(new Dame("blanc"));
-		deckDefault.AddPiece(new Roi("blanc"));
-		deckDefault.AddPiece(new Fou("blanc"));
-		deckDefault.AddPiece(new Cavalier("blanc"));
-		deckDefault.AddPiece(new Tour("blanc"));	
-		
 		return deckDefault;
 	}
 
