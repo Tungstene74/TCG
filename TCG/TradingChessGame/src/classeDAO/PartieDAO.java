@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import classeMetier.Deck;
+import classeMetier.Joueur;
 import classeMetier.Partie;
 import classeMetier.Piece;
 import classeMetier.Pouvoir;
@@ -19,13 +21,16 @@ public class PartieDAO extends DAO<Partie>{
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 		st3.setString(1,Integer.toString(obj.getId_partie()));
 		st3.setString(2,Integer.toString(obj.getTour_joueur()));
-		st3.setString(3,Integer.toString(obj.getId_deck1()));
-		st3.setString(4,Integer.toString(obj.getId_joueur1()));
+		st3.setString(3,Integer.toString(obj.getdeck1().getId_deck()));
+		st3.setString(4,Integer.toString(obj.getjoueur1().getId_joueur()));
 		st3.executeUpdate();
 		rs = st3.getGeneratedKeys();
 		
-		obj.setId_joueur2(0);
-		obj.setId_deck2(0);;
+		JoueurDAO joueurdao=new JoueurDAO();
+		Joueur joueur2= joueurdao.creerjoueur2(0);
+		Deck deck2= joueur2.mainDeck();
+		obj.setjoueur2(joueur2);
+		obj.setdeck2(deck2);;
 
 		return obj;
 	}
