@@ -2,6 +2,13 @@ package classeMetier;
 
 import java.util.ArrayList;
 
+import pieces.Cavalier;
+import pieces.Dame;
+import pieces.Fou;
+import pieces.Pion;
+import pieces.Roi;
+import pieces.Tour;
+
 public class Deck {
 	private int id_deck;
 	private String nom;
@@ -16,13 +23,28 @@ public class Deck {
 		this.id_joueur = id_joueur;
 	}
 	
-	
 	public Deck(String nom, Boolean deckprincipal, ArrayList<Piece> listepieces, int id_joueur) {
 		super();
 		this.nom = nom;
 		this.deckprincipal = deckprincipal;
 		this.listepieces = listepieces;
 		this.id_joueur = id_joueur;
+	}
+	
+	public void defaultDeck() {
+		//generation des pions
+		for(int x=0;x<=7;x++) {
+			this.AddPiece(new Pion("blanc"));
+		}		
+		//génération des pieces blanches
+		this.AddPiece(new Tour("blanc"));
+		this.AddPiece(new Cavalier("blanc"));
+		this.AddPiece(new Fou("blanc"));
+		this.AddPiece(new Dame("blanc"));
+		this.AddPiece(new Roi("blanc"));
+		this.AddPiece(new Fou("blanc"));
+		this.AddPiece(new Cavalier("blanc"));
+		this.AddPiece(new Tour("blanc"));	
 	}
 	
 	public void AddPiece(Piece piece) {
