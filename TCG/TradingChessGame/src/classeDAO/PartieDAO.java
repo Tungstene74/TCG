@@ -14,12 +14,13 @@ public class PartieDAO extends DAO<Partie>{
 
 	@Override
 	public Partie create(Partie obj) throws SQLException { //à partir d'une partie renvois une nouvelle partie avec les paramettre de la base de donné + ça l'ajoute dans la base de donné 
-		String sqlQuery = "INSERT INTO `partie`(`tour_joueur`, `id_deck`, `id_joueur`,`id_deck2`, `id_joueur2`) "
-				+ "VALUES (?,?,?,'0','0')";
+		String sqlQuery = "INSERT INTO `partie`(`id_partie`, `tour_joueur`, `id_deck`, `id_joueur`,`id_deck2`, `id_joueur2`) "
+				+ "VALUES (?,?,?,?,'0','0')";
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-		st3.setString(1,Integer.toString(obj.getTour_joueur()));
-		st3.setString(2,Integer.toString(obj.getId_deck1()));
-		st3.setString(3,Integer.toString(obj.getId_joueur1()));
+		st3.setString(1,Integer.toString(obj.getId_partie()));
+		st3.setString(2,Integer.toString(obj.getTour_joueur()));
+		st3.setString(3,Integer.toString(obj.getId_deck1()));
+		st3.setString(4,Integer.toString(obj.getId_joueur1()));
 		st3.executeUpdate();
 		rs = st3.getGeneratedKeys();
 		

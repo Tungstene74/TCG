@@ -105,7 +105,16 @@ public class Partie {
 		this.tour_joueur = tour_joueur;
 		this.id_deck1 = id_deck1;
 		this.id_joueur1 = id_joueur1;
+		//initialisation du plateau
+				this.plateau=new Plateau(id_partie);
+				
+				this.plateau.plateauClassique();
+				//test
+				Tour t1 = new Tour("blanc");
+				this.plateau.add(t1);
+				
 		this.plateau.setId_partie(id_partie);
+
 	}
 	
 	public Partie(int id_partie, int tour_joueur, int id_deck1, int id_joueur1, int id_deck2, int id_joueur2) {
