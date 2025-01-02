@@ -101,22 +101,11 @@ public class JoueurDAO extends DAO<Joueur>{
 			identifiant = rs.getString("identifiant");			
 		}	
 
-		sqlQuery = "SELECT * FROM `deck` WHERE id_joueur=?";
-		st = connect.prepareStatement(sqlQuery);
-		st.setString(1,Integer.toString(id_joueur));
-		rs = st.executeQuery();
-
-		// Affichage du resultat
-
-		while(rs.next()) {
-			int id_deck  = Integer.parseInt(rs.getString("id_deck"));	
-		}
-		
-		Deck deck = new Deck("Deck de l'adversaire", true, id_joueur);
-		ArrayList<Deck> listeDeck=new ArrayList<Deck>();
-		listeDeck.add(deck);
+		DeckDAO deckdao=new DeckDAO();
+		ArrayList<Deck> listeDeck=deckdao.read(id_joueur);
 		return new Joueur(id_joueur, identifiant, listeDeck);
 	}
+	
 
 	@Override
 	public Joueur update(Joueur obj) throws SQLException {
