@@ -163,6 +163,9 @@ public class Piece {
 		if (couleur=="noir") {
 			return "blanc";
 		}
+		else {
+			return null;
+		}
 	}
 	
 

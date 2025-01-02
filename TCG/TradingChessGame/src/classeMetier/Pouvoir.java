@@ -2,7 +2,7 @@ package classeMetier;
 
 public class Pouvoir {
 	private String nom;
-	private String description
+	private String description;
 
 	public Pouvoir(String nom) {
 		super();
