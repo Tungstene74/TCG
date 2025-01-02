@@ -197,4 +197,26 @@ public class TCG extends JFrame{
 	public void setPlayer(Joueur player) {
 		this.player = player;
 	}
+	
+	public void creationPartie() {
+		basePanel.removeAll();
+
+		CreationPartie creationPartie = new CreationPartie(this);
+		
+		basePanel.add(creationPartie, creationPartie.getGbc());
+		
+		basePanel.revalidate();
+		basePanel.repaint();
+	}
+	
+	public void rejoindrePartie() {
+		basePanel.removeAll();
+
+		RejoindrePartie rejoindrePartie = new RejoindrePartie(this);
+		
+		basePanel.add(rejoindrePartie, rejoindrePartie.getGbc());
+		
+		basePanel.revalidate();
+		basePanel.repaint();
+	}
 }

@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import classeDAO.PartieDAO;
+
 public class ChoixCombat extends JPanel {
 	private GridBagLayout gbl;
 	
@@ -84,13 +86,7 @@ public class ChoixCombat extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			try {
-				
-			}
-			catch(SQLException e) {
-				
-			}
-			fenetre.gameBoard();
+			fenetre.creationPartie();
 		}
 		
 	}
@@ -99,7 +95,7 @@ public class ChoixCombat extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			fenetre.gameBoard();
+			fenetre.rejoindrePartie();
 		}
 		
 	}
