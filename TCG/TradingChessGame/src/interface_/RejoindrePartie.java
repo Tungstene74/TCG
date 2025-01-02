@@ -109,6 +109,7 @@ public class RejoindrePartie extends JPanel{
 			try {
 				PDAO.open();
 				PDAO.join(code,fenetre.getPlayer());
+				PDAO.close();
 			}
 			catch(SQLException e) {
 				e.printStackTrace();
