@@ -4,8 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import classeMetier.Deck;
 import classeMetier.Joueur;
 
 
@@ -78,6 +80,37 @@ public class JoueurDAO extends DAO<Joueur>{
 				
 		return new Joueur(id_joueur, identifiant, mdp,  nbPartiesJ,  money, nbPartiesG,listepiece);
 		
+	}
+	
+	public Joueur creerjoueur2(int id_joueur) throws SQLException {
+		String sqlQuery = "SELECT * FROM `joueur` "
+				+ "WHERE id_joueur=?";
+		PreparedStatement st = connect.prepareStatement(sqlQuery);
+		st.setInt(1,id_joueur);
+		rs = st.executeQuery();
+		
+		String identifiant="";
+		
+		// Affichage du resultat
+		while(rs.next()) {
+			identifiant = rs.getString("identifiant");			
+		}	
+
+		sqlQuery = "SELECT * FROM `deck` WHERE id_joueur=?";
+		st = connect.prepareStatement(sqlQuery);
+		st.setString(1,Integer.toString(id_joueur));
+		rs = st.executeQuery();
+
+		// Affichage du resultat
+
+		while(rs.next()) {
+			int id_deck  = Integer.parseInt(rs.getString("id_deck"));	
+		}
+		
+		Deck deck = new Deck("Deck de l'adversaire", true, id_joueur);
+		ArrayList<Deck> listeDeck=new ArrayList<Deck>();
+		listeDeck.add(deck);
+		return new Joueur(id_joueur, identifiant, listeDeck);
 	}
 
 	@Override
