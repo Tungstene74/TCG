@@ -20,20 +20,29 @@ public class Case extends JButton{
 	
 	public Case(int x,int y) {
 		abscisse = x;
-		ordonnee = y;
+		ordonnee = 7 - y;
 		
 		if ((abscisse+ordonnee)%2==1) setBackground(new Color(222,184,135));
 		else setBackground(new Color(0,0,0));
 		
-		//addActionListener(new ALCase());
+		addActionListener(new ALCase());
 		
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.gridx = abscisse;
-		gbc.gridy = ordonnee;
+		gbc.gridx = x;
+		gbc.gridy = y;
 	}
 
 	public GridBagConstraints getGbc() {
 		return gbc;
+	}
+	
+	private class ALCase implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("abscisse : "+ abscisse+ "; ordonnee : "+ ordonnee);
+		}
+		
 	}
 }

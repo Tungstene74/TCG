@@ -222,14 +222,14 @@ public class Combat extends JPanel {
 		A7.add(case77);
 		
 		arrayButton = new ArrayList<ArrayList<Case>>();
-		arrayButton.add(A0);
-		arrayButton.add(A1);
-		arrayButton.add(A2);
-		arrayButton.add(A3);
-		arrayButton.add(A4);
-		arrayButton.add(A5);
-		arrayButton.add(A6);
 		arrayButton.add(A7);
+		arrayButton.add(A6);
+		arrayButton.add(A5);
+		arrayButton.add(A4);
+		arrayButton.add(A3);
+		arrayButton.add(A2);
+		arrayButton.add(A1);
+		arrayButton.add(A0);
 		
 	}
 	
@@ -237,10 +237,10 @@ public class Combat extends JPanel {
 		int i = 0;
 		for (ArrayList<Case> a : arrayButton) {
 			int j = 0;
-			for (Case b: a) {
-				b = new Case(j,i);
-				b.addActionListener(null);
-				panel.add(b,b.getGbc());
+			for (Case c: a) {
+				c = new Case(j,i);
+				c.addActionListener(null);
+				panel.add(c,c.getGbc());
 				j++;
 			}
 			i++;
