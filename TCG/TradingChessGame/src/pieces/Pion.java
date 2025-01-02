@@ -16,8 +16,8 @@ public class Pion extends Piece {
 			//this.addPouvoir(new Promotion());
 		}
 		
-		public Pion(String couleur, int x, int y) {
-			super(0, "pion", new ArrayList<Mouvement>(), null/*new ArrayList<Pouvoir>()*/, "","pion",couleur,x,y);
+		public Pion(String couleur, int idPiecePartie, int x, int y) {
+			super(0, idPiecePartie, "pion", new ArrayList<Mouvement>(), null/*new ArrayList<Pouvoir>()*/, "","pion",couleur,x,y);
 			this.addMouvement(new MouvFou());
 			//this.addPouvoir(new Promotion());
 		}

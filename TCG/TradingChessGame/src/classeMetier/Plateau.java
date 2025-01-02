@@ -122,6 +122,17 @@ public class Plateau {
 		}
 	}
 	
+	public Piece getPieceIdPiecePartie(int idPiecePartie) {
+		Piece pieceCherchee=null;
+		for(Piece piece : listepieces) {
+			if (piece.getIdPiecePartie()==idPiecePartie) {
+				pieceCherchee=piece;
+				break;
+			}
+		}
+		return pieceCherchee;
+	}
+	
 	public Piece getPiece(int x, int y) {
 		Piece pieceCherchee=null;
 		for(Piece piece : listepieces) {
@@ -177,12 +188,12 @@ public class Plateau {
 
 	public void creePiece(int id_piece, String couleur) {
 		switch (id_piece) {
-			case 0: // pion
+			case 0: add(new Pion(couleur));
 			case 1: add(new Tour(couleur));
-			case 2: //cavalier
-			case 3: //fou
-			case 4: //dame
-			case 5: //roi
+			case 2: add(new Cavalier(couleur));
+			case 3: add(new Fou(couleur));
+			case 4: add(new Dame(couleur));
+			case 5: add(new Roi(couleur));
 		}
 	}
 	
@@ -268,29 +279,29 @@ public class Plateau {
 		
 		//génération des pions
 		for(int x=0;x<=7;x++) {
-			this.add(new Pion("blanc",x,1));
-			this.add(new Pion("noir",x,6));
+			this.add(new Pion("blanc",x,x,1));
+			this.add(new Pion("noir",x+8,x,6));
 		}
 		
 		//génération des pieces blanches
-		this.add(new Tour("blanc",0,0));
-		this.add(new Cavalier("blanc",1,0));
-		this.add(new Fou("blanc",2,0));
-		this.add(new Dame("blanc",3,0));
-		this.add(new Roi("blanc",4,0));
-		this.add(new Fou("blanc",5,0));
-		this.add(new Cavalier("blanc",6,0));
-		this.add(new Tour("blanc",7,0));
+		this.add(new Tour("blanc",16,0,0));
+		this.add(new Cavalier("blanc",17,1,0));
+		this.add(new Fou("blanc",18,2,0));
+		this.add(new Dame("blanc",19,3,0));
+		this.add(new Roi("blanc",20,4,0));
+		this.add(new Fou("blanc",21,5,0));
+		this.add(new Cavalier("blanc",22,6,0));
+		this.add(new Tour("blanc",23,7,0));
 		
 		//génération des pieces noires
-		this.add(new Tour("noir",0,7));
-		this.add(new Cavalier("noir",1,7));
-		this.add(new Fou("noir",2,7));
-		this.add(new Dame("noir",3,7));
-		this.add(new Roi("noir",4,7));
-		this.add(new Fou("noir",5,7));
-		this.add(new Cavalier("noir",6,7));
-		this.add(new Tour("noir",7,7));
+		this.add(new Tour("noir",24,0,7));
+		this.add(new Cavalier("noir",25,1,7));
+		this.add(new Fou("noir",26,2,7));
+		this.add(new Dame("noir",27,3,7));
+		this.add(new Roi("noir",28,4,7));
+		this.add(new Fou("noir",29,5,7));
+		this.add(new Cavalier("noir",30,6,7));
+		this.add(new Tour("noir",31,7,7));
 	}
 }
 

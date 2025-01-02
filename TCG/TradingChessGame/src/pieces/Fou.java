@@ -13,8 +13,8 @@ public class Fou extends Piece{
 		this.addMouvement(new MouvFou());
 	}
 	
-	public Fou(String couleur, int x, int y) {
-		super(3, "fou", new ArrayList<Mouvement>(), null, "","fou",couleur,x,y);
+	public Fou(String couleur, int idPiecePartie, int x, int y) {
+		super(3, idPiecePartie, "fou", new ArrayList<Mouvement>(), null, "","fou",couleur,x,y);
 		this.addMouvement(new MouvFou());
 	}
 

@@ -14,8 +14,8 @@ public class Cavalier extends Piece{
 		this.addMouvement(new MouvCavalier());
 	}
 	
-	public Cavalier(String couleur, int x, int y) {
-		super(3, "cavalier", new ArrayList<Mouvement>(), null, "","cavalier",couleur,x,y);
+	public Cavalier(String couleur, int idPiecePartie, int x, int y) {
+		super(3,idPiecePartie, "cavalier", new ArrayList<Mouvement>(), null, "","cavalier",couleur,x,y);
 		this.addMouvement(new MouvCavalier());
 	}
 

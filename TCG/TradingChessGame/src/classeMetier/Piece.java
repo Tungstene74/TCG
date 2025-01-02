@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class Piece {
-	//private int idB; //id sur le plateaux
+	private int idPiecePartie; //id sur le plateaux
 	private int idPiece; //id de la pièce
 	//private ArrayList<int[]> mouvement; //les vecteur mouvement en [(x,y),…]
 	private String nom; //nom de la pièce
@@ -16,7 +16,6 @@ public class Piece {
 	private String couleur;
 	private String descriptionMvt;//Description du mouvement de la pièce
 	private String classe;
-	
 	
 	private String lienImage() {
 		String str=this.nom+this.couleur+".png";
@@ -48,9 +47,10 @@ public class Piece {
 		Nbp+=1;
 	}
 
-	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, ArrayList<Pouvoir> pouvoirs, String image,String classe, String couleur, int x, int y){
+	public Piece(int idPiece, int idPiecePartie, String nom, ArrayList<Mouvement> mouvements, ArrayList<Pouvoir> pouvoirs, String image,String classe, String couleur, int x, int y){
 		// attention la couleur doit être instancier avec une majuscule!
 		this.idPiece=idPiece;
+		this.idPiecePartie=idPiecePartie;
 		this.mouvements=mouvements;
 		this.pouvoirs=pouvoirs;
 		this.nom=nom;
@@ -133,7 +133,7 @@ public class Piece {
 	}
 	
 	public Piece copy() {
-		Piece new_piece=new Piece(this.idPiece, this.nom, this.mouvements, this.pouvoirs, this.image,this.classe,this.couleur, this.x, this.y);
+		Piece new_piece=new Piece(this.idPiece, this.idPiecePartie, this.nom, this.mouvements, this.pouvoirs, this.image,this.classe,this.couleur, this.x, this.y);
 		return new_piece;
 	}
 
@@ -171,6 +171,10 @@ public class Piece {
 
 	public ArrayList<Mouvement> getMouvements() {
 		return this.mouvements;
+	}
+	
+	public int getIdPiecePartie() {
+		return this.idPiecePartie;
 	}
 	
 	public String getNom() {

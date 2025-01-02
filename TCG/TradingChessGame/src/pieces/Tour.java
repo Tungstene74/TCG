@@ -14,8 +14,8 @@ public class Tour extends Piece{
 		this.addMouvement(new MouvTour());
 	}
 	
-	public Tour(String couleur, int x, int y) {
-		super(1, "tour", new ArrayList<Mouvement>(), null, "","tour",couleur,x,y);
+	public Tour(String couleur, int idPiecePartie, int x, int y) {
+		super(1, idPiecePartie, "tour", new ArrayList<Mouvement>(), null, "","tour",couleur,x,y);
 		this.addMouvement(new MouvTour());
 	}
 	

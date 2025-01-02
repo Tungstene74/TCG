@@ -16,8 +16,8 @@ public class Dame extends Piece{
 			this.addMouvement(new MouvTour());
 		}
 		
-		public Dame(String couleur, int x, int y) {
-			super(4, "fou", new ArrayList<Mouvement>(), null, "","dame",couleur,x,y);
+		public Dame(String couleur, int idPiecePartie, int x, int y) {
+			super(4, idPiecePartie, "fou", new ArrayList<Mouvement>(), null, "","dame",couleur,x,y);
 			this.addMouvement(new MouvFou());
 			this.addMouvement(new MouvTour());
 		}
