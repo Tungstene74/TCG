@@ -84,6 +84,12 @@ public class ChoixCombat extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			try {
+				
+			}
+			catch(SQLException e) {
+				
+			}
 			fenetre.gameBoard();
 		}
 		
