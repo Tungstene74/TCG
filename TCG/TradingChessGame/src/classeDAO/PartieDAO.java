@@ -18,36 +18,27 @@ public class PartieDAO extends DAO<Partie>{
 				+ "VALUES (?,?,?,'0','0')";
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 		st3.setString(1,Integer.toString(obj.getTour_joueur()));
-		st3.setString(2,Integer.toString(obj.getId_deck()));
-		st3.setString(3,Integer.toString(obj.getId_joueur()));
+		st3.setString(2,Integer.toString(obj.getId_deck1()));
+		st3.setString(3,Integer.toString(obj.getId_joueur1()));
 		st3.executeUpdate();
 		rs = st3.getGeneratedKeys();
-
-		sqlQuery = "SELECT id_partie FROM `partie` WHERE tour_joueur='?' AND id_deck='?' AND id_joueur='?' AND id_deck2='1' AND id_joueur2 ='1';";
-		PreparedStatement st = connect.prepareStatement(sqlQuery);
-		st.setString(1,Integer.toString(obj.getTour_joueur()));
-		st.setString(2,Integer.toString(obj.getId_deck()));
-		st.setString(3,Integer.toString(obj.getId_joueur()));
-		st.executeUpdate();
-		rs = st.executeQuery();
-
-
+		
 		int id_partie  = 0;
-		// Affichage du resultat
-		while(rs.next()) {
+
+		if (rs.next()) {
 			id_partie  = Integer.parseInt(rs.getString("id_partie"));
 
-		}
+        }
 
 		obj.setId_partie(id_partie);
 		obj.setId_joueur2(0);
-		obj.setId_joueur2(0);
+		obj.setId_deck2(0);;
 
 		return obj;
 	}
 
 	public Partie join(int id_partie,int id_joueur2,int id_deck2) throws SQLException { //à partir d'id renvois une nouvelle partie avec ça version dans la base de donné 
-		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?;";
+		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?";
 		PreparedStatement st = connect.prepareStatement(sqlQuery);
 		st.setString(1,Integer.toString(id_partie));
 		rs = st.executeQuery();
@@ -69,7 +60,7 @@ public class PartieDAO extends DAO<Partie>{
 		sqlQuery = "UPDATE `partie` "
 				+ "SET `id_deck2`=?,"
 				+ "`id_joueur2`=? "
-				+ "WHERE `id_partie`=?,";
+				+ "WHERE `id_partie`=?";
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 		st3.setString(1,Integer.toString(id_deck2));
 		st3.setString(2,Integer.toString(id_joueur2));
@@ -83,7 +74,7 @@ public class PartieDAO extends DAO<Partie>{
 
 	@Override
 	public Partie update(Partie obj) throws SQLException { //à partir d'une partie renvois une nouvelle partie avec les mise à jour de la base de donné 
-		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?;";
+		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?";
 		PreparedStatement st = connect.prepareStatement(sqlQuery);
 		st.setString(1,Integer.toString(obj.getId_partie()));
 		rs = st.executeQuery();
@@ -108,9 +99,10 @@ public class PartieDAO extends DAO<Partie>{
 		obj.setId_deck(id_deck);
 		obj.setId_joueur(id_joueur);
 		obj.setTour_joueur(tour_joueur);
+		obj.setId_joueur2(id_joueur2);
 		obj.setId_deck2(id_deck2);
 
-		return new Partie(obj.getId_partie(), tour_joueur, id_deck, id_joueur, id_deck2, id_joueur2);
+		return obj;
 	}
 
 	@Override
