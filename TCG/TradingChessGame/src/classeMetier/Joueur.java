@@ -4,6 +4,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import classeDAO.JoueurDAO;
+import pieces.Cavalier;
+import pieces.Dame;
+import pieces.Fou;
+import pieces.Pion;
+import pieces.Roi;
+import pieces.Tour;
 
 public class Joueur {
 	private int id_joueur;
@@ -13,9 +19,29 @@ public class Joueur {
 	private int NbPartiesJ=0;
 	private int NbPartiesG=0;
 	private HashMap<Integer, Integer> listepiece = new HashMap<Integer,Integer>();
+	private HashMap<Integer, Deck> listeDeck;
 	private String urlImage;
 	
-	
+	public Deck defaultDeck() {
+		Deck deckDefault = new Deck("Default",true,this.id_joueur);
+		this.listeDeck.put(0, deckDefault);
+		//génération des pions
+		for(int x=0;x<=7;x++) {
+			deckDefault.AddPiece(new Pion("blanc"));
+		}		
+		//génération des pieces blanches
+		deckDefault.AddPiece(new Tour("blanc"));
+		deckDefault.AddPiece(new Cavalier("blanc"));
+		deckDefault.AddPiece(new Fou("blanc"));
+		deckDefault.AddPiece(new Dame("blanc"));
+		deckDefault.AddPiece(new Roi("blanc"));
+		deckDefault.AddPiece(new Fou("blanc"));
+		deckDefault.AddPiece(new Cavalier("blanc"));
+		deckDefault.AddPiece(new Tour("blanc"));	
+		
+		return deckDefault;
+	}
+
 	
 	public String getUrlImage() {
 		return urlImage;

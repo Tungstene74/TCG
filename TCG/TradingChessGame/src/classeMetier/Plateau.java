@@ -275,6 +275,15 @@ public class Plateau {
 		return b;
 	}
 	
+	public void generePlateau(Deck deck1, Deck deck2) {
+		int i=0;
+		for(Piece piece:deck1.getListepieces()) {
+			i+=1;
+			
+		}
+		
+	}
+	
 	public void plateauClassique() {
 		
 		//génération des pions

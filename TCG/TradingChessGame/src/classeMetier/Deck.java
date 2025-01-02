@@ -8,6 +8,14 @@ public class Deck {
 	private Boolean deckprincipal;
 	private ArrayList<Piece> listepieces;
 	
+	public Deck(String nom, Boolean deckprincipal, int id_joueur) {
+		super();
+		this.nom = nom;
+		this.deckprincipal = deckprincipal;
+		this.listepieces = new ArrayList<Piece>();
+		this.id_joueur = id_joueur;
+	}
+	
 	
 	public Deck(String nom, Boolean deckprincipal, ArrayList<Piece> listepieces, int id_joueur) {
 		super();
