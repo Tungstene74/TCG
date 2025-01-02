@@ -111,7 +111,7 @@ public class DeckDAO extends DAO<Deck> {
 				D = new Deck(nom, deckprincipal, new ArrayList<Piece>(), id_joueur);
 			}
 			
-			Piece P = Méthode_pour_faire_les_pèce_de_floca(id_piece);
+			Piece P = D.creePiece(id_piece);
 			
 			D.AddPiece(P);
 			

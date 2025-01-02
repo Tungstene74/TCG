@@ -2,6 +2,13 @@ package classeMetier;
 
 import java.util.ArrayList;
 
+import pieces.Cavalier;
+import pieces.Dame;
+import pieces.Fou;
+import pieces.Pion;
+import pieces.Roi;
+import pieces.Tour;
+
 public class Deck {
 	private int id_deck;
 	private String nom;
@@ -74,4 +81,17 @@ public class Deck {
 	private Boolean verification() {
 		return true; //vérifira qu'un deck est valide
 	}
+	
+	public Piece creePiece(int id_piece) {
+		switch (id_piece) {
+			case 0: return (new Pion("blanc"));
+			case 1: return (new Tour("blanc"));
+			case 2: return (new Cavalier("blanc"));
+			case 3: return (new Fou("blanc"));
+			case 4: return (new Dame("blanc"));
+			case 5: return (new Roi("blanc"));
+		}
+		return null;
+	}
+	
 }
