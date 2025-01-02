@@ -20,7 +20,7 @@ public class Joueur {
 	private int NbPartiesJ=0;
 	private int NbPartiesG=0;
 	private HashMap<Integer, Integer> listepiece = new HashMap<Integer,Integer>();
-	private ArrayList<Deck> listeDeck;
+	private ArrayList<Deck> listeDeck = new ArrayList<Deck>();
 	private String urlImage;
 	
 	public Deck mainDeck() {
