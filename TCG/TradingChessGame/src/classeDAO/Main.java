@@ -26,8 +26,11 @@ public class Main {
 			Joueur J2 = new Joueur("rock", "dfsdq");
 
 			J.create(J2);
+			
 
 			System.out.println(J2.getId_joueur());
+			J.delete(J2);
+			J.delete(J1);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
