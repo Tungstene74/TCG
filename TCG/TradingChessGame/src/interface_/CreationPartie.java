@@ -118,8 +118,12 @@ public class CreationPartie extends JPanel{
 				public void run() {
 					try {
 						PDAO.update(current);
-						if (current.getjoueur2()!=null) cancel();
-						
+						try {
+							if(current.getjoueur2()!=null) cancel();
+						}
+						catch(NullPointerException n) {
+							
+						}
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}  
