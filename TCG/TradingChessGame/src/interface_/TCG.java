@@ -136,10 +136,10 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
-	public void gameBoard() {
+	public void gameBoard(Joueur opponent) {
 		basePanel.removeAll();
 
-		Combat fight = new Combat(X,Y, this);
+		Combat fight = new Combat(X,Y, this,opponent);
 		
 		basePanel.add(fight, fight.getGbc());
 		

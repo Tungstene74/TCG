@@ -7,12 +7,19 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import classeDAO.JoueurDAO;
+import classeDAO.PartieDAO;
+import classeMetier.Partie;
 
 public class RejoindrePartie extends JPanel{
 	
@@ -97,8 +104,15 @@ public class RejoindrePartie extends JPanel{
 	
 	private class ALRejoindre implements ActionListener{
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			
+		public void actionPerformed(ActionEvent ae) {
+			PartieDAO PDAO = new PartieDAO();
+			try {
+				PDAO.open();
+				PDAO.join(code,fenetre.getPlayer());
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

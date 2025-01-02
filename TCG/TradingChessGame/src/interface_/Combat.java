@@ -38,7 +38,8 @@ public class Combat extends JPanel {
 	
 	private TCG fenetre;
 	
-	public Combat(int X,int Y, TCG fenetre) {
+	public Combat(int X,int Y, TCG fenetre,Joueur opponent) {
+		this.opponent = opponent;
 		this.fenetre = fenetre;
 		
 		setBackground(new Color(133,6,6));
@@ -65,7 +66,7 @@ public class Combat extends JPanel {
 		gbl_panelAdversaire.rowHeights = new int[] {50, Y-55};
 		panelAdversaire.setLayout(gbl_panelAdversaire);
 		
-		pseudoAdversaire = new JLabel("Adversaire");
+		pseudoAdversaire = new JLabel(opponent.getIdentifiant());
 		pseudoAdversaire.setForeground(Color.BLACK);
 		pseudoAdversaire.setFont(new Font("Tahoma", Font.BOLD, 20));
 		pseudoAdversaire.setHorizontalAlignment(SwingConstants.CENTER);

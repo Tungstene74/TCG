@@ -7,12 +7,18 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import classeDAO.*;
+import classeMetier.*;
 
 public class CreationPartie extends JPanel{
 	
@@ -97,8 +103,35 @@ public class CreationPartie extends JPanel{
 	
 	private class ALCreer implements ActionListener{
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			
+		public void actionPerformed(ActionEvent ae) {
+			Partie current = new Partie(fenetre.getPlayer(),code);
+			PartieDAO PDAO = new PartieDAO();
+			try {
+				PDAO.open();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					try {
+						PDAO.update(current);
+						if (current.getjoueur2()!=null) cancel();
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}  
+				}
+			}, 5000);
+			JoueurDAO JDAO = new JoueurDAO();
+			try {
+				JDAO.open();
+				fenetre.gameBoard(current.getjoueur2());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
