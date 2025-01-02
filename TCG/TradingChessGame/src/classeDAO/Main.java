@@ -34,7 +34,7 @@ public class Main {
 		try {
 
 
-			Partie D1 = new Partie(1,0, 1, 1);
+			Partie D1 = new Partie(1,1, 1, 1);
 
 			PartieDAO D = new PartieDAO();
 			D.open();
@@ -42,12 +42,10 @@ public class Main {
 
 			System.out.println(D1.getId_joueur1());
 
-			Partie D2 = new Partie(2,0, 1, 2);
-
-			D.create(D2);
+			D.delete(D1);
+			
 			D.close();
 
-			System.out.println(D2.getId_joueur1());
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
