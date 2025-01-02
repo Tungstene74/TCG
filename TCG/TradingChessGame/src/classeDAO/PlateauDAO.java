@@ -35,9 +35,11 @@ public class PlateauDAO extends DAO<Plateau>{
 	@Override
 	public Plateau update(Plateau obj) throws SQLException {
 		for (int i = 0; i < obj.getListepieces().size(); i++) {
-				String sqlQuery = "SELECT * FROM `variable_partie` WHERE id_piece_partie=?;";
+				Piece piece = obj.getListepieces().get(i);
+				String sqlQuery = "SELECT * FROM `variable_partie` WHERE id_partie= ? AND id_piece_partie=?;";
 				PreparedStatement st = connect.prepareStatement(sqlQuery);
 				st.setString(1,Integer.toString(obj.getId_partie()));
+				st.setString(2,Integer.toString(piece.getIdPiecePartie()));
 				rs = st.executeQuery();
 			
 
@@ -48,14 +50,14 @@ public class PlateauDAO extends DAO<Plateau>{
 					apparait = 1;
 				}
 			
-			Piece piece = obj.getListepieces().get(i);
+			
 			if (apparait == 0) {
 					sqlQuery = "INSERT INTO `variable_partie`(`id_piece`, `id_partie`, `id_piece_partie`, `Couleur`, `x`, `y`, `pouvoir_utilise`) "
 							+ "VALUES (?,?,?,?,?,?,?)";
 					PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 					st3.setString(1,Integer.toString(piece.getIdPiece()));
 					st3.setString(2,Integer.toString(obj.getId_partie()));
-					st3.setString(3,Integer.toString(i));
+					st3.setString(3,Integer.toString(piece.getIdPiecePartie()));
 					st3.setString(4,piece.getCouleur());
 					st3.setString(5,Integer.toString(piece.getX()));
 					st3.setString(6,Integer.toString(piece.getY()));
@@ -73,7 +75,7 @@ public class PlateauDAO extends DAO<Plateau>{
 					st3.setString(4,Integer.toString(piece.getX()));
 					st3.setString(5,Integer.toString(piece.getY()));
 					st3.setString(6,Integer.toString(0));
-					st3.setString(7,Integer.toString(i));
+					st3.setString(7,Integer.toString(piece.getIdPiecePartie()));
 					st3.executeUpdate();
 					rs = st3.getGeneratedKeys();
 				
