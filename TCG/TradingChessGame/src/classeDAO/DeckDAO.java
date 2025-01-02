@@ -19,7 +19,7 @@ public class DeckDAO extends DAO<Deck> {
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 		st3.setString(1,obj.getNom());
 		st3.setString(2,Integer.toString(obj.getId_joueur()));
-		st3.setString(3,obj.getDeckprincipal().toString());
+		st3.setString(3,Integer.toString(obj.getDeckprincipal() ? 1 : 0));
 		st3.executeUpdate();
 		rs = st3.getGeneratedKeys();
 
@@ -29,15 +29,18 @@ public class DeckDAO extends DAO<Deck> {
 			id_deck = rs.getInt(1); // La première colonne est l'ID généré
 			obj.setId_deck(id_deck);
 		}		
+		int i = 0;
 		for(Piece p : obj.getListepieces()){
-			sqlQuery = "INSERT INTO `contient`(`id_piece`, `id_deck`, `id_joueur`) "
-					+ "VALUES (?,?,?)";
+			sqlQuery = "INSERT INTO `contient`(`id_piece`, `id_deck`, `id_joueur`, `ocurence`) "
+					+ "VALUES (?,?,?,?)";
 			st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-			st3.setString(1,Integer.toString(id_deck));
-			st3.setString(2,Integer.toString(p.getIdPiece()));
+			st3.setString(1,Integer.toString(p.getIdPiece()));
+			st3.setString(2,Integer.toString(id_deck));
 			st3.setString(3,Integer.toString(obj.getId_joueur()));
+			st3.setString(4,Integer.toString(i));
 			st3.executeUpdate();
 			rs = st3.getGeneratedKeys();
+			i+=1;
 		}
 
 		return obj;
@@ -111,7 +114,7 @@ public class DeckDAO extends DAO<Deck> {
 				D = new Deck(nom, deckprincipal, new ArrayList<Piece>(), id_joueur);
 			}
 			
-			Piece P = Méthode_pour_faire_les_pèce_de_floca(id_piece);
+			Piece P = D.creePiece(id_piece);
 			
 			D.AddPiece(P);
 			

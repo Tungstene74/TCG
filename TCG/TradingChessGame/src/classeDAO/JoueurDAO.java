@@ -33,6 +33,11 @@ public class JoueurDAO extends DAO<Joueur>{
 	            obj.setId_joueur(id_joueur);
 	        }
 			
+			DeckDAO D1 = new DeckDAO();
+			D1.open();
+			D1.create(obj.defaultDeck());
+			
+			
 		
 		return obj;
 	}

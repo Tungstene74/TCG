@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import classeMetier.Piece;
 import classeMetier.Pouvoir;
 
-public class PieceDAO extends DAO<Piece>{
+/*public class PieceDAO extends DAO<Piece>{
 	private ResultSet rs;
 
 	@Override
@@ -65,7 +65,7 @@ public class PieceDAO extends DAO<Piece>{
 
 		
 		
-	}
+	}*/
 	
 
 

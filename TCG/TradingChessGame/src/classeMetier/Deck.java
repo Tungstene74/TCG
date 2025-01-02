@@ -96,4 +96,17 @@ public class Deck {
 	private Boolean verification() {
 		return true; //vérifira qu'un deck est valide
 	}
+	
+	public Piece creePiece(int id_piece) {
+		switch (id_piece) {
+			case 0: return (new Pion("blanc"));
+			case 1: return (new Tour("blanc"));
+			case 2: return (new Cavalier("blanc"));
+			case 3: return (new Fou("blanc"));
+			case 4: return (new Dame("blanc"));
+			case 5: return (new Roi("blanc"));
+		}
+		return null;
+	}
+	
 }
