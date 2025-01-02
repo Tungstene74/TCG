@@ -104,6 +104,12 @@ public class Joueur {
 	public void setArgent(int argent) {
 		Argent = argent;
 	}
+	
+	public Joueur(int id_joueur, String identifiant, ArrayList<Deck> listeDeck) {
+		this.id_joueur = id_joueur;
+		this.identifiant=identifiant;
+		this.listeDeck=listeDeck;
+	}
 
 	public Joueur(int id_joueur, String identifiant, String Mbp, int nbPartiesJ, int money, int nbPartiesG,  HashMap<Integer, Integer> listepiece) {
 		super();

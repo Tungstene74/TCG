@@ -81,7 +81,7 @@ public class DeckDAO extends DAO<Deck> {
 		return obj;
 	}
 
-	public ArrayList<Deck> reed(int Id_joueur) throws SQLException {
+	public ArrayList<Deck> read(int Id_joueur) throws SQLException {
 		String sqlQuery = "SELECT * FROM `deck`, `contient`"
 				+ "WHERE deck.id_joueur= contient.id_joueur AND deck.id_deck=contient.id_deck"
 				+ "AND deck.id_joueur= ?";
