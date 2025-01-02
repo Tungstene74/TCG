@@ -87,7 +87,7 @@ public class JoueurDAO extends DAO<Joueur>{
 		
 	}
 	
-	public Joueur creerjoueur2(int id_joueur) throws SQLException {
+	public Joueur creerjoueur(int id_joueur) throws SQLException {
 		String sqlQuery = "SELECT * FROM `joueur` "
 				+ "WHERE id_joueur=?";
 		PreparedStatement st = connect.prepareStatement(sqlQuery);

@@ -27,7 +27,7 @@ public class PartieDAO extends DAO<Partie>{
 		rs = st3.getGeneratedKeys();
 		
 		JoueurDAO joueurdao=new JoueurDAO();
-		Joueur joueur2= joueurdao.creerjoueur2(0);
+		Joueur joueur2= joueurdao.creerjoueur(0);
 		Deck deck2= joueur2.mainDeck();
 		obj.setjoueur2(joueur2);
 		obj.setdeck2(deck2);;
@@ -35,39 +35,45 @@ public class PartieDAO extends DAO<Partie>{
 		return obj;
 	}
 
-	public Partie join(int id_partie,int id_joueur2,int id_deck2) throws SQLException { //à partir d'id renvois une nouvelle partie avec ça version dans la base de donné 
+	public Partie join(int id_partie,Joueur joueur2) throws SQLException { //à partir d'id renvois une nouvelle partie avec ça version dans la base de donné 
 		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?";
 		PreparedStatement st = connect.prepareStatement(sqlQuery);
 		st.setString(1,Integer.toString(id_partie));
 		rs = st.executeQuery();
 
-
-		int id_deck  = 0;
-		int id_joueur  = 0;
+		int id_deck1  = 0;
+		int id_joueur1  = 0;
 		int tour_joueur  = 0;
 		// Affichage du resultat
 		while(rs.next()) {
-			id_deck  = Integer.parseInt(rs.getString("id_deck"));
-			id_joueur  = Integer.parseInt(rs.getString("id_joueur"));
+			id_deck1  = Integer.parseInt(rs.getString("id_deck"));
+			id_joueur1  = Integer.parseInt(rs.getString("id_joueur"));
 			tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
-
-
 		}
-
 
 		sqlQuery = "UPDATE `partie` "
 				+ "SET `id_deck2`=?,"
 				+ "`id_joueur2`=? "
 				+ "WHERE `id_partie`=?";
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-		st3.setString(1,Integer.toString(id_deck2));
-		st3.setString(2,Integer.toString(id_joueur2));
+		st3.setString(1,Integer.toString(id_deck1));
+		st3.setString(2,Integer.toString(id_joueur1));
 		st3.setString(3,Integer.toString(id_partie));
 		st3.executeUpdate();
 		rs = st3.getGeneratedKeys();
-
-
-		return new Partie(id_partie, tour_joueur, id_deck, id_joueur, id_deck2, id_joueur2);
+		
+		JoueurDAO joueurdao=new JoueurDAO();
+		Joueur joueur1= joueurdao.creerjoueur(id_joueur1);
+		Deck deck1= joueur1.mainDeck();
+		
+		Partie partie=new Partie(joueur1, id_partie);
+		partie.setdeck1(deck1);
+		
+		partie.Join(joueur2, id_partie);
+		Deck deck2= joueur2.mainDeck();
+		partie.setdeck2(deck2);
+		
+		return partie;
 	}
 
 	@Override
@@ -78,27 +84,28 @@ public class PartieDAO extends DAO<Partie>{
 		rs = st.executeQuery();
 
 
-		int id_deck  = 0;
-		int id_joueur  = 0;
+		int id_deck1  = 0;
+		int id_joueur1  = 0;
 		int id_deck2  = 0;
 		int id_joueur2  = 0;
 		int tour_joueur  = 0;
 		// Affichage du resultat
 		while(rs.next()) {
-			id_deck  = Integer.parseInt(rs.getString("id_deck"));
-			id_joueur  = Integer.parseInt(rs.getString("id_joueur"));
+			id_deck1  = Integer.parseInt(rs.getString("id_deck"));
+			id_joueur1  = Integer.parseInt(rs.getString("id_joueur"));
 			id_deck2  = Integer.parseInt(rs.getString("id_deck2"));
 			id_joueur2  = Integer.parseInt(rs.getString("id_joueur2"));
 			tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
-
-
 		}
-
+		
+		
+		/*
 		obj.setId_deck(id_deck);
 		obj.setId_joueur(id_joueur);
 		obj.setTour_joueur(tour_joueur);
 		obj.setId_joueur2(id_joueur2);
 		obj.setId_deck2(id_deck2);
+		*/
 
 		return obj;
 	}
