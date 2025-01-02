@@ -156,6 +156,10 @@ public class Piece {
 		return couleur;
 	}
 	
+	public void setCouleur(String couleur) {
+		this.couleur=couleur;
+	}
+	
 	public String getCouleurInverse() {
 		if (couleur=="blanc") {
 			return "noir";

@@ -275,13 +275,29 @@ public class Plateau {
 		return b;
 	}
 	
-	public void generePlateau(Deck deck1, Deck deck2) {
+	public void generePlateau(Deck deckblanc, Deck decknoir) {
 		int i=0;
-		for(Piece piece:deck1.getListepieces()) {
+		for(Piece piece:deckblanc.getListepieces()) {
+			piece.setCouleur("blanc");
 			i+=1;
-			
+			if (i<=7) {
+				this.add(piece, i, 1);
+			}
+			if (i>=8 & i<=15) {
+				this.add(piece, i, 0);
+			}
 		}
-		
+		i=0;
+		for(Piece piece:decknoir.getListepieces()) {
+			piece.setCouleur("noir");
+			i+=1;
+			if (i<=7) {
+				this.add(piece, i, 1);
+			}
+			if (i>=8 & i<=15) {
+				this.add(piece, i, 0);
+			}
+		}
 	}
 	
 	public void plateauClassique() {

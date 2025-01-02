@@ -1,6 +1,7 @@
 package classeMetier;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import classeDAO.JoueurDAO;
@@ -19,12 +20,22 @@ public class Joueur {
 	private int NbPartiesJ=0;
 	private int NbPartiesG=0;
 	private HashMap<Integer, Integer> listepiece = new HashMap<Integer,Integer>();
-	private HashMap<Integer, Deck> listeDeck;
+	private ArrayList<Deck> listeDeck;
 	private String urlImage;
+	
+	public Deck mainDeck() {
+		Deck deckprincipal=null;
+		for(Deck deck:this.listeDeck) {
+			if (deck.getDeckprincipal()) {
+				deckprincipal=deck;
+			}
+		}
+		return deckprincipal;
+	}
 	
 	public Deck defaultDeck() {
 		Deck deckDefault = new Deck("Default",true,this.id_joueur);
-		this.listeDeck.put(0, deckDefault);
+		this.listeDeck.add(deckDefault);
 		//génération des pions
 		for(int x=0;x<=7;x++) {
 			deckDefault.AddPiece(new Pion("blanc"));
