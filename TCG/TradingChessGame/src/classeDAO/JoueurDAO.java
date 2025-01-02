@@ -106,7 +106,7 @@ public class JoueurDAO extends DAO<Joueur>{
 
 	@Override
 	public void delete(Joueur obj) throws SQLException {
-			String sqlQuery = "DELETE FROM `joueur` WHERE WHERE `id_joueur`=? AND `identifiant`=? AND `mdp`=?";
+			String sqlQuery = "DELETE FROM `joueur` WHERE `id_joueur`=? AND `identifiant`=? AND `mdp`=?";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			st3.setString(1,Integer.toString(obj.getId_joueur()));
 			st3.setString(2,obj.getIdentifiant());
