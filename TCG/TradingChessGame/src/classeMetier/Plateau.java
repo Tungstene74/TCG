@@ -3,8 +3,8 @@ package classeMetier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
-
 import pieces.*;
+import mouvement.*;
 
 public class Plateau {
 	private ArrayList<Piece> listepieces;
@@ -123,14 +123,42 @@ public class Plateau {
 	}
 	
 	public Piece getPiece(int x, int y) {
-		Piece pieceCherche=null;
+		Piece pieceCherchee=null;
 		for(Piece piece : listepieces) {
 			if (piece.getX()==x && piece.getY()==y) {
-				pieceCherche=piece;
+				pieceCherchee=piece;
 				break;
 			}
 		}
-		return pieceCherche;
+		return pieceCherchee;
+	}
+	
+	public ArrayList<Piece> getPiecesNom(String nom, String couleur) {
+		ArrayList<Piece> piecesCherchees=new ArrayList<Piece>();
+		for(Piece piece : listepieces) {
+			if (piece.getNom()==nom && piece.getCouleur()==couleur) {
+				piecesCherchees.add(piece);
+				break;
+			}
+		}
+		return piecesCherchees;
+	}
+	
+	public ArrayList<Piece> getPiecesClasse(String classe, String couleur) {
+		ArrayList<Piece> piecesCherchees=new ArrayList<Piece>();
+		for(Piece piece : listepieces) {
+			if (piece.getClasse()==classe && piece.getCouleur()==couleur) {
+				piecesCherchees.add(piece);
+				break;
+			}
+		}
+		return piecesCherchees;
+	}
+	
+	public Piece getRoi(String couleur) {
+		ArrayList<Piece> piecesCherchees=this.getPiecesClasse("roi", couleur);
+		Piece pieceCherchee=piecesCherchees.getFirst();
+		return pieceCherchee;
 	}
 
 	public int nbPiece(ArrayList<int[]> listCoord) {
@@ -165,13 +193,76 @@ public class Plateau {
 		}
 		return null;
 	}
-	/*
-	public void metEnEchec(Piece piece, int nex_x, int new_y) {
-		Plateau plateau2 = this.
-		for (Piece piece:this.listepieces) {
-			
+	
+	public Boolean estEnEchec(String couleur) { //permet de voir si le déplacement d'une piece cree un echec
+		Boolean b=false;
+		Piece roi=this.getRoi(couleur);
+		for (Piece piecette:this.listepieces) { //pour toutes les pieces
+			 //et tout leurs déplacements
+				if (piecette.caseAteignable(this, roi.getX(), roi.getY())) { //on test si on peut manger le roi
+					b=true;
+			}
 		}
-	}*/
+		return b;
+	}
+	
+	public Boolean metEnEchec(Piece piece, int new_x, int new_y) { //permet de voir si le déplacement d'une piece cree un echec
+		Boolean b=false; //on suppose qu'il n'y a pas d'echec
+		String couleurRoi=piece.getCouleur();
+		Plateau plateauTheorique = this.copy(); //creer un plateau theorique pour tester si un deplacement va creer un echec
+		Piece pieceTheorique = piece.copy(); 
+		plateauTheorique.deplace(pieceTheorique, new_x, new_y); 
+		if (plateauTheorique.estEnEchec(couleurRoi)) { //si on peut manger le roi (il y a echec)
+			b=true; //alors oui on a mis le roi en echec
+		}
+		return b;
+	}
+	
+	public Boolean estEnMat(String couleur) {
+		Boolean b=false;
+		int sorties=0; //nombres de coups possible pour se sortir d'un echec
+		if (!estEnEchec(couleur)) { //si la couleur n'est pas en echec
+			for (Piece piece:this.listepieces) { //on teste pour toutes les pieces
+				for (int new_x=0;new_x>=7;new_x++) { //un déplacement sur de nouvelles coordonnées
+					for (int new_y=0;new_y>=7;new_y++) {
+						if (piece.getCouleur()==couleur & piece.caseAteignable(this, new_x, new_y)) {
+							// si la piece déplacée est bien de la couleur de notre roi, qu'on veut protéger, et que le mouvement est possible
+							if (!this.metEnEchec(piece, new_x, new_y)) { //si ce déplacement ne met pas en echec le roi
+								sorties+=1; 
+							}
+						}
+					}
+				}
+			}
+		}
+		if (sorties==0) {
+			b=true;
+		}
+		return b;
+	}
+	
+	public Boolean estEnEchecEtMat(String couleur) { //on teste si pour n'importe quel coup de la couleur actuel, on restera en echec
+		Boolean b=false;
+		int sorties=0; //nombres de coups possible pour se sortir d'un echec
+		if (estEnEchec(couleur)) { //si la couleur est en echec
+			for (Piece piece:this.listepieces) { //on teste pour toutes les pieces
+				for (int new_x=0;new_x>=7;new_x++) { //un déplacement sur de nouvelles coordonnées
+					for (int new_y=0;new_y>=7;new_y++) {
+						if (piece.getCouleur()==couleur & piece.caseAteignable(this, new_x, new_y)) {
+							// si la piece déplacée est bien de la couleur de notre roi, qu'on veut protéger, et que le mouvement est possible
+							if (!this.metEnEchec(piece, new_x, new_y)) { //si ce déplacement ne met pas en echec le roi
+								sorties+=1; 
+							}
+						}
+					}
+				}
+			}
+		}
+		if (sorties==0) {
+			b=true;
+		}
+		return b;
+	}
 	
 	public void plateauClassique() {
 		

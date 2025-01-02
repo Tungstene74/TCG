@@ -16,10 +16,7 @@ public class Piece {
 	private String couleur;
 	private String descriptionMvt;//Description du mouvement de la pièce
 	private String classe;
-
-	public String getCouleur() {
-		return couleur;
-	}
+	
 	
 	private String lienImage() {
 		String str=this.nom+this.couleur+".png";
@@ -66,6 +63,16 @@ public class Piece {
 	
 	public Boolean caseAteignable(Plateau plateau, int new_x, int new_y) { //pour voir si une case est ateignable
 		Boolean b=false;
+		for (Mouvement mouv:mouvements) {
+			if (mouv.estPossible(this, new_x, new_y, plateau)) {
+				b=true;
+			}
+		}
+		return b;
+	}
+	/*
+	public Boolean caseAteignable(Plateau plateau, int new_x, int new_y) { //pour voir si une case est ateignable
+		Boolean b=false;
 		ArrayList<int[]> listeCoord =this.casesAteignables(plateau);
 		for (int[] coord:listeCoord) {
 			if (coord[0]==new_x & coord[1]==new_y) {
@@ -73,7 +80,7 @@ public class Piece {
 			}
 		}
 		return b;
-	}
+	}*/
 	
 	public ArrayList<int[]> casesAteignables(Plateau plateau){
 		ArrayList<int[]> listeCoord= new ArrayList<int[]>();
@@ -144,7 +151,25 @@ public class Piece {
 	        
 	    }
 	 */
+	
+	public String getCouleur() {
+		return couleur;
+	}
+	
+	public String getCouleurInverse() {
+		if (couleur=="blanc") {
+			return "noir";
+		}
+		if (couleur=="noir") {
+			return "blanc";
+		}
+	}
+	
 
+	public ArrayList<Mouvement> getMouvements() {
+		return this.mouvements;
+	}
+	
 	public String getNom() {
 		return this.nom;
 	}
@@ -152,6 +177,10 @@ public class Piece {
 	public String toString() {
 		String txt=this.nom+" ("+this.x+", "+this.y+")";
 		return txt;
+	}
+	
+	public String getClasse() {
+		return this.classe;
 	}
 	
 	public int getX(){
