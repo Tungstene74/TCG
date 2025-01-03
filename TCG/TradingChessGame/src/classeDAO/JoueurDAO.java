@@ -82,9 +82,11 @@ public class JoueurDAO extends DAO<Joueur>{
 				listepiece.put(id_piece, nombre);
 				
 			}
+			DeckDAO D = new DeckDAO();
+			ArrayList<Deck> listeDeck = D.read(id_joueur);
 				
 				
-		return new Joueur(id_joueur, identifiant, mdp,  nbPartiesJ,  money, nbPartiesG,listepiece);
+		return new Joueur(id_joueur, identifiant, mdp,  nbPartiesJ,  money, nbPartiesG,listepiece, listeDeck);
 		
 	}
 	

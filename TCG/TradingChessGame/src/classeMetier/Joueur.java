@@ -124,6 +124,19 @@ public class Joueur {
 		this.mainDeck();
 	}
 	
+	public Joueur(int id_joueur, String identifiant, String Mbp, int nbPartiesJ, int money, int nbPartiesG,  HashMap<Integer, Integer> listepiece, ArrayList<Deck> listeDeck) {
+		super();
+		this.id_joueur = id_joueur;
+		this.identifiant = identifiant;
+		this.Mbp = Mbp;
+		this.NbPartiesJ = nbPartiesJ;
+		this.NbPartiesG = nbPartiesG;
+		this.Argent = money;
+		this.listepiece = listepiece;
+		this.listeDeck = listeDeck;
+		this.mainDeck();
+	}
+	
 	public Joueur(String identifiant, String Mbp) {
 		super();
 		this.identifiant = identifiant;
