@@ -27,12 +27,12 @@ public class PartieDAO extends DAO<Partie>{
 		st3.executeUpdate();
 		rs = st3.getGeneratedKeys();
 		
-		JoueurDAO joueurdao=new JoueurDAO();
-		joueurdao.open();
-		Joueur joueur2= joueurdao.creerjoueur(0);
-		Deck deck2= joueur2.mainDeck();
-		obj.setjoueur2(joueur2);
-		obj.setdeck2(deck2);;
+		//JoueurDAO joueurdao=new JoueurDAO();
+		//joueurdao.open();
+		//Joueur joueur2= joueurdao.creerjoueur(0);
+		//Deck deck2= joueur2.mainDeck();
+		obj.setjoueur2(null);
+		obj.setdeck2(null);;
 
 		return obj;
 	}

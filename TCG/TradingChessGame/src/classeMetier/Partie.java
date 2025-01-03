@@ -88,7 +88,7 @@ public class Partie {
 
 	public Partie(Joueur joueur1, int idPartie) {
 		this.tour_joueur=0;
-		//this.id_deck1 = id_deck1;
+		this.deck1 = joueur1.mainDeck();
 		this.joueur1 = joueur1;
 		this.id_partie=idPartie;
 		
