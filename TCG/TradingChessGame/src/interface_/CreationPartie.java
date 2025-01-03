@@ -32,7 +32,9 @@ public class CreationPartie extends JPanel{
 	
 	private JTextField textFieldCode;
 	
-	private JButton boutonCreer;
+	private JButton boutonCreer, boutonHome;
+	
+	private JPanel panel;
 	
 	private int code;
 	
@@ -57,7 +59,7 @@ public class CreationPartie extends JPanel{
 		lbCreer.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lbCreer = new GridBagConstraints();
 		gbc_lbCreer.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lbCreer.insets = new Insets(10, 10, 10, 10);
+		gbc_lbCreer.insets = new Insets(10, 10, 0, 10);
 		gbc_lbCreer.gridx = 0;
 		gbc_lbCreer.gridy = 0;
 		add(lbCreer, gbc_lbCreer);
@@ -80,14 +82,36 @@ public class CreationPartie extends JPanel{
 		gbc_textFieldCode.gridy = 2;
 		add(textFieldCode, gbc_textFieldCode);
 		
+		panel = new JPanel();
+		panel.setBackground(new Color(240,240, 240));
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(10, 10, 10, 10);
+		gbc_panel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 3;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[] {0,0};
+		gbl_panel.rowHeights = new int[] {0};
+		panel.setLayout(gbl_panel);
+		
 		boutonCreer = new JButton("Confirmer");
 		boutonCreer.addActionListener(new ALCreer());
 		GridBagConstraints gbc_boutonCreer = new GridBagConstraints();
 		gbc_boutonCreer.insets = new Insets(0, 10, 10, 10);
 		gbc_boutonCreer.fill = GridBagConstraints.HORIZONTAL;
-		gbc_boutonCreer.gridx = 0;
-		gbc_boutonCreer.gridy = 3;
-		add(boutonCreer, gbc_boutonCreer);
+		gbc_boutonCreer.gridx = 1;
+		gbc_boutonCreer.gridy = 0;
+		panel.add(boutonCreer, gbc_boutonCreer);
+		
+		boutonHome = new JButton("retour");
+		boutonHome.addActionListener(new ALHome());
+		GridBagConstraints gbc_boutonHome = new GridBagConstraints();
+		gbc_boutonHome.insets = new Insets(0, 10, 10, 10);
+		gbc_boutonHome.fill = GridBagConstraints.HORIZONTAL;
+		gbc_boutonHome.gridx = 0;
+		gbc_boutonHome.gridy = 0;
+		panel.add(boutonHome, gbc_boutonHome);
 	}
 	
 	public GridBagConstraints getGbc() {
@@ -139,6 +163,15 @@ public class CreationPartie extends JPanel{
 			fenetre.gameBoard(current.getjoueur2(),true);
 
 		}
+	}
+	
+	private class ALHome implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			fenetre.menuPrincipal();
+		}
+		
 	}
 }
 
