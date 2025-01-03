@@ -105,8 +105,8 @@ public class RejoindrePartie extends JPanel{
 	private class ALRejoindre implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent ae) {
-			PartieDAO PDAO = new PartieDAO();
 			try {
+				PartieDAO PDAO = new PartieDAO();
 				PDAO.open();
 				PDAO.join(code,fenetre.getPlayer());
 				PDAO.close();

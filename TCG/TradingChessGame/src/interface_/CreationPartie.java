@@ -136,13 +136,9 @@ public class CreationPartie extends JPanel{
 				e.printStackTrace();
 			}
 			JoueurDAO JDAO = new JoueurDAO();
-			try {
-				JDAO.open();
-				fenetre.gameBoard(current.getjoueur2());
-				JDAO.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			fenetre.gameBoard(current.getjoueur2());
+
 		}
 	}
 }
+
