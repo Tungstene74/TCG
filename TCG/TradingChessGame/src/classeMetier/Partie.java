@@ -20,7 +20,6 @@ public class Partie {
 		this.tour_joueur=couleur;
 	}*/
 
-
 	public void setTour_joueur(int tour_joueur) {
 		this.tour_joueur = tour_joueur;
 	}

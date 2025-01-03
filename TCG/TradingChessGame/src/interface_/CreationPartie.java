@@ -93,10 +93,10 @@ public class CreationPartie extends JPanel{
 	public GridBagConstraints getGbc() {
 		return gbc;
 	}
-	
+
 	private class ALCode implements ActionListener{
 		@Override
-		public void actionPerformed(ActionEvent ae) {
+		public void actionPerformed(ActionEvent e) {
 			code = Integer.parseInt(textFieldCode.getText());
 		}
 	}
@@ -120,17 +120,24 @@ public class CreationPartie extends JPanel{
 					try {
 						PDAO.update(current);
 						try {
-							if (current.getjoueur2()!=null) cancel();
+							if(current.getjoueur2()!=null) cancel();
 						}
 						catch(NullPointerException n) {
 							n.printStackTrace();
-						}	
-					}
-					catch(SQLException e) {
+						}
+					} catch (SQLException e) {
 						e.printStackTrace();
-					}
+					}  
 				}
 			},0, 5000);
+			try {
+				PDAO.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			fenetre.gameBoard(current.getjoueur2());
+
 		}
 	}
 }

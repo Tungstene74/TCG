@@ -83,8 +83,8 @@ public class DeckDAO extends DAO<Deck> {
 
 	public ArrayList<Deck> read(int Id_joueur) throws SQLException {
 		String sqlQuery = "SELECT * FROM `deck`, `contient`"
-				+ "WHERE deck.id_joueur= contient.id_joueur AND deck.id_deck=contient.id_deck"
-				+ "AND deck.id_joueur= ?";
+				+ " WHERE deck.id_joueur= contient.id_joueur AND deck.id_deck=contient.id_deck"
+				+ " AND deck.id_joueur= ?";
 		PreparedStatement st = connect.prepareStatement(sqlQuery);
 		st.setString(1,Integer.toString(Id_joueur));
 		rs = st.executeQuery();
