@@ -109,7 +109,7 @@ public class Joueur {
 		this.id_joueur = id_joueur;
 		this.identifiant=identifiant;
 		this.listeDeck=listeDeck;
-		this.defaultDeck();
+		this.mainDeck();
 	}
 
 	public Joueur(int id_joueur, String identifiant, String Mbp, int nbPartiesJ, int money, int nbPartiesG,  HashMap<Integer, Integer> listepiece) {
@@ -121,14 +121,14 @@ public class Joueur {
 		this.NbPartiesG = nbPartiesG;
 		this.Argent = money;
 		this.listepiece = listepiece;
-		this.defaultDeck();
+		this.mainDeck();
 	}
 	
 	public Joueur(String identifiant, String Mbp) {
 		super();
 		this.identifiant = identifiant;
 		this.Mbp = Mbp;
-		this.defaultDeck();
+		this.mainDeck();
 	}
 	
 	
