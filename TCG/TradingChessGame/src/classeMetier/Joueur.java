@@ -144,7 +144,7 @@ public class Joueur {
 			this.listepiece.put(id_piece, 1);
 			J.addPiece(this.id_joueur,id_piece,1);
 		}
-		J.close();
+		//J.close();
 
 	}
 	
