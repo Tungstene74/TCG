@@ -108,6 +108,7 @@ public class CreationPartie extends JPanel{
 			PartieDAO PDAO = new PartieDAO();
 			try {
 				PDAO.open();
+				PDAO.create(current);
 			}
 			catch(SQLException e) {
 				e.printStackTrace();
