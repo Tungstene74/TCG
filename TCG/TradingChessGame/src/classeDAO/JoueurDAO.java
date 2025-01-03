@@ -83,6 +83,7 @@ public class JoueurDAO extends DAO<Joueur>{
 				
 			}
 			DeckDAO D = new DeckDAO();
+			D.open();
 			ArrayList<Deck> listeDeck = D.read(id_joueur);
 				
 				
