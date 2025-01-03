@@ -33,9 +33,11 @@ public class RejoindrePartie extends JPanel{
 	
 	private JTextField textFieldCode;
 	
-	private JButton boutonRejoidre;
+	private JButton boutonRejoidre,boutonHome;
 	
 	private int code;
+	
+	private JPanel panel;
 	
 	public RejoindrePartie(TCG fenetre) {
 		this.fenetre = fenetre;
@@ -81,14 +83,36 @@ public class RejoindrePartie extends JPanel{
 		gbc_textFieldCode.gridy = 2;
 		add(textFieldCode, gbc_textFieldCode);
 		
+		panel = new JPanel();
+		panel.setBackground(new Color(240,240, 240));
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(10, 10, 10, 10);
+		gbc_panel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 3;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[] {0,0};
+		gbl_panel.rowHeights = new int[] {0};
+		panel.setLayout(gbl_panel);
+		
 		boutonRejoidre = new JButton("Confirmer");
 		boutonRejoidre.addActionListener(new ALRejoindre());
 		GridBagConstraints gbc_boutonRejoidre = new GridBagConstraints();
 		gbc_boutonRejoidre.insets = new Insets(0, 10, 10, 10);
 		gbc_boutonRejoidre.fill = GridBagConstraints.HORIZONTAL;
-		gbc_boutonRejoidre.gridx = 0;
-		gbc_boutonRejoidre.gridy = 3;
-		add(boutonRejoidre, gbc_boutonRejoidre);
+		gbc_boutonRejoidre.gridx = 1;
+		gbc_boutonRejoidre.gridy = 0;
+		panel.add(boutonRejoidre, gbc_boutonRejoidre);
+		
+		boutonHome = new JButton("retour");
+		boutonHome.addActionListener(new ALHome());
+		GridBagConstraints gbc_boutonHome = new GridBagConstraints();
+		gbc_boutonHome.insets = new Insets(0, 10, 10, 10);
+		gbc_boutonHome.fill = GridBagConstraints.HORIZONTAL;
+		gbc_boutonHome.gridx = 0;
+		gbc_boutonHome.gridy = 0;
+		panel.add(boutonHome, gbc_boutonHome);
 	}
 	
 	public GridBagConstraints getGbc() {
@@ -117,5 +141,14 @@ public class RejoindrePartie extends JPanel{
 			}
 			
 		}
+	}
+	
+	private class ALHome implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			fenetre.menuPrincipal();
+		}
+		
 	}
 }
