@@ -130,12 +130,12 @@ public class CreationPartie extends JPanel{
 					}  
 				}
 			},0, 5000);
-			try {
-				PDAO.close();
+			/*try {
+				//PDAO.close();
 			}
 			catch(SQLException e) {
 				e.printStackTrace();
-			}
+			}*/
 			fenetre.gameBoard(current.getjoueur2());
 
 		}

@@ -114,6 +114,7 @@ public class RejoindrePartie extends JPanel{
 			catch(SQLException e) {
 				e.printStackTrace();
 			}
+			fenetre.gameBoard();
 		}
 	}
 }
