@@ -28,6 +28,7 @@ public class PartieDAO extends DAO<Partie>{
 		rs = st3.getGeneratedKeys();
 		
 		JoueurDAO joueurdao=new JoueurDAO();
+		joueurdao.open();
 		Joueur joueur2= joueurdao.creerjoueur(0);
 		Deck deck2= joueur2.mainDeck();
 		obj.setjoueur2(joueur2);
@@ -65,6 +66,7 @@ public class PartieDAO extends DAO<Partie>{
 		rs = st3.getGeneratedKeys();
 		
 		JoueurDAO joueurdao=new JoueurDAO();
+		joueurdao.open();
 		Joueur joueur1= joueurdao.creerjoueur(id_joueur1);
 		Deck deck1= joueur1.mainDeck();
 		
@@ -102,6 +104,7 @@ public class PartieDAO extends DAO<Partie>{
 		}
 		
 		JoueurDAO joueurdao=new JoueurDAO();
+		joueurdao.open();
 		Joueur joueur2= joueurdao.creerjoueur(id_joueur2);
 		Deck deck2= joueur2.mainDeck();
 		
