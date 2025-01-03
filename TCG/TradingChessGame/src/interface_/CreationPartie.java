@@ -96,7 +96,7 @@ public class CreationPartie extends JPanel{
 	
 	private class ALCode implements ActionListener{
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent ae) {
 			code = Integer.parseInt(textFieldCode.getText());
 		}
 	}
@@ -113,31 +113,6 @@ public class CreationPartie extends JPanel{
 			catch(SQLException e) {
 				e.printStackTrace();
 			}
-			Timer timer = new Timer();
-			timer.schedule(new TimerTask() {
-				@Override
-				public void run() {
-					try {
-						PDAO.update(current);
-						try {
-							if(current.getjoueur2()!=null) cancel();
-						}
-						catch(NullPointerException n) {
-							n.printStackTrace();
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}  
-				}
-			},0, 5000);
-			try {
-				PDAO.close();
-			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			fenetre.gameBoard(current.getjoueur2());
-
 		}
 	}
 }
