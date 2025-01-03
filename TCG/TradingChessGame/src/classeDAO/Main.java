@@ -46,6 +46,7 @@ public class Main {
 
 			
 			D.close();
+			J.close();
 
 		}catch (SQLException e) {
 			e.printStackTrace();
