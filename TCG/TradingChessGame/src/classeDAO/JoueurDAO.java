@@ -39,7 +39,6 @@ public class JoueurDAO extends DAO<Joueur>{
 			D1.open();
 			D1.create(obj.defaultDeck());
 			
-			
 		
 		return obj;
 	}
