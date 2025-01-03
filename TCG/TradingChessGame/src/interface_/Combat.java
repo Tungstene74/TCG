@@ -137,8 +137,106 @@ public class Combat extends JPanel {
 		creationArrayButton();
 		
 		echiquier(echiquier);
+	}
+	
+	public Combat(int X,int Y, TCG fenetre) {
+		this.fenetre = fenetre;
 		
+		setBackground(new Color(133,6,6));
+		gbl = new GridBagLayout();
+		gbl.columnWidths = new int[] {(X-Y)/2, Y, (X-Y)/2};
+		gbl.rowHeights = new int[] {Y};
+		setLayout(gbl);
 		
+		gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		panelAdversaire = new JPanel();
+		panelAdversaire.setBackground(new Color(192,192,192));
+		GridBagConstraints gbc_panelAdversaire = new GridBagConstraints();
+		gbc_panelAdversaire.insets = new Insets(0, 0, 0, 5);
+		gbc_panelAdversaire.fill = GridBagConstraints.BOTH;
+		gbc_panelAdversaire.gridx = 0;
+		gbc_panelAdversaire.gridy = 0;
+		add(panelAdversaire, gbc_panelAdversaire);
+		GridBagLayout gbl_panelAdversaire = new GridBagLayout();
+		gbl_panelAdversaire.columnWidths = new int[] {(X-Y)/2};
+		gbl_panelAdversaire.rowHeights = new int[] {50, Y-55};
+		panelAdversaire.setLayout(gbl_panelAdversaire);
+		
+		pseudoAdversaire = new JLabel("Joueur 2");
+		pseudoAdversaire.setForeground(Color.BLACK);
+		pseudoAdversaire.setFont(new Font("Tahoma", Font.BOLD, 20));
+		pseudoAdversaire.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_pseudoAdversaire = new GridBagConstraints();
+		gbc_pseudoAdversaire.fill = GridBagConstraints.BOTH;
+		gbc_pseudoAdversaire.gridx = 0;
+		gbc_pseudoAdversaire.gridy = 0;
+		panelAdversaire.add(pseudoAdversaire, gbc_pseudoAdversaire);
+		
+		panelJoueur = new JPanel();
+		panelJoueur.setBackground(new Color(192,192,192));
+		GridBagConstraints gbc_panelJoueur = new GridBagConstraints();
+		gbc_panelJoueur.fill = GridBagConstraints.BOTH;
+		gbc_panelJoueur.gridx = 2;
+		gbc_panelJoueur.gridy = 0;
+		add(panelJoueur, gbc_panelJoueur);
+		GridBagLayout gbl_panelJoueur = new GridBagLayout();
+		gbl_panelJoueur.columnWidths = new int[] {(X-Y)/2};
+		gbl_panelJoueur.rowHeights = new int[] {50, Y-55};
+		panelJoueur.setLayout(gbl_panelJoueur);
+		
+		pseudoJoueur = new JLabel("Joueur 1");
+		pseudoJoueur.setForeground(Color.BLACK);
+		pseudoJoueur.setHorizontalAlignment(SwingConstants.CENTER);
+		pseudoJoueur.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_pseudoJoueur = new GridBagConstraints();
+		gbc_pseudoJoueur.fill = GridBagConstraints.BOTH;
+		gbc_pseudoJoueur.gridx = 0;
+		gbc_pseudoJoueur.gridy = 0;
+		panelJoueur.add(pseudoJoueur, gbc_pseudoJoueur);
+		
+		plateau = new JPanel();
+		plateau.setBackground(new Color(133, 6, 6));
+		GridBagConstraints gbc_plateau = new GridBagConstraints();
+		gbc_plateau.insets = new Insets(0, 0, 0, 5);
+		gbc_plateau.fill = GridBagConstraints.BOTH;
+		gbc_plateau.gridx = 1;
+		gbc_plateau.gridy = 0;
+		add(plateau, gbc_plateau);
+		GridBagLayout gbl_plateau = new GridBagLayout();
+		gbl_plateau.columnWidths = new int[] {Y-100};
+		gbl_plateau.rowHeights = new int[] {30,Y-100};
+		plateau.setLayout(gbl_plateau);
+		
+		tour = new JLabel("Tour : _ ! A ____ de jouer !");
+		tour.setForeground(Color.BLACK);
+		tour.setHorizontalAlignment(SwingConstants.CENTER);
+		tour.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_tour = new GridBagConstraints();
+		gbc_tour.fill = GridBagConstraints.BOTH;
+		gbc_tour.gridx = 0;
+		gbc_tour.gridy = 0;
+		plateau.add(tour, gbc_tour);
+		
+		echiquier = new JPanel();
+		echiquier.setBackground(new Color(133, 6, 6));
+		GridBagConstraints gbc_echiquier = new GridBagConstraints();
+		gbc_echiquier.fill = GridBagConstraints.BOTH;
+		gbc_echiquier.gridx = 0;
+		gbc_echiquier.gridy = 1;
+		plateau.add(echiquier, gbc_echiquier);
+		GridBagLayout gbl_echiquier = new GridBagLayout();
+		int x = (Y-140)/8;
+		gbl_echiquier.columnWidths = new int[] {x, x, x, x, x, x, x, x};
+		gbl_echiquier.rowHeights = new int[] {x, x, x, x, x, x, x, x};
+		echiquier.setLayout(gbl_echiquier);
+		
+		creationArrayButton();
+		
+		echiquier(echiquier);
 	}
 	
 	private void creationArrayButton() {

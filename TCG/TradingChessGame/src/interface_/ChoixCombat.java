@@ -21,7 +21,7 @@ public class ChoixCombat extends JPanel {
 	
 	private JPanel plateau;
 	
-	private JButton rejoindre, creer;
+	private JButton rejoindre, creer, local;
 
 	public ChoixCombat(TCG fenetre, int X,int Y) {
 		this.fenetre = fenetre;
@@ -32,7 +32,7 @@ public class ChoixCombat extends JPanel {
 		gbc.gridy = 0;
 		
 		gbl = new GridBagLayout();
-		gbl.columnWidths = new int[] {X/2, X/2};
+		gbl.columnWidths = new int[] {X/3, X/3, X/3};
 		gbl.rowHeights = new int[] {3*Y/4, Y/4};
 		setLayout(gbl);
 		
@@ -41,7 +41,7 @@ public class ChoixCombat extends JPanel {
 		plateau = new JPanel();
 		plateau.setBackground(new Color(133, 6, 6));
 		GridBagConstraints gbc_plateau = new GridBagConstraints();
-		gbc_plateau.gridwidth = 2;
+		gbc_plateau.gridwidth = 3;
 		gbc_plateau.insets = new Insets(0, 0, 5, 5);
 		gbc_plateau.fill = GridBagConstraints.BOTH;
 		gbc_plateau.gridx = 0;
@@ -61,7 +61,7 @@ public class ChoixCombat extends JPanel {
 		rejoindre.addActionListener(new ALRejoindre());
 		GridBagConstraints gbc_rejoindre = new GridBagConstraints();
 		gbc_rejoindre.fill = GridBagConstraints.BOTH;
-		gbc_rejoindre.insets = new Insets(0, 0, 0, 5);
+		gbc_rejoindre.insets = new Insets(5, 5, 5, 5);
 		gbc_rejoindre.gridx = 0;
 		gbc_rejoindre.gridy = 1;
 		add(rejoindre, gbc_rejoindre);
@@ -70,10 +70,21 @@ public class ChoixCombat extends JPanel {
 		creer.setBackground(new Color(128, 128, 128));
 		creer.addActionListener(new ALCreer());
 		GridBagConstraints gbc_creer = new GridBagConstraints();
+		gbc_creer.insets = new Insets(5, 5, 5, 5);
 		gbc_creer.fill = GridBagConstraints.BOTH;
 		gbc_creer.gridx = 1;
 		gbc_creer.gridy = 1;
 		add(creer, gbc_creer);
+		
+		local = new JButton("Créer une partie local");
+		local.setBackground(new Color(128, 128, 128));
+		local.addActionListener(new ALLocal());
+		GridBagConstraints gbc_local = new GridBagConstraints();
+		gbc_local.insets = new Insets(5, 5, 5, 5);
+		gbc_local.fill = GridBagConstraints.BOTH;
+		gbc_local.gridx = 2;
+		gbc_local.gridy = 1;
+		add(local, gbc_local);
 		
 		TCG.dessinEchiquier(plateau);
 	}
@@ -96,6 +107,15 @@ public class ChoixCombat extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fenetre.rejoindrePartie();
+		}
+		
+	}
+	
+	private class ALLocal implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			fenetre.gameBoard();
 		}
 		
 	}
