@@ -126,7 +126,7 @@ public class Joueur {
 		super();
 		this.identifiant = identifiant;
 		this.Mbp = Mbp;
-
+		this.defaultDeck();
 	}
 	
 	
