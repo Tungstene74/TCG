@@ -109,6 +109,7 @@ public class CreationPartie extends JPanel{
 			try {
 				PDAO.open();
 				PDAO.create(current);
+				PDAO.close();
 			}
 			catch(SQLException e) {
 				e.printStackTrace();
@@ -129,14 +130,13 @@ public class CreationPartie extends JPanel{
 						e.printStackTrace();
 					}  
 				}
-			}, 5000);
+			},0, 5000);
 			try {
 				PDAO.close();
 			}
 			catch(SQLException e) {
 				e.printStackTrace();
 			}
-			JoueurDAO JDAO = new JoueurDAO();
 			fenetre.gameBoard(current.getjoueur2());
 
 		}

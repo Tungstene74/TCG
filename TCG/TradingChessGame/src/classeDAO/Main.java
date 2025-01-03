@@ -1,6 +1,8 @@
 package classeDAO;
 
 import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import classeMetier.Joueur;
 import classeMetier.Partie;
@@ -9,7 +11,7 @@ import classeMetier.Partie;
 public class Main {
 
 	public static void main(String[] args) {
-		try {
+		/*try {
 			System.out.println("Hello World java");
 			System.out.println("Hello World java2");
 
@@ -53,7 +55,15 @@ public class Main {
 			e.printStackTrace();
 		}
 
-
+		*/
+		
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				System.out.println("salut");
+			}
+		},0, 5000);
 
 	}
 
