@@ -109,7 +109,7 @@ public class RejoindrePartie extends JPanel{
 				PartieDAO PDAO = new PartieDAO();
 				PDAO.open();
 				Partie p = PDAO.join(code,fenetre.getPlayer());
-				fenetre.gameBoard(p.getjoueur1());
+				fenetre.gameBoard(p.getjoueur1(),false);
 				//PDAO.close();
 			}
 			catch(SQLException e) {

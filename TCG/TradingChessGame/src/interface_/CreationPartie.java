@@ -136,7 +136,7 @@ public class CreationPartie extends JPanel{
 			catch(SQLException e) {
 				e.printStackTrace();
 			}*/
-			fenetre.gameBoard(current.getjoueur2());
+			fenetre.gameBoard(current.getjoueur2(),true);
 
 		}
 	}
