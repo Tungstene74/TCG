@@ -113,6 +113,24 @@ public class CreationPartie extends JPanel{
 			catch(SQLException e) {
 				e.printStackTrace();
 			}
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					try {
+						PDAO.update(current);
+						try {
+							if (current.getjoueur2()!=null) cancel();
+						}
+						catch(NullPointerException n) {
+							n.printStackTrace();
+						}	
+					}
+					catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			},0, 5000);
 		}
 	}
 }
