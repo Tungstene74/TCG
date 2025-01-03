@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -89,14 +90,14 @@ public class Inventaire extends JPanel{
 		gbl_panelCollection.rowHeights = new int[]{400, 400, 400, 400, 400, 400, 400, 400};
 		panelCollection.setLayout(gbl_panelCollection);
 		
-		for (int i = 0;i<=4;i++) {
-			for (int j = 0 ; j<=7 ; j++) {
-				GridBagConstraints gbc_carte = new GridBagConstraints();
-				gbc_carte.anchor = GridBagConstraints.NORTHWEST;
-				gbc_carte.gridx = i;
-				gbc_carte.gridy = j;
-				panelCollection.add(new Card(), gbc_carte);
-			}
+		int n = fenetre.getPlayer().getListepiece().size();
+		int i = 0;
+		for (Map.Entry<Integer, Integer>entry: fenetre.getPlayer().getListepiece().entrySet()) {
+			GridBagConstraints gbc_carte = new GridBagConstraints();
+			gbc_carte.anchor = GridBagConstraints.NORTHWEST;
+			gbc_carte.gridx = i%n;
+			gbc_carte.gridy = i/n;
+			panelCollection.add(new Card(), gbc_carte);
 		}
 	}
 	

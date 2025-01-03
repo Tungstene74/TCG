@@ -13,10 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import classeMetier.Piece;
+
 public class Card extends JPanel{
 	private JLabel spritePiece, nomPiece, pouvoirPiece, mvtPiece, raretePiece, nbExemplaire;
 	private JPanel basCarte;
 	private int l;
+	private Piece piece;
 	
 	public Card () {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

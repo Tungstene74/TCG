@@ -122,7 +122,7 @@ public class CreationPartie extends JPanel{
 							if(current.getjoueur2()!=null) cancel();
 						}
 						catch(NullPointerException n) {
-							
+							n.printStackTrace();
 						}
 					} catch (SQLException e) {
 						e.printStackTrace();
