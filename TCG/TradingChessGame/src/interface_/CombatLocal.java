@@ -11,8 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import classeMetier.Joueur;
-import classeMetier.PartieLocale;
+import classeMetier.*;
 
 public class CombatLocal extends JPanel {
 
@@ -244,7 +243,12 @@ public class CombatLocal extends JPanel {
 	}
 	
 	private void placementInitial(Case tile) {
-		
+		ArrayList<Piece> listePiece = partie.getPlateau().getListepieces();
+		for (Piece p : listePiece) {
+			if (p.getX()==tile.getAbscisse()&&p.getY()==tile.getOrdonnee()) {
+				tile.setPiece(p);
+			}
+		}
 	}
 	
 	private void echiquier(JPanel panel) {

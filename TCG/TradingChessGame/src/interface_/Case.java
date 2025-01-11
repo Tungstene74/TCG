@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import classeMetier.Piece;
@@ -27,6 +28,9 @@ public class Case extends JButton{
 		
 		addActionListener(new ALCase());
 		
+		if (piece!=null) setIcon(new ImageIcon(Case.class.getResource(piece.getimage())));
+		//setIcon(new ImageIcon(TCG.class.getResource("/images/logo3resized.png")));
+		
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = x;
@@ -45,6 +49,14 @@ public class Case extends JButton{
 		return gbc;
 	}
 	
+	public int getAbscisse() {
+		return abscisse;
+	}
+
+	public int getOrdonnee() {
+		return ordonnee;
+	}
+
 	private class ALCase implements ActionListener{
 
 		@Override

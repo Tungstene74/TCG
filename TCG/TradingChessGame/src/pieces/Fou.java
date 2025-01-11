@@ -16,6 +16,7 @@ public class Fou extends Piece{
 	public Fou(String couleur, int idPiecePartie, int x, int y) {
 		super(3, idPiecePartie, "fou", new ArrayList<Mouvement>(), null, "","fou",couleur,x,y);
 		this.addMouvement(new MouvFou());
+		//this.setImage("/images/fou"+couleur+".png");
 	}
 
 }

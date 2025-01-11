@@ -205,7 +205,11 @@ public class Piece {
 	public String getimage(){
 		return this.image;
 	}
-
+	
+	public void setImage(String url){
+		this.image = url ;
+	}
+	
 	public void setX(int x){
 		this.x= x;
 	}
