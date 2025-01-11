@@ -9,13 +9,13 @@ public class SingleConnection {
 	private static Connection connect;
 
 	public SingleConnection() {
-		String databaseName="if0_38085721_echec";
+		String databaseName="echec";
 		
 		SingleConnection.connect=null;
 		
-		String url="jdbc:mysql://sql308.infinityfree.com :3306/"+databaseName+"?serverTimezone=UTC";
-		String login="if0_38085721"; // dans l'idal un login de connexion pour l'application, et non root...
-		String password="fNgqgwRT21R0J3a"; // mot de passe avec xampp
+		String url="jdbc:mysql://localhost :3306/"+databaseName+"?serverTimezone=UTC";
+		String login="root"; // dans l'idal un login de connexion pour l'application, et non root...
+		String password=""; // mot de passe avec xampp
 		
 		MysqlDataSource mysqlDS = new MysqlDataSource();
 		mysqlDS.setURL(url);
