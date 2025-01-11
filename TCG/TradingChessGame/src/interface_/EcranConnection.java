@@ -166,7 +166,7 @@ public class EcranConnection extends JPanel{
 					JDAO.open();
 					fenetre.setPlayer(JDAO.connection(identifiant,motDePasse));
 					//JDAO.close();
-					fenetre.menuPrincipal();
+					fenetre.menuPrincipal2();
 				}
 				catch(SQLException e) {
 					System.out.println(e);
@@ -193,7 +193,7 @@ public class EcranConnection extends JPanel{
 					JDAO.open();
 					JDAO.create(fenetre.getPlayer());
 					//JDAO.close();
-					fenetre.menuPrincipal();
+					fenetre.menuPrincipal2();
 				}
 				catch(SQLException e) {
 					System.out.println(e);

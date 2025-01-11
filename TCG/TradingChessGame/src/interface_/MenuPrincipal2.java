@@ -77,7 +77,7 @@ public class MenuPrincipal2 extends JPanel{
 		int L = 3*Y/4;
 		int x = ((L/8)-1);
 		gbl_plateau.columnWidths = new int[]{0,L,0};
-		gbl_plateau.rowHeights = new int[]{0,L,0};
+		gbl_plateau.rowHeights = new int[]{L};
 		plateau.setLayout(gbl_plateau);
 		
 		echiquier = new JPanel();
