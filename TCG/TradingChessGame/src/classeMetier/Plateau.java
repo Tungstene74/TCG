@@ -275,12 +275,14 @@ public class Plateau {
 		return b;
 	}
 	
+	//a modifier
 	public void generePlateau(Deck deckblanc, Deck decknoir) {
 		int i=0;
 		for(Piece piece:deckblanc.getListepieces()) {
 			piece.setCouleur("blanc");
 			i+=1;
 			if (i<=7) {
+				//a modifier
 				this.add(piece, i, 1);
 			}
 			if (i>=8 & i<=15) {

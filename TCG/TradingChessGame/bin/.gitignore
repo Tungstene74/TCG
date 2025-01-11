@@ -1,8 +1,7 @@
-/images/
-<<<<<<< HEAD
-=======
 /classeDAO/
->>>>>>> refs/remotes/origin/main
-/interface_/
 /classeMetier/
+/images/
+/interface_/
+/mouvement/
 /pieces/
+/pouvoir/

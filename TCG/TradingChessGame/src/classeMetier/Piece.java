@@ -33,7 +33,7 @@ public class Piece {
 		this.couleur=null;
 		Nbp+=1;
 	}
-	
+
 	public Piece(int idPiece, String nom, ArrayList<Mouvement> mouvements, ArrayList<Pouvoir> pouvoirs, String image, String classe,String couleur){
 		// attention la couleur doit être instancier avec une majuscule!
 		this.idPiece=idPiece;
