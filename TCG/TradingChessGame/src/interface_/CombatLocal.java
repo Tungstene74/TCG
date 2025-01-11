@@ -134,7 +134,7 @@ public class CombatLocal extends JPanel {
 		plateau.add(echiquier, gbc_echiquier);
 		GridBagLayout gbl_echiquier = new GridBagLayout();
 		int x = (Y-140)/8;
-		Case.setSize(x);
+		Case.setSize(x-20);
 		gbl_echiquier.columnWidths = new int[] {x, x, x, x, x, x, x, x};
 		gbl_echiquier.rowHeights = new int[] {x, x, x, x, x, x, x, x};
 		echiquier.setLayout(gbl_echiquier);
@@ -259,13 +259,8 @@ public class CombatLocal extends JPanel {
 		for (ArrayList<Case> a : arrayButton) {
 			int j = 0;
 			for (Case c: a) {
-				if (partie.getPlateau().getPiece(j, i)!=null) {
-					if (partie.getPlateau().getPiece(j, i).getX()==j&&partie.getPlateau().getPiece(j, i).getY()==i) {
-						c = new Case(j,i,partie.getPlateau().getPiece(j, i));
-					}
-				}
-				else c = new Case(j,i);
-				//placementInitial(c);
+				c = new Case(j,i);
+				placementInitial(c);
 				panel.add(c,c.getGbc());
 				j++;
 			}

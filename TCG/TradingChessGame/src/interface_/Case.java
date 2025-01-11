@@ -43,15 +43,15 @@ public class Case extends JButton{
 	public Case(int x, int y, Piece piece) {
 		this.piece = piece;
 		abscisse = x;
-		ordonnee = 7 - y;
+		ordonnee = y;
 		
 		if ((abscisse+ordonnee)%2==1) setBackground(new Color(222,184,135));
 		else setBackground(new Color(0,0,0));
-		
-		ImageIcon icon = new ImageIcon(TCG.class.getResource("/images/pionnoir.png"));
-		icon.getImage().getScaledInstance(size, size,Image.SCALE_SMOOTH);
+		/*
+		icon = new ImageIcon(TCG.class.getResource(piece.lienImage()));
+		icon.setImage(icon.getImage().getScaledInstance(size, size,Image.SCALE_SMOOTH));
 		setIcon(icon);
-		
+		*/
 		addActionListener(new ALCase());
 		
 		gbc = new GridBagConstraints();
@@ -77,7 +77,8 @@ public class Case extends JButton{
 	public void putImage(Piece piece) {
 		removeAll();
 		
-		ImageIcon icon = new ImageIcon(Case.class.getResource("/images/pionnoir.png"));
+		icon = new ImageIcon(TCG.class.getResource(piece.lienImage()));
+		icon.setImage(icon.getImage().getScaledInstance(size, size,Image.SCALE_SMOOTH));
 		setIcon(icon);
 		
 		revalidate();
@@ -100,8 +101,7 @@ public class Case extends JButton{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//setIcon(new javax.swing.ImageIcon("images/logo3resized.png"));
-			//System.out.println(piece.lienImage());
+			
 		}
 		
 	}
