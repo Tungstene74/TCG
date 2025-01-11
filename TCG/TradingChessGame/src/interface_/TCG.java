@@ -98,6 +98,17 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
+	public void menuPrincipal2() {
+		basePanel.removeAll();
+
+		MenuPrincipal2 menuPrincipal = new MenuPrincipal2(X,Y,this);
+		
+		basePanel.add(menuPrincipal, menuPrincipal.getGbc());
+		
+		basePanel.revalidate();
+		basePanel.repaint();
+	}
+	
 	public static void dessinEchiquier(JPanel panel) {
 		for(int i=1; i<=8;i++) {
 			for (int j=1; j<=8;j++) {

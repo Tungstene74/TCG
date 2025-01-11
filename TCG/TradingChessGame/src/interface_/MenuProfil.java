@@ -26,8 +26,7 @@ public class MenuProfil extends JPanel{
 	
 	private JButton boutonHome;
 	
-	private JLabel profil, photo, nomUtilisateur, statistiques, nbPartiesJouees, nbPartiesGagnees,nbPieces,
-	nbRoi, nbDame, nbFou, nbTour, nbCavalier, nbPion;
+	private JLabel profil, photo, nomUtilisateur, statistiques, nbPartiesJouees, nbPartiesGagnees;
 	
 	private TCG fenetre;
 	
@@ -137,74 +136,6 @@ public class MenuProfil extends JPanel{
 		gbc_nbPartiesGagnees.gridy = 5;
 		panel.add(nbPartiesGagnees, gbc_nbPartiesGagnees);
 		
-		nbPieces = new JLabel(" - nombre de pièces obtenues : ");
-		nbPieces.setForeground(new Color(0, 0, 0));
-		nbPieces.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_nbPieces = new GridBagConstraints();
-		gbc_nbPieces.insets = new Insets(0, 0, 5, 0);
-		gbc_nbPieces.fill = GridBagConstraints.BOTH;
-		gbc_nbPieces.gridx = 1;
-		gbc_nbPieces.gridy = 6;
-		panel.add(nbPieces, gbc_nbPieces);
-		
-		nbRoi = new JLabel(" - nombre de rois obtenus : ");
-		nbRoi.setForeground(new Color(0, 0, 0));
-		nbRoi.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_nbRoi = new GridBagConstraints();
-		gbc_nbRoi.insets = new Insets(0, 0, 5, 0);
-		gbc_nbRoi.fill = GridBagConstraints.BOTH;
-		gbc_nbRoi.gridx = 1;
-		gbc_nbRoi.gridy = 7;
-		panel.add(nbRoi, gbc_nbRoi);
-		
-		nbDame = new JLabel(" - nombre de dames obtenues :");
-		nbDame.setForeground(new Color(0, 0, 0));
-		nbDame.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_nbDames = new GridBagConstraints();
-		gbc_nbDames.fill = GridBagConstraints.BOTH;
-		gbc_nbDames.insets = new Insets(0, 0, 5, 0);
-		gbc_nbDames.gridx = 1;
-		gbc_nbDames.gridy = 8;
-		panel.add(nbDame, gbc_nbDames);
-		
-		nbFou = new JLabel(" - nombres de fous obtenus :");
-		nbFou.setForeground(new Color(0, 0, 0));
-		nbFou.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_nbFou = new GridBagConstraints();
-		gbc_nbFou.fill = GridBagConstraints.BOTH;
-		gbc_nbFou.insets = new Insets(0, 0, 5, 0);
-		gbc_nbFou.gridx = 1;
-		gbc_nbFou.gridy = 9;
-		panel.add(nbFou, gbc_nbFou);
-		
-		nbCavalier = new JLabel("- nombre de cavaliers obtenues :");
-		nbCavalier.setHorizontalAlignment(SwingConstants.LEFT);
-		nbCavalier.setForeground(new Color(0, 0, 0));
-		GridBagConstraints gbc_nbCavalier = new GridBagConstraints();
-		gbc_nbCavalier.insets = new Insets(0, 0, 5, 0);
-		gbc_nbCavalier.fill = GridBagConstraints.BOTH;
-		gbc_nbCavalier.gridx = 1;
-		gbc_nbCavalier.gridy = 10;
-		panel.add(nbCavalier, gbc_nbCavalier);
-		
-		nbTour = new JLabel(" - nombre de tours obtenues");
-		nbTour.setForeground(new Color(0, 0, 0));
-		nbTour.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_nbTour = new GridBagConstraints();
-		gbc_nbTour.insets = new Insets(0, 0, 5, 0);
-		gbc_nbTour.fill = GridBagConstraints.BOTH;
-		gbc_nbTour.gridx = 1;
-		gbc_nbTour.gridy = 11;
-		panel.add(nbTour, gbc_nbTour);
-		
-		nbPion = new JLabel(" - nombre de pions obtenus :");
-		nbPion.setForeground(new Color(0, 0, 0));
-		nbPion.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_nbPion = new GridBagConstraints();
-		gbc_nbPion.fill = GridBagConstraints.BOTH;
-		gbc_nbPion.gridx = 1;
-		gbc_nbPion.gridy = 12;
-		panel.add(nbPion, gbc_nbPion);
 	}
 	
 	public GridBagConstraints getGbc() {
@@ -215,7 +146,7 @@ public class MenuProfil extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			fenetre.menuPrincipal();
+			fenetre.menuPrincipal2();
 		}
 		
 	}

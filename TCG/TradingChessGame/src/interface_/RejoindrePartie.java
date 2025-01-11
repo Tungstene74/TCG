@@ -147,7 +147,7 @@ public class RejoindrePartie extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			fenetre.menuPrincipal();
+			fenetre.menuPrincipal2();
 		}
 		
 	}
