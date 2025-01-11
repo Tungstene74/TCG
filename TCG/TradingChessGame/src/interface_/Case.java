@@ -61,7 +61,7 @@ public class Case extends JButton{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
+			System.out.println(piece);
 		}
 		
 	}

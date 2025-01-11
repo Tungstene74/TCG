@@ -42,6 +42,7 @@ public class CombatLocal extends JPanel {
 	
 	public CombatLocal(int X,int Y, TCG fenetre, PartieLocale partie) {
 		this.fenetre = fenetre;
+		this.partie = partie;
 		
 		setBackground(new Color(133,6,6));
 		gbl = new GridBagLayout();
@@ -257,7 +258,7 @@ public class CombatLocal extends JPanel {
 			int j = 0;
 			for (Case c: a) {
 				c = new Case(j,i);
-				c.addActionListener(null);
+				placementInitial(c);
 				panel.add(c,c.getGbc());
 				j++;
 			}
