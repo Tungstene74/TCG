@@ -158,17 +158,6 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
-	public void gameBoard() {
-		basePanel.removeAll();
-
-		Combat fight = new Combat(X,Y, this);
-		
-		basePanel.add(fight, fight.getGbc());
-		
-		basePanel.revalidate();
-		basePanel.repaint();
-	}
-	
 	public void choixCombat() {
 		basePanel.removeAll();
 
@@ -237,6 +226,17 @@ public class TCG extends JFrame{
 		RejoindrePartie rejoindrePartie = new RejoindrePartie(this);
 		
 		basePanel.add(rejoindrePartie, rejoindrePartie.getGbc());
+		
+		basePanel.revalidate();
+		basePanel.repaint();
+	}
+	
+	public void combatLocal(PartieLocale partie) {
+		basePanel.removeAll();
+
+		CombatLocal fight = new CombatLocal(X,Y, this, partie);
+		
+		basePanel.add(fight, fight.getGbc());
 		
 		basePanel.revalidate();
 		basePanel.repaint();

@@ -33,6 +33,14 @@ public class Case extends JButton{
 		gbc.gridy = y;
 	}
 
+	public Piece getPiece() {
+		return piece;
+	}
+
+	public void setPiece(Piece piece) {
+		this.piece = piece;
+	}
+
 	public GridBagConstraints getGbc() {
 		return gbc;
 	}
@@ -41,7 +49,7 @@ public class Case extends JButton{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("abscisse : "+ abscisse+ "; ordonnee : "+ ordonnee);
+
 		}
 		
 	}

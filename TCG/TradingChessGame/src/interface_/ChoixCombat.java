@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import classeDAO.PartieDAO;
+import classeMetier.*;
 
 public class ChoixCombat extends JPanel {
 	private GridBagLayout gbl;
@@ -115,7 +115,9 @@ public class ChoixCombat extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			fenetre.gameBoard();
+			PartieLocale partie = new PartieLocale();
+			fenetre.combatLocal(partie);
+			
 		}
 		
 	}
