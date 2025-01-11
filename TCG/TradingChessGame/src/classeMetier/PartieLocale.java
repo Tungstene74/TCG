@@ -17,6 +17,9 @@ public class PartieLocale {
 		plateau.plateauClassique();
 	}
 	
+	public void ArraygetCordCasesAteignables() {
+		
+	}
 	
 	public void jouer(Combat combat) {
 		Boolean echecetmat=false;

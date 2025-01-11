@@ -18,7 +18,7 @@ public class Piece {
 	private String classe;
 	
 	private String lienImage() {
-		String str=this.nom+this.couleur+".png";
+		String str="/images/"+this.nom+this.couleur+".png";
 		return str;
 	}
 
@@ -161,11 +161,11 @@ public class Piece {
 	}
 	
 	public String getCouleurInverse() {
-		if (couleur=="Blanc") {
-			return "Noir";
+		if (couleur=="blanc") {
+			return "noir";
 		}
-		if (couleur=="Noir") {
-			return "Blanc";
+		if (couleur=="noir") {
+			return "blanc";
 		}
 		else {
 			return null;
