@@ -29,8 +29,8 @@ public class Piece {
 		this.nom=nom;
 		this.x=-1;
 		this.y=-1;
-		this.image=lienImage();
 		this.couleur=null;
+		this.image=lienImage();
 		Nbp+=1;
 	}
 	
@@ -42,8 +42,8 @@ public class Piece {
 		this.nom=nom;
 		this.x=-1;
 		this.y=-1;
-		this.image=lienImage();
 		this.couleur=couleur;
+		this.image=lienImage();
 		Nbp+=1;
 	}
 
@@ -56,8 +56,8 @@ public class Piece {
 		this.nom=nom;
 		this.x=x;
 		this.y=y;
-		this.image=lienImage();
 		this.couleur=couleur;
+		this.image=lienImage();
 		Nbp+=1;
 	}
 	
