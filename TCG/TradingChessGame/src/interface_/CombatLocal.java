@@ -43,6 +43,7 @@ public class CombatLocal extends JPanel {
 	public CombatLocal(int X,int Y, TCG fenetre, PartieLocale partie) {
 		this.fenetre = fenetre;
 		this.partie = partie;
+		this.numeroTour = 1;
 		
 		setBackground(new Color(133,6,6));
 		gbl = new GridBagLayout();
@@ -113,7 +114,7 @@ public class CombatLocal extends JPanel {
 		gbl_plateau.rowHeights = new int[] {30,Y-100};
 		plateau.setLayout(gbl_plateau);
 		
-		if (numeroTour%2==0) tour = new JLabel("Tour : "+numeroTour+" ! Au blanc de jouer !");
+		if (numeroTour%2==1) tour = new JLabel("Tour : "+numeroTour+" ! Au blanc de jouer !");
 		else tour = new JLabel("Tour : "+numeroTour+" ! Au noir de jouer !");
 		tour.setForeground(Color.BLACK);
 		tour.setHorizontalAlignment(SwingConstants.CENTER);
@@ -133,6 +134,7 @@ public class CombatLocal extends JPanel {
 		plateau.add(echiquier, gbc_echiquier);
 		GridBagLayout gbl_echiquier = new GridBagLayout();
 		int x = (Y-140)/8;
+		Case.setSize(x);
 		gbl_echiquier.columnWidths = new int[] {x, x, x, x, x, x, x, x};
 		gbl_echiquier.rowHeights = new int[] {x, x, x, x, x, x, x, x};
 		echiquier.setLayout(gbl_echiquier);
