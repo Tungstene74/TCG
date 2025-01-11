@@ -248,6 +248,7 @@ public class CombatLocal extends JPanel {
 		for (Piece p : listePiece) {
 			if (p.getX()==tile.getAbscisse()&&p.getY()==tile.getOrdonnee()) {
 				tile.setPiece(p);
+				tile.putImage(p);
 			}
 		}
 	}

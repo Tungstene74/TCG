@@ -28,9 +28,6 @@ public class Case extends JButton{
 		
 		addActionListener(new ALCase());
 		
-		if (piece!=null) setIcon(new ImageIcon(Case.class.getResource(piece.getimage())));
-		//setIcon(new ImageIcon(TCG.class.getResource("/images/logo3resized.png")));
-		
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = x;
@@ -44,7 +41,11 @@ public class Case extends JButton{
 	public void setPiece(Piece piece) {
 		this.piece = piece;
 	}
-
+	
+	public void putImage(Piece piece) {
+		setIcon(new ImageIcon(TCG.class.getResource(piece.lienImage())));
+	}
+	
 	public GridBagConstraints getGbc() {
 		return gbc;
 	}
@@ -61,7 +62,7 @@ public class Case extends JButton{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println(piece);
+			System.out.println(piece.lienImage());
 		}
 		
 	}

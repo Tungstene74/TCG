@@ -17,7 +17,7 @@ public class Piece {
 	private String descriptionMvt;//Description du mouvement de la pièce
 	private String classe;
 	
-	private String lienImage() {
+	public String lienImage() {
 		String str="/images/"+this.nom+this.couleur+".png";
 		return str;
 	}
