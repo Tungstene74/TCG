@@ -161,11 +161,11 @@ public class Piece {
 	}
 	
 	public String getCouleurInverse() {
-		if (couleur=="blanc") {
-			return "noir";
+		if (couleur=="Blanc") {
+			return "Noir";
 		}
-		if (couleur=="noir") {
-			return "blanc";
+		if (couleur=="Noir") {
+			return "Blanc";
 		}
 		else {
 			return null;

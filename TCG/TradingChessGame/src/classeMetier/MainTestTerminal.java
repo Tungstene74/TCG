@@ -26,9 +26,9 @@ public class MainTestTerminal {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Plateau plateau = new Plateau(0);
-		Tour t1 = new Tour("Blanc",2,1);
-		Tour t2 = new Tour("Blanc",4,1);
-		Fou f1 = new Fou("Blanc",5,3);
+		Tour t1 = new Tour("Blanc",0,2,1);
+		Tour t2 = new Tour("Blanc",1,4,1);
+		Fou f1 = new Fou("Blanc",2,5,3);
 		System.out.println(t1.toString());
 		plateau.add(t1);
 		plateau.add(t2);
