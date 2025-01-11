@@ -88,7 +88,7 @@ public class MenuProfil2 extends JPanel{
 		
 		photo = new JLabel("");
 		photo.setForeground(new Color(0, 0, 0));
-		photo.setIcon(new ImageIcon(TCG.class.getResource("/images/logo3resized.png")));
+		photo.setIcon(new ImageIcon(TCG.class.getResource("images/logo3resized.png")));
 		GridBagConstraints gbc_photo = new GridBagConstraints();
 		gbc_photo.insets = new Insets(0, 0, 5, 0);
 		gbc_photo.gridx = 1;

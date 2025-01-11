@@ -18,7 +18,7 @@ public class Piece {
 	private String classe;
 	
 	public String lienImage() {
-		String str="/images/"+this.nom+this.couleur+".png";
+		String str="images/"+this.nom+this.couleur+".png";
 		return str;
 	}
 

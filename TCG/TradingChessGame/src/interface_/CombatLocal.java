@@ -244,8 +244,7 @@ public class CombatLocal extends JPanel {
 	}
 	
 	private void placementInitial(Case tile) {
-		ArrayList<Piece> listePiece = partie.getPlateau().getListepieces();
-		for (Piece p : listePiece) {
+		for (Piece p : partie.getPlateau().getListepieces()) {
 			if (p.getX()==tile.getAbscisse()&&p.getY()==tile.getOrdonnee()) {
 				tile.setPiece(p);
 				tile.putImage(p);
@@ -258,8 +257,13 @@ public class CombatLocal extends JPanel {
 		for (ArrayList<Case> a : arrayButton) {
 			int j = 0;
 			for (Case c: a) {
-				c = new Case(j,i);
-				placementInitial(c);
+				if (partie.getPlateau().getPiece(j, i)!=null) {
+					if (partie.getPlateau().getPiece(j, i).getX()==j&&partie.getPlateau().getPiece(j, i).getY()==i) {
+						c = new Case(j,i,partie.getPlateau().getPiece(j, i));
+					}
+				}
+				else c = new Case(j,i);
+				//placementInitial(c);
 				panel.add(c,c.getGbc());
 				j++;
 			}
