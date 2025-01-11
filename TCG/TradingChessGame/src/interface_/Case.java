@@ -2,7 +2,7 @@ package interface_;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
-import java.awt.MediaTracker;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,31 +20,17 @@ public class Case extends JButton{
 	
 	private Piece piece;
 	
+	private static int size;
+	
+	private ImageIcon icon;
+	
 	public Case(int x,int y) {
 		abscisse = x;
 		ordonnee = 7 - y;
 		
-		if ((abscisse+ordonnee)%2==1) setBackground(new Color(222,184,135));
-		else setBackground(new Color(0,0,0));
-		
-		addActionListener(new ALCase());
-		
-		gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.gridx = x;
-		gbc.gridy = y;
-	}
-	
-	public Case(int x, int y, Piece piece) {
-		this.piece = piece;
-		abscisse = x;
-		ordonnee = 7 - y;
 		
 		if ((abscisse+ordonnee)%2==1) setBackground(new Color(222,184,135));
 		else setBackground(new Color(0,0,0));
-		
-		setIcon(new javax.swing.ImageIcon("/images/roiblanc.png"));
-		//setIcon(new ImageIcon(TCG.class.getResource("/images/roiblanc.png")));
 		
 		addActionListener(new ALCase());
 		
@@ -57,6 +43,12 @@ public class Case extends JButton{
 	public Piece getPiece() {
 		return piece;
 	}
+	
+	
+	
+	public static void setSize(int size) {
+		Case.size = size;
+	}
 
 	public void setPiece(Piece piece) {
 		this.piece = piece;
@@ -65,7 +57,8 @@ public class Case extends JButton{
 	public void putImage(Piece piece) {
 		removeAll();
 		
-		ImageIcon icon = new ImageIcon(Case.class.getResource("/images/pionnoir.png"));
+		icon = new ImageIcon(TCG.class.getResource(piece.lienImage()));
+		icon.setImage(icon.getImage().getScaledInstance(size, size,Image.SCALE_SMOOTH));
 		setIcon(icon);
 		
 		revalidate();
@@ -88,8 +81,7 @@ public class Case extends JButton{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//setIcon(new javax.swing.ImageIcon("images/logo3resized.png"));
-			//System.out.println(piece.lienImage());
+			
 		}
 		
 	}

@@ -186,7 +186,7 @@ public class Plateau {
 		return nb;
 	}
 
-	public void creePiece(int id_piece, String couleur) {
+	/*public void creePiece(int id_piece, String couleur) {
 		switch (id_piece) {
 			case 0: add(new Pion(couleur));
 			case 1: add(new Tour(couleur));
@@ -195,7 +195,7 @@ public class Plateau {
 			case 4: add(new Dame(couleur));
 			case 5: add(new Roi(couleur));
 		}
-	}
+	}*/
 	
 	public Plateau copy() {
 		Plateau new_plateau=new Plateau(this.id_partie);
