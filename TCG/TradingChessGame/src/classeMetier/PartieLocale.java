@@ -1,7 +1,6 @@
 package classeMetier;
 
 
-
 public class PartieLocale {
 	private Plateau plateau;
 	private int tour;
