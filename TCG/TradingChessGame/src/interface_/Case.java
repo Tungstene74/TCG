@@ -39,26 +39,6 @@ public class Case extends JButton{
 		gbc.gridx = x;
 		gbc.gridy = y;
 	}
-	
-	public Case(int x, int y, Piece piece) {
-		this.piece = piece;
-		abscisse = x;
-		ordonnee = y;
-		
-		if ((abscisse+ordonnee)%2==1) setBackground(new Color(222,184,135));
-		else setBackground(new Color(0,0,0));
-		/*
-		icon = new ImageIcon(TCG.class.getResource(piece.lienImage()));
-		icon.setImage(icon.getImage().getScaledInstance(size, size,Image.SCALE_SMOOTH));
-		setIcon(icon);
-		*/
-		addActionListener(new ALCase());
-		
-		gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.gridx = x;
-		gbc.gridy = y;
-	}
 
 	public Piece getPiece() {
 		return piece;
