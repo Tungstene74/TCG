@@ -32,6 +32,7 @@ public class Deck {
 	}
 	
 	public void defaultDeck() {
+		System.out.println("création deck base"); // ici print 
 		//generation des pions
 		for(int x=0;x<=7;x++) {
 			this.AddPiece(new Pion("blanc"));

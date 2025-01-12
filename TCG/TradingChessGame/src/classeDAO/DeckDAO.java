@@ -96,8 +96,9 @@ public class DeckDAO extends DAO<Deck> {
 		int id_joueur  = 0;
 		int id_piece  = 0;
 		Boolean deckprincipal  = null;
-		int id_deckPast = -1;
+		int id_deckPast = 0;
 		Deck D = null;
+		int rec = 0;
 		// Affichage du resultat
 		while(rs.next()) {			
 			id_deck  = Integer.parseInt(rs.getString("id_deck"));
@@ -108,15 +109,18 @@ public class DeckDAO extends DAO<Deck> {
 
 			
 			if (id_deck != id_deckPast) {
-				if (D != null) {
-					listeDeck.add(D);
-				}
 				D = new Deck(nom, deckprincipal, new ArrayList<Piece>(), id_joueur);
 			}
 			
 			Piece P = D.creePiece(id_piece);
 			
 			D.AddPiece(P);
+			rec += 1;
+			
+			if (rec == 16) {
+				rec = 0;
+				listeDeck.add(D);
+			}
 			
 			id_deckPast = id_deck;
 

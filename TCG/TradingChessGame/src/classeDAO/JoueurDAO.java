@@ -85,7 +85,7 @@ public class JoueurDAO extends DAO<Joueur>{
 			DeckDAO D = new DeckDAO();
 			D.open();
 			ArrayList<Deck> listeDeck = D.read(id_joueur);
-				
+			System.out.println("fin connection"); // ici print 
 				
 		return new Joueur(id_joueur, identifiant, mdp,  nbPartiesJ,  money, nbPartiesG,listepiece, listeDeck);
 		

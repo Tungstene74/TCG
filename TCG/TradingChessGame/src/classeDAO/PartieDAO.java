@@ -22,6 +22,7 @@ public class PartieDAO extends DAO<Partie>{
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);//obj.getId_partie()
 		st3.setString(1,Integer.toString(obj.getId_partie()));
 		st3.setString(2,Integer.toString(obj.getTour_joueur()));
+		System.out.println(obj.getdeck1()); // ici print 
 		st3.setString(3,Integer.toString(obj.getdeck1().getId_deck()));
 		st3.setString(4,Integer.toString(obj.getjoueur1().getId_joueur()));
 		st3.executeUpdate();
