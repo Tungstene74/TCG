@@ -31,6 +31,8 @@ public class CombatLocal extends JPanel {
 	
 	private JPanel panelAdversaire, panelJoueur, plateau, echiquier;
 	
+	private TableauPiecePrise pieceJoueur1, pieceJoueur2;
+	
 	private JLabel pseudoAdversaire, pseudoJoueur, tour;
 	
 	private ArrayList<ArrayList<Case>>  arrayButton;
@@ -79,6 +81,14 @@ public class CombatLocal extends JPanel {
 		gbc_pseudoAdversaire.gridy = 0;
 		panelAdversaire.add(pseudoAdversaire, gbc_pseudoAdversaire);
 		
+		//tableau des pieces prises blanches
+		pieceJoueur2 = new TableauPiecePrise();
+		GridBagConstraints gbc_pieceJoueur2 = new GridBagConstraints();
+		gbc_pieceJoueur2.fill = GridBagConstraints.BOTH;
+		gbc_pieceJoueur2.gridx = 0;
+		gbc_pieceJoueur2.gridy = 1;
+		panelAdversaire.add(pieceJoueur2, gbc_pieceJoueur2);
+		
 		panelJoueur = new JPanel();
 		panelJoueur.setBackground(new Color(192,192,192));
 		GridBagConstraints gbc_panelJoueur = new GridBagConstraints();
@@ -100,6 +110,14 @@ public class CombatLocal extends JPanel {
 		gbc_pseudoJoueur.gridx = 0;
 		gbc_pseudoJoueur.gridy = 0;
 		panelJoueur.add(pseudoJoueur, gbc_pseudoJoueur);
+		
+		//tableau des pieces prises noires
+		pieceJoueur1 = new TableauPiecePrise();
+		GridBagConstraints gbc_pieceJoueur1 = new GridBagConstraints();
+		gbc_pieceJoueur1.fill = GridBagConstraints.BOTH;
+		gbc_pieceJoueur1.gridx = 0;
+		gbc_pieceJoueur1.gridy = 1;
+		panelJoueur.add(pieceJoueur1, gbc_pieceJoueur1);
 		
 		plateau = new JPanel();
 		plateau.setBackground(new Color(133, 6, 6));
@@ -134,7 +152,7 @@ public class CombatLocal extends JPanel {
 		plateau.add(echiquier, gbc_echiquier);
 		GridBagLayout gbl_echiquier = new GridBagLayout();
 		int x = (Y-140)/8;
-		Case.setSize(x-20);
+		Case.setSize(x-40);
 		gbl_echiquier.columnWidths = new int[] {x, x, x, x, x, x, x, x};
 		gbl_echiquier.rowHeights = new int[] {x, x, x, x, x, x, x, x};
 		echiquier.setLayout(gbl_echiquier);
@@ -287,9 +305,9 @@ public class CombatLocal extends JPanel {
 					if (c.getPiece()!=null) 
 						if (c.getPiece().getX()!=c.getAbscisse() | c.getPiece().getY()!=c.getOrdonnee()) {
 							c.setPiece(null);
-<<<<<<< HEAD
+
 							c.removeAll();
-=======
+
 							
 							
 						}*/

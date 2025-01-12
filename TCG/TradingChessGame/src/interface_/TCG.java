@@ -70,6 +70,7 @@ public class TCG extends JFrame{
 		//Paramétrage de la fenêtre
 		setBackground(new Color(0, 0, 0));
 		setContentPane(basePanel);
+		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
