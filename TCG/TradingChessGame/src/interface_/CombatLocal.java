@@ -274,16 +274,35 @@ public class CombatLocal extends JPanel {
 	public void update() {
 		for (ArrayList<Case> a:this.arrayButton) {
 			for (Case c:a) {
+				c.setIcon(null);
+				c.revalidate();
+				c.repaint();
+				
 				for (Piece p : partie.getPlateau().getListepieces()) {
+					/*
+					c.removeAll();
+					c.revalidate();
+					c.repaint();
+					*/
+					//c.removeAll();
+					
+
 					if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
 						c.setPiece(p);
 						c.putImage(p);
 					}
-					
+					/*
 					if (c.getPiece()!=null) 
-						if (c.getPiece().getX()!=c.getAbscisse() | c.getPiece().getY()!=c.getOrdonnee())
+						if (c.getPiece().getX()!=c.getAbscisse() | c.getPiece().getY()!=c.getOrdonnee()) {
 							c.setPiece(null);
-							c.suppImage(p);
+							
+							
+						}*/
+							
+							
+							/*
+							
+							*/
 				}
 			}
 		}
@@ -293,7 +312,7 @@ public class CombatLocal extends JPanel {
 		for (ArrayList<Case> a:arrayButton) {
 			for (Case c: a) {
 				c.normalColor();
-				c.setEstAteignable(true);
+				c.setEstAteignable(false);
 			}
 		}
 	}

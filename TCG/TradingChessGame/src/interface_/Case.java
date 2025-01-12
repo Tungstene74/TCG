@@ -98,7 +98,7 @@ public class Case extends JButton{
 	public void putImage(Piece piece) {
 		removeAll();
 		
-		icon = new ImageIcon(TCG.class.getResource(piece.lienImage()));
+		icon = new ImageIcon(TCG.class.getResource(piece.lienImage())); //il faudra généré les images une seule fois!!!
 		icon.setImage(icon.getImage().getScaledInstance(size, size,Image.SCALE_SMOOTH));
 		setIcon(icon);
 		
@@ -122,9 +122,9 @@ public class Case extends JButton{
 		return "("+this.abscisse+", "+this.ordonnee+")";
 	}
 
-	private class ALCase implements ActionListener{
+	private class ALCase implements ActionListener{ 
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) { // quand 
 			
 			Plateau plateau = partie.getPlateau();
 			Piece piece = plateau.getPiece(abscisse, ordonnee);
@@ -137,8 +137,8 @@ public class Case extends JButton{
 				combat.update();
 			}
 			
-			if (piece!=null) { // on pensera à ajouter un if avec la couleur
-				combat.resetAteignable();
+			if (piece!=null) { // on pensera à ajouter un if avec la couleur 
+				combat.resetAteignable(); 
 				
 				combat.setPieceAbouger(piece);
 				
