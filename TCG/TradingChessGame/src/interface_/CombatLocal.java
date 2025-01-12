@@ -283,7 +283,7 @@ public class CombatLocal extends JPanel {
 					if (c.getPiece()!=null) 
 						if (c.getPiece().getX()!=c.getAbscisse() | c.getPiece().getY()!=c.getOrdonnee())
 							c.setPiece(null);
-							c.suppImage(p);
+							c.removeAll();
 				}
 			}
 		}
