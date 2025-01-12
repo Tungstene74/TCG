@@ -34,11 +34,13 @@ public class CombatLocal extends JPanel {
 	
 	private JLabel pseudoAdversaire, pseudoJoueur, tour;
 	
-	private static ArrayList<ArrayList<Case>>  arrayButton;
+	private ArrayList<ArrayList<Case>>  arrayButton;
 	
 	private PartieLocale partie;
 	
 	private TCG fenetre;
+	
+	private Piece pieceAbouger;
 	
 	public CombatLocal(int X,int Y, TCG fenetre, PartieLocale partie) {
 		this.fenetre = fenetre;
@@ -142,6 +144,12 @@ public class CombatLocal extends JPanel {
 		creationArrayButton();
 		
 		echiquier(echiquier);
+		
+		Case.setPartie(partie);
+		
+		Case.setCombat(this);
+		
+		System.out.println(arrayButton);
 	}
 	
 	private void creationArrayButton() {
@@ -245,6 +253,15 @@ public class CombatLocal extends JPanel {
 		this.numeroTour = numeroTour;
 	}
 	
+	public Piece getPieceAbouger() {
+		return pieceAbouger;
+	}
+
+	public void setPieceAbouger(Piece pieceAbouger) {
+		this.pieceAbouger = pieceAbouger;
+	}
+	
+	
 	private void placementInitial(Case tile) {
 		for (Piece p : partie.getPlateau().getListepieces()) {
 			if (p.getX()==tile.getAbscisse()&&p.getY()==tile.getOrdonnee()) {
@@ -253,8 +270,47 @@ public class CombatLocal extends JPanel {
 			}
 		}
 	}
+
+	public void update() {
+		for (ArrayList<Case> a:this.arrayButton) {
+			for (Case c:a) {
+				for (Piece p : partie.getPlateau().getListepieces()) {
+					if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
+						c.setPiece(p);
+						c.putImage(p);
+					}
+					
+					if (c.getPiece()!=null) 
+						if (c.getPiece().getX()!=c.getAbscisse() | c.getPiece().getY()!=c.getOrdonnee())
+							c.setPiece(null);
+							c.suppImage(p);
+				}
+			}
+		}
+	}
+
+	public void resetAteignable() {
+		for (ArrayList<Case> a:arrayButton) {
+			for (Case c: a) {
+				c.normalColor();
+				c.setEstAteignable(true);
+			}
+		}
+	}
 	
 	private void echiquier(JPanel panel) {
+		for (int i=0;i<=7;i++) {
+			ArrayList<Case> arrayCase = arrayButton.get(i);
+			for (int j=0;j<=7;j++) {
+				Case c = new Case(j,i);
+				arrayCase.set(j, c);
+				placementInitial(c);
+				panel.add(c,c.getGbc());
+				//System.out.println(c);
+			}
+		}
+	}
+		/*
 		int i = 0;
 		for (ArrayList<Case> a : arrayButton) {
 			int j = 0;
@@ -263,12 +319,22 @@ public class CombatLocal extends JPanel {
 				placementInitial(c);
 				panel.add(c,c.getGbc());
 				j++;
+				a.set(j, c);
+				System.out.println(c);
+				
 			}
 			i++;
+			System.out.println(a);
 		}
-	}
-
+		System.out.println(arrayButton);
+	}*/
+	
 	public GridBagConstraints getGbc() {
 		return gbc;
 	}
+	
+	public ArrayList<ArrayList<Case>> getArrayButton(){
+		return this.arrayButton;
+	}
+	
 }
