@@ -20,24 +20,32 @@ public class MouvFou implements Mouvement {
 			condition=true;
 			if (new_x>x & new_y>y) {
 				for (int i=1;i<=7;i++) { 
+					if (new_x==x+i & new_y==y+i) 
+						break;
 					int[] co = {x+i,y+i};
 					listeCoord.add(co);
 				}
 			}
 			if (new_x<x & new_y>y) {
 				for (int i=1;i<=7;i++) { 
+					if (new_x==x-i & new_y==y+i) 
+						break;
 					int[] co = {x-i,y+i};
 					listeCoord.add(co);
 				}
 			}
 			if (new_x>x & new_y<y) {
 				for (int i=1;i<=7;i++) {
+					if (new_x==x+i & new_y==y-i) 
+						break;
 					int[] co = {x+i,y-i};
 					listeCoord.add(co);
 				}
 			}
 			if (new_x<x & new_y<y) {
 				for (int i=1;i<=7;i++) {
+					if (new_x==x-i & new_y==y-i) 
+						break;
 					int[] co = {x-i,y-i};
 					listeCoord.add(co);
 				}
