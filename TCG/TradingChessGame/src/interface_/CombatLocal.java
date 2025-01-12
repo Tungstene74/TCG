@@ -28,7 +28,6 @@ public class CombatLocal extends JPanel {
 	private GridBagLayout gbl;
 	private GridBagConstraints gbc;
 	
-	private int numeroTour;
 	
 	private JPanel panelAdversaire, panelJoueur, plateau, echiquier;
 	
@@ -45,7 +44,6 @@ public class CombatLocal extends JPanel {
 	public CombatLocal(int X,int Y, TCG fenetre, PartieLocale partie) {
 		this.fenetre = fenetre;
 		this.partie = partie;
-		this.numeroTour = 1;
 		
 		setBackground(new Color(133,6,6));
 		gbl = new GridBagLayout();
@@ -116,8 +114,8 @@ public class CombatLocal extends JPanel {
 		gbl_plateau.rowHeights = new int[] {30,Y-100};
 		plateau.setLayout(gbl_plateau);
 		
-		if (numeroTour%2==1) tour = new JLabel("Tour : "+numeroTour+" ! Au blanc de jouer !");
-		else tour = new JLabel("Tour : "+numeroTour+" ! Au noir de jouer !");
+		if (partie.getTour()%2==0) tour = new JLabel("Tour : "+partie.getTour()+" ! Au blanc de jouer !");
+		else tour = new JLabel("Tour : "+partie.getTour()+" ! Au noir de jouer !");
 		tour.setForeground(Color.BLACK);
 		tour.setHorizontalAlignment(SwingConstants.CENTER);
 		tour.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -245,13 +243,7 @@ public class CombatLocal extends JPanel {
 		
 	}
 	
-	public int getNumeroTour() {
-		return numeroTour;
-	}
-
-	public void setNumeroTour(int numeroTour) {
-		this.numeroTour = numeroTour;
-	}
+	
 	
 	public Piece getPieceAbouger() {
 		return pieceAbouger;
@@ -304,6 +296,9 @@ public class CombatLocal extends JPanel {
 							
 							*/
 				}
+				if (partie.getTour()%2==0) tour.setText("Tour : "+partie.getTour()+" ! Au blanc de jouer !");
+				else tour.setText("Tour : "+partie.getTour()+" ! Au noir de jouer !");
+				
 			}
 		}
 	}

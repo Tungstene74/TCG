@@ -21,6 +21,10 @@ public class PartieLocale {
 		this.tour=0;
 	}
 	
+	public int getTour() {
+		return tour;
+	}
+
 	public void ajouttour() {
 		tour+=1;
 	}
