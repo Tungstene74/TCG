@@ -287,6 +287,9 @@ public class CombatLocal extends JPanel {
 					if (c.getPiece()!=null) 
 						if (c.getPiece().getX()!=c.getAbscisse() | c.getPiece().getY()!=c.getOrdonnee()) {
 							c.setPiece(null);
+<<<<<<< HEAD
+							c.removeAll();
+=======
 							
 							
 						}*/
@@ -295,6 +298,7 @@ public class CombatLocal extends JPanel {
 							/*
 							
 							*/
+>>>>>>> branch 'main' of https://github.com/Tungstene74/TCG.git
 				}
 				if (partie.getTour()%2==0) tour.setText("Tour : "+partie.getTour()+" ! Au blanc de jouer !");
 				else tour.setText("Tour : "+partie.getTour()+" ! Au noir de jouer !");

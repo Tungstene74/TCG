@@ -15,7 +15,7 @@ public class MouvCavalier implements Mouvement {
 		//ArrayList<int[]> listeCoord = new ArrayList<int[]>(); //liste des co entre la position de départ et d'arrivée
 		
 		if (piece.mangeableOuNull(plateau,new_x,new_y)) {
-			if ((new_x==x+2 & (new_y==y+1 | new_y==y-1)) | (new_x==x-2 & (new_y==y+1 | new_y==y-1)) | (new_y==y+2 & (new_x==x+1 | new_y==x-1)) | (new_y==y-2 & (new_x==x+1 | new_y==x-1))) {
+			if ((new_x==x+2 & (new_y==y+1 | new_y==y-1)) | (new_x==x-2 & (new_y==y+1 | new_y==y-1)) | (new_y==y+2 & (new_x==x+1 | new_y==x-1)) | (new_y==y-2 & (new_x==x+1 | new_x==x-1))) {
 				b=true;
 			}
 		}
