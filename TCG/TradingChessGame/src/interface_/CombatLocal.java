@@ -298,7 +298,6 @@ public class CombatLocal extends JPanel {
 							/*
 							
 							*/
->>>>>>> branch 'main' of https://github.com/Tungstene74/TCG.git
 				}
 				if (partie.getTour()%2==0) tour.setText("Tour : "+partie.getTour()+" ! Au blanc de jouer !");
 				else tour.setText("Tour : "+partie.getTour()+" ! Au noir de jouer !");
