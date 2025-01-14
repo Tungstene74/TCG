@@ -1,18 +1,23 @@
 package classeMetier;
 
-public class Pouvoir {
+public abstract class Pouvoir {
 	private String nom;
 	private String description;
+	private Boolean estClassique;
 
-	public Pouvoir(String nom) {
+	public Pouvoir(String nom, Boolean estClassique) {
 		super();
 		this.nom = nom;
+		this.estClassique=estClassique;
 	}
 	
-	public Pouvoir(String nom,String description) {
+	public Pouvoir(String nom,String description, Boolean estClassique) {
 		super();
 		this.nom = nom;
 		this.description = description;
+		this.estClassique=estClassique;
 	}
+	
+	public abstract Boolean pouvoirSiCondition(Plateau plateau);
 
 }
