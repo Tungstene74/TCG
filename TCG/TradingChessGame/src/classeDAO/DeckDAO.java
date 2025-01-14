@@ -109,7 +109,7 @@ public class DeckDAO extends DAO<Deck> {
 
 			
 			if (id_deck != id_deckPast) {
-				D = new Deck(nom, deckprincipal, new ArrayList<Piece>(), id_joueur);
+				D = new Deck(nom, deckprincipal, new ArrayList<Piece>(), id_joueur,id_deck );
 			}
 			
 			Piece P = D.creePiece(id_piece);

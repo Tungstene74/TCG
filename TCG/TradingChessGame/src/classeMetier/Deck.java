@@ -31,6 +31,15 @@ public class Deck {
 		this.id_joueur = id_joueur;
 	}
 	
+	public Deck(String nom, Boolean deckprincipal, ArrayList<Piece> listepieces, int id_joueur, int id_deck) {
+		super();
+		this.nom = nom;
+		this.deckprincipal = deckprincipal;
+		this.listepieces = listepieces;
+		this.id_joueur = id_joueur;
+		this.id_deck = id_deck;
+	}
+
 	public void defaultDeck() {
 		System.out.println("création deck base"); // ici print 
 		//generation des pions
