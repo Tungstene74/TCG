@@ -18,6 +18,6 @@ public abstract class Pouvoir {
 		this.estClassique=estClassique;
 	}
 	
-	public abstract Boolean pouvoirSiCondition(Plateau plateau);
+	public abstract void pouvoirSiCondition(Plateau plateau);
 
 }

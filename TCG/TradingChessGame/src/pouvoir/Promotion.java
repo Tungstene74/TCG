@@ -14,9 +14,8 @@ public class Promotion extends Pouvoir{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Boolean pouvoirSiCondition(Plateau plateau) {
+	public void pouvoirSiCondition(Plateau plateau) {
 		Boolean b= false;
-		Piece newpiece=null;
 		System.out.println("pre promotion");
 		for(Piece piece:plateau.getListepieces()) {
 			System.out.println(piece.toString());
@@ -26,22 +25,9 @@ public class Promotion extends Pouvoir{
 				b=true;
 			if (b) {
 				System.out.println("promotion");
-				PromotionPiece fenPromotion = new PromotionPiece((Pion)piece);
-				while (newpiece==null) {
-					newpiece=fenPromotion.getpieceSelectionnee();
-				}
-				newpiece.setX(piece.getX());
-				newpiece.setY(piece.getY());
-				plateau.add(newpiece);
-				plateau.supp(piece);
+				new PromotionPiece((Pion)piece,plateau);
 			}
 		}
-		Boolean b2=false;
-		if (newpiece!=null) {
-			b2=true;
-		}
-
-		return b2;
 	}
 
 }
