@@ -4,9 +4,11 @@ import classeMetier.Mouvement;
 import classeMetier.Piece;
 import classeMetier.Plateau;
 
-public class MouvRoi implements Mouvement{
+public class MouvRoi extends Mouvement{
+	Boolean roque;
+	
 	@Override
-	public Boolean estPossible(Piece piece, int new_x, int new_y, Plateau plateau) {
+	public Boolean estPossibleNormal(Piece piece, int new_x, int new_y, Plateau plateau) {
 		int x=piece.getX();
 		int y=piece.getY();
 		// TODO Auto-generated method stub

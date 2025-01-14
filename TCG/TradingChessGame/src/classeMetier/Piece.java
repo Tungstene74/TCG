@@ -115,7 +115,7 @@ public class Piece {
 		Piece piece=plateau.getPiece(x, y);
 		Boolean b=true;
 		if (piece!=null) {
-			if (piece.getCouleur()==this.couleur) {
+			if (piece.getCouleur()==this.couleur ) { //& piece.getClasse()!="roi" on ne l'utilise pas car si un roi peut être manger, c'est soi qu'il y a echec et mat, soit que le programme est faux
 				b=false;
 			}
 		}

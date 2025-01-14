@@ -1,3 +1,10 @@
 /images/
+<<<<<<< Upstream, based on origin/main
 /classeMetier/
 /classeDAO/
+=======
+/pieces/
+/pouvoir/
+>>>>>>> c4c60ab conditions de déplacement (pas de mise en echec de son propre roi, on ne mange pas le roi
+/interface_/
+/mouvement/

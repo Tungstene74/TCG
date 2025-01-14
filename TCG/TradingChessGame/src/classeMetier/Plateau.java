@@ -9,7 +9,15 @@ import mouvement.*;
 public class Plateau {
 	private ArrayList<Piece> listepieces;
 	private int id_partie;
+	private Boolean estTheorique;
 	
+	public Boolean getEstTheorique() {
+		return estTheorique;
+	}
+
+	public void setEstTheorique(Boolean estTheorique) {
+		this.estTheorique = estTheorique;
+	}
 	
 	public ArrayList<Piece> getListepieces() {
 		return listepieces;
@@ -30,6 +38,7 @@ public class Plateau {
 	public Plateau(int id_partie) {
 		listepieces = new ArrayList<Piece>();
 		this.id_partie=id_partie;
+		estTheorique=false;
 	}
 	
 	public ArrayList<ArrayList<Piece>> Matrice() {
@@ -83,7 +92,7 @@ public class Plateau {
 			}
 			else {
 				if (!piece.caseAteignable(this, new_x, new_y)) {
-					throw new IllegalStateException("Déplacement interdit");
+					throw new IllegalStateException("Déplacement interdit: "+"("+piece.getX()+", "+piece.getY()+") -> ("+new_x+", "+new_y+")");
 				}
 				else {
 					Piece piece_mangee = this.getPiece(new_x,new_y); 
@@ -198,11 +207,11 @@ public class Plateau {
 	}*/
 	
 	public Plateau copy() {
-		Plateau new_plateau=new Plateau(this.id_partie);
+		Plateau new_plateau=new Plateau(this.id_partie); //!!!!!!!!!!!boucle récurssive infinie!!!!!!!!!!!!!
 		for (Piece piece:listepieces) {
 			new_plateau.add(piece.copy());
 		}
-		return null;
+		return new_plateau;
 	}
 	
 	public Boolean estEnEchec(String couleur) { //permet de voir si le déplacement d'une piece cree un echec
@@ -217,11 +226,12 @@ public class Plateau {
 		return b;
 	}
 	
-	public Boolean metEnEchec(Piece piece, int new_x, int new_y) { //permet de voir si le déplacement d'une piece cree un echec
+	public Boolean metEnEchec(Piece piece, int new_x, int new_y) { //permet de voir si le déplacement d'une piece cree un echec de son propre roi
 		Boolean b=false; //on suppose qu'il n'y a pas d'echec
 		String couleurRoi=piece.getCouleur();
 		Plateau plateauTheorique = this.copy(); //creer un plateau theorique pour tester si un deplacement va creer un echec
-		Piece pieceTheorique = piece.copy(); 
+		plateauTheorique.setEstTheorique(true);
+		Piece pieceTheorique = plateauTheorique.getPiece(piece.getX(), piece.getY()); 
 		plateauTheorique.deplace(pieceTheorique, new_x, new_y); 
 		if (plateauTheorique.estEnEchec(couleurRoi)) { //si on peut manger le roi (il y a echec)
 			b=true; //alors oui on a mis le roi en echec
