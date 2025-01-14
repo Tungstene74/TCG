@@ -282,6 +282,9 @@ public class CombatLocal extends JPanel {
 	}
 
 	public void update() {
+		
+		partie.getPlateau().appliquePouvoirs();
+		
 		for (ArrayList<Case> a:this.arrayButton) {
 			for (Case c:a) {
 				c.setIcon(null);

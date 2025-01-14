@@ -8,7 +8,7 @@ public abstract class Mouvement {
 	public Boolean estPossible(Piece piece, int new_x, int new_y, Plateau plateau) {
 		Boolean b=false;
 		if (!plateau.getEstTheorique()) {
-			if (!plateau.metEnEchec(piece, new_x, new_x) & estPossibleNormal(piece, new_x, new_y, plateau))
+			if (/*!plateau.metEnEchec(piece, new_x, new_x) &*/ estPossibleNormal(piece, new_x, new_y, plateau))
 					b=true;
 		}
 		if (plateau.getEstTheorique()) {

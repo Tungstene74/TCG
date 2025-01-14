@@ -10,7 +10,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import pieces.Pion;
+import classeMetier.Piece;
+import pieces.*;
 
 public class PromotionPiece extends JFrame{
 	
@@ -21,6 +22,12 @@ public class PromotionPiece extends JFrame{
 	private ImageIcon dame,fou,tour,cavalier;
 	
 	private Pion pion;
+	
+	private Piece pieceSelectionnee;
+	
+	public Piece getpieceSelectionnee() {
+		return pieceSelectionnee;
+	}
 
 	public PromotionPiece(Pion p) {
 		
@@ -80,12 +87,15 @@ public class PromotionPiece extends JFrame{
 		gbc_cavalierButton.gridx = 4;
 		gbc_cavalierButton.gridy = 1;
 		contentPane.add(cavalierButton, gbc_cavalierButton);
+		
+		setVisible(true);
 	}
 	
 	private class ALDame implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			pieceSelectionnee=new Dame(pion.getCouleur(), pion.getIdPiecePartie(), pion.getX(), pion.getY());
 			dispose();
 		}
 		
@@ -95,6 +105,7 @@ public class PromotionPiece extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			pieceSelectionnee=new Fou(pion.getCouleur(), pion.getIdPiecePartie(), pion.getX(), pion.getY());
 			dispose();
 		}
 		
@@ -104,6 +115,7 @@ public class PromotionPiece extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			pieceSelectionnee=new Tour(pion.getCouleur(), pion.getIdPiecePartie(), pion.getX(), pion.getY());
 			dispose();
 		}
 		
@@ -113,6 +125,7 @@ public class PromotionPiece extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			pieceSelectionnee=new Cavalier(pion.getCouleur(), pion.getIdPiecePartie(), pion.getX(), pion.getY());
 			dispose();
 		}
 		

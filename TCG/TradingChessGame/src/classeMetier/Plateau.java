@@ -206,6 +206,17 @@ public class Plateau {
 		}
 	}*/
 	
+	public void appliquePouvoirs() {
+		for(Piece piece:listepieces) {
+			if (piece.getPouvoirs()!=null) {
+				for(Pouvoir pouvoir:piece.getPouvoirs()) {
+					pouvoir.pouvoirSiCondition(this);	
+				
+				}
+			}
+		}
+	}
+
 	public Plateau copy() {
 		Plateau new_plateau=new Plateau(this.id_partie); //!!!!!!!!!!!boucle récurssive infinie!!!!!!!!!!!!!
 		for (Piece piece:listepieces) {

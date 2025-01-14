@@ -27,6 +27,7 @@ public class Piece {
 		this.pouvoirs=pouvoirs;
 		this.mouvements=mouvements;
 		this.nom=nom;
+		this.classe=classe;
 		this.x=-1;
 		this.y=-1;
 		this.couleur=null;
@@ -40,6 +41,7 @@ public class Piece {
 		this.pouvoirs=pouvoirs;
 		this.mouvements=mouvements;
 		this.nom=nom;
+		this.classe=classe;
 		this.x=-1;
 		this.y=-1;
 		this.couleur=couleur;
@@ -54,6 +56,7 @@ public class Piece {
 		this.mouvements=mouvements;
 		this.pouvoirs=pouvoirs;
 		this.nom=nom;
+		this.classe=classe;
 		this.x=x;
 		this.y=y;
 		this.couleur=couleur;
@@ -71,8 +74,7 @@ public class Piece {
 		return b;
 	}
 	/*
-	public Boolean caseAteignable(Plateau plateau, int new_x, int new_y) { //pour voir si une case est ateignable
-		Boolean b=false;
+	public Boolean caseAteignable(Plateau plateau, int new_x, int new_y) { //pour voir si une case 
 		ArrayList<int[]> listeCoord =this.casesAteignables(plateau);
 		for (int[] coord:listeCoord) {
 			if (coord[0]==new_x & coord[1]==new_y) {
@@ -172,6 +174,13 @@ public class Piece {
 		}
 	}
 	
+	public ArrayList<Pouvoir> getPouvoirs() {
+		return this.pouvoirs;
+	}
+	
+	public void setPouvoirs(ArrayList<Pouvoir> pouvoirs) {
+		this.pouvoirs=pouvoirs;
+	}
 
 	public ArrayList<Mouvement> getMouvements() {
 		return this.mouvements;
@@ -186,7 +195,7 @@ public class Piece {
 	}
 	
 	public String toString() {
-		String txt=this.nom+" ("+this.x+", "+this.y+")";
+		String txt="nom: "+this.nom+", couleur: "+this.couleur+", classe: "+this.classe+", idPiece: "+this.idPiece+", idPiecePartie: "+this.idPiecePartie+", image:"+this.image+", coord: ("+this.x+", "+this.y+")";
 		return txt;
 	}
 	
