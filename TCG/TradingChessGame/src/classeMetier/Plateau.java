@@ -210,7 +210,7 @@ public class Plateau {
 		for(Piece piece:listepieces) {
 			if (piece.getPouvoirs()!=null) {
 				for(Pouvoir pouvoir:piece.getPouvoirs()) {
-					pouvoir.pouvoirSiCondition(this);	
+					pouvoir.pouvoirSiCondition(piece,this);	
 				
 				}
 			}

@@ -14,20 +14,19 @@ public class Promotion extends Pouvoir{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void pouvoirSiCondition(Plateau plateau) {
+	public void pouvoirSiCondition(Piece piece, Plateau plateau) {
 		Boolean b= false;
 		System.out.println("pre promotion");
-		for(Piece piece:plateau.getListepieces()) {
-			System.out.println(piece.toString());
-			if (piece.getY()==0 & piece.getClasse()=="pion" & piece.getCouleur()=="noir")
-				b=true;
-			if (piece.getY()==7 & piece.getClasse()=="pion" & piece.getCouleur()=="blanc")
-				b=true;
-			if (b) {
-				System.out.println("promotion");
-				new PromotionPiece((Pion)piece,plateau);
-			}
+		System.out.println(piece.toString());
+		if (piece.getY()==0 & piece.getClasse()=="pion" & piece.getCouleur()=="noir")
+			b=true;
+		if (piece.getY()==7 & piece.getClasse()=="pion" & piece.getCouleur()=="blanc")
+			b=true;
+		if (b) {
+			System.out.println("promotion");
+			new PromotionPiece((Pion)piece,plateau);
 		}
+		
 	}
 
 }

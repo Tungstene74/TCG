@@ -196,6 +196,8 @@ public class Piece {
 	
 	public String toString() {
 		String txt="nom: "+this.nom+", couleur: "+this.couleur+", classe: "+this.classe+", idPiece: "+this.idPiece+", idPiecePartie: "+this.idPiecePartie+", image:"+this.image+", coord: ("+this.x+", "+this.y+")";
+		if (pouvoirs!=null) 
+			txt+=", Pouvoirs: "+this.pouvoirs.toString();
 		return txt;
 	}
 	

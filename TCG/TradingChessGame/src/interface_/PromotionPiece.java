@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 import classeMetier.Piece;
 import classeMetier.Plateau;
+import interface_.*;
 import pieces.*;
 
 public class PromotionPiece extends JFrame{
@@ -33,7 +34,7 @@ public class PromotionPiece extends JFrame{
 	}
 
 	public PromotionPiece(Pion p, Plateau plateau) {
-		
+		this.plateau=plateau;
 		pion = p;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,6 +52,7 @@ public class PromotionPiece extends JFrame{
 		dame = new ImageIcon(PromotionPiece.class.getResource("/images/dame"+pion.getCouleur()+".png"));
 		dame.setImage(dame.getImage().getScaledInstance(70, 70,Image.SCALE_SMOOTH));
 		dameButton.setIcon(dame);
+	dameButton.addActionListener(new ALDame());
 		GridBagConstraints gbc_dameButton = new GridBagConstraints();
 		gbc_dameButton.insets = new Insets(5, 5, 5, 5);
 		gbc_dameButton.fill = GridBagConstraints.BOTH;
@@ -62,6 +64,7 @@ public class PromotionPiece extends JFrame{
 		tour = new ImageIcon(PromotionPiece.class.getResource("/images/tour"+pion.getCouleur()+".png"));
 		tour.setImage(tour.getImage().getScaledInstance(70, 70,Image.SCALE_SMOOTH));
 		tourButton.setIcon(tour);
+		tourButton.addActionListener(new ALTour());
 		GridBagConstraints gbc_tourButton = new GridBagConstraints();
 		gbc_tourButton.insets = new Insets(5, 5, 5, 5);
 		gbc_tourButton.fill = GridBagConstraints.BOTH;
@@ -73,6 +76,7 @@ public class PromotionPiece extends JFrame{
 		fou = new ImageIcon(PromotionPiece.class.getResource("/images/fou"+pion.getCouleur()+".png"));
 		fou.setImage(fou.getImage().getScaledInstance(70, 70,Image.SCALE_SMOOTH));
 		fouButton.setIcon(fou);
+		fouButton.addActionListener(new ALFou());
 		GridBagConstraints gbc_fouButton = new GridBagConstraints();
 		gbc_fouButton.insets = new Insets(5, 5, 5, 5);
 		gbc_fouButton.fill = GridBagConstraints.BOTH;
@@ -84,6 +88,7 @@ public class PromotionPiece extends JFrame{
 		cavalier = new ImageIcon(PromotionPiece.class.getResource("/images/cavalier"+pion.getCouleur()+".png"));
 		cavalier.setImage(cavalier.getImage().getScaledInstance(70, 70,Image.SCALE_SMOOTH));
 		cavalierButton.setIcon(cavalier);
+		cavalierButton.addActionListener(new ALCavalier());
 		GridBagConstraints gbc_cavalierButton = new GridBagConstraints();
 		gbc_cavalierButton.insets = new Insets(5, 5, 5, 5);
 		gbc_cavalierButton.fill = GridBagConstraints.BOTH;
@@ -91,10 +96,12 @@ public class PromotionPiece extends JFrame{
 		gbc_cavalierButton.gridy = 1;
 		contentPane.add(cavalierButton, gbc_cavalierButton);
 		
+		//addActionListener(new ALDame());
+		
 		setVisible(true);
 
 	}
-	
+
 	private class ALDame implements ActionListener{
 
 		@Override

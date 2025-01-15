@@ -51,7 +51,7 @@ public class Case extends JButton{
 
 	public void normalColor() {
 		if ((abscisse+ordonnee)%2==1) setBackground(new Color(222,184,135));
-		else setBackground(new Color(0,0,0));
+		else setBackground(new Color(25,25,25));
 	}
 
 	public void cliquedColor() {
