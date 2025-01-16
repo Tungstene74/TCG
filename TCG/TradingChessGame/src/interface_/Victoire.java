@@ -1,10 +1,13 @@
 package interface_;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -27,7 +30,7 @@ public class Victoire extends JFrame{
 		farbe = color;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds((fen.getWidth()-450)/2, (fen.getHeight()-300)/2, 450, 300);
 		basePanel = new JPanel();
 		basePanel.setBackground(new Color(133, 6, 6));
 		basePanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -73,11 +76,23 @@ public class Victoire extends JFrame{
 		colonne.add(couleur, gbc_couleur);
 		
 		home = new JButton("Home");
-		home.addActionListener(new ALHome(fen));
+		home.addActionListener(new ALHome());
 		GridBagConstraints gbc_home = new GridBagConstraints();
 		gbc_home.insets = new Insets(5, 5, 0, 0);
 		gbc_home.gridx = 0;
 		gbc_home.gridy = 2;
 		colonne.add(home, gbc_home);
+		
+		setVisible(true);
+	}
+	
+	public class ALHome implements ActionListener{
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+			fen.menuPrincipal2();
+		}
+		
 	}
 }
