@@ -103,7 +103,6 @@ public class PartieDAO extends DAO<Partie>{
 			id_joueur2  = Integer.parseInt(rs.getString("id_joueur2"));
 			//tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
 		}
-		System.out.println(id_joueur2);
 		if (id_joueur2 != 1 && id_joueur2 != 0) {
 		JoueurDAO joueurdao=new JoueurDAO();
 		joueurdao.open();
