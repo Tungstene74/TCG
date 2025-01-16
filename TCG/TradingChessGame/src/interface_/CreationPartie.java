@@ -144,7 +144,10 @@ public class CreationPartie extends JPanel{
 					try {
 						PDAO.update(current);
 						try {
-							if(current.getjoueur2()!=null) cancel();
+							if(current.getjoueur2()!=null) {
+							cancel();
+							fenetre.gameBoard(current.getjoueur2(), true);
+							}
 						}
 						catch(NullPointerException n) {
 							n.printStackTrace();
@@ -160,7 +163,8 @@ public class CreationPartie extends JPanel{
 			catch(SQLException e) {
 				e.printStackTrace();
 			}*/
-			fenetre.gameBoard(current.getjoueur2(),true);
+			
+			//fenetre.gameBoard(current.getjoueur2(),true);
 
 		}
 	}

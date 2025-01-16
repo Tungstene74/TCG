@@ -103,7 +103,8 @@ public class PartieDAO extends DAO<Partie>{
 			id_joueur2  = Integer.parseInt(rs.getString("id_joueur2"));
 			//tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
 		}
-		
+		System.out.println(id_joueur2);
+		if (id_joueur2 != 1 && id_joueur2 != 0) {
 		JoueurDAO joueurdao=new JoueurDAO();
 		joueurdao.open();
 		Joueur joueur2= joueurdao.creerjoueur(id_joueur2);
@@ -111,7 +112,9 @@ public class PartieDAO extends DAO<Partie>{
 		
 		obj.setdeck2(deck2);
 		obj.setjoueur2(joueur2);
-		
+		}else {
+			return null;
+		}
 		/*
 		obj.setId_deck(id_deck);
 		obj.setId_joueur(id_joueur);
