@@ -5,8 +5,11 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -28,12 +31,13 @@ public class CombatLocal extends JPanel {
 	private GridBagLayout gbl;
 	private GridBagConstraints gbc;
 	
+	private JButton pseudoAdversaire, pseudoJoueur;
 	
 	private JPanel panelAdversaire, panelJoueur, plateau, echiquier;
 	
 	private TableauPiecePrise pieceJoueur1, pieceJoueur2;
 	
-	private JLabel pseudoAdversaire, pseudoJoueur, tour;
+	private JLabel tour;
 	
 	private ArrayList<ArrayList<Case>>  arrayButton;
 	
@@ -73,10 +77,12 @@ public class CombatLocal extends JPanel {
 		gbl_panelAdversaire.rowHeights = new int[] {50, Y-55};
 		panelAdversaire.setLayout(gbl_panelAdversaire);
 		
-		pseudoAdversaire = new JLabel("Joueur 2");
+		pseudoAdversaire = new JButton("Joueur 2");
 		pseudoAdversaire.setForeground(Color.BLACK);
 		pseudoAdversaire.setFont(new Font("Tahoma", Font.BOLD, 20));
 		pseudoAdversaire.setHorizontalAlignment(SwingConstants.CENTER);
+		pseudoAdversaire.setBackground(new Color(192,192,192));
+		pseudoAdversaire.addActionListener(new ALConcede("blanc"));
 		GridBagConstraints gbc_pseudoAdversaire = new GridBagConstraints();
 		gbc_pseudoAdversaire.fill = GridBagConstraints.BOTH;
 		gbc_pseudoAdversaire.gridx = 0;
@@ -103,10 +109,12 @@ public class CombatLocal extends JPanel {
 		gbl_panelJoueur.rowHeights = new int[] {50, Y-55};
 		panelJoueur.setLayout(gbl_panelJoueur);
 		
-		pseudoJoueur = new JLabel("Joueur 1");
-		pseudoJoueur.setForeground(Color.BLACK);
+		pseudoJoueur = new JButton("Joueur 1");
+		pseudoJoueur.setForeground(Color.WHITE);
 		pseudoJoueur.setHorizontalAlignment(SwingConstants.CENTER);
 		pseudoJoueur.setFont(new Font("Tahoma", Font.BOLD, 20));
+		pseudoJoueur.setBackground(new Color(192,192,192));
+		pseudoJoueur.addActionListener(new ALConcede("noir"));
 		GridBagConstraints gbc_pseudoJoueur = new GridBagConstraints();
 		gbc_pseudoJoueur.fill = GridBagConstraints.BOTH;
 		gbc_pseudoJoueur.gridx = 0;
@@ -369,6 +377,21 @@ public class CombatLocal extends JPanel {
 	
 	public ArrayList<ArrayList<Case>> getArrayButton(){
 		return this.arrayButton;
+	}
+	
+	private class ALConcede implements ActionListener{
+		
+		private String couleur;
+		
+		public ALConcede(String couleur) {
+			this.couleur = couleur;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new Victoire(fenetre,couleur);
+		}
+		
 	}
 	
 }
