@@ -58,7 +58,7 @@ public class MenuProfil2 extends JPanel{
 		boutonHome = new JButton("<=");
 		boutonHome.setBackground(new Color(0, 0, 0));
 		boutonHome.setForeground(new Color(133, 6, 6));
-		boutonHome.addActionListener(new ALHome());
+		boutonHome.addActionListener(new ALHome(fenetre));
 		boutonHome.setBounds(0, 0, 85, 21);
 		panelBoutonHome.add(boutonHome);
 		
@@ -209,14 +209,5 @@ public class MenuProfil2 extends JPanel{
 	
 	public GridBagConstraints getGbc() {
 		return gbc;
-	}
-	
-	private class ALHome implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			fenetre.menuPrincipal();
-		}
-		
 	}
 }

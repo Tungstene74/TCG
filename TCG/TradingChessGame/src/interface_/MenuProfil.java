@@ -30,8 +30,10 @@ public class MenuProfil extends JPanel{
 	
 	private TCG fenetre;
 	
-	public MenuProfil(int X,int Y, TCG fenetre) {
+	public MenuProfil(TCG fenetre) {
 		this.fenetre = fenetre;
+		int X = fenetre.getWidth();
+		int Y = fenetre.getHeight();
 		
 		setBackground(new Color (0,0,0));
 		gbl = new GridBagLayout();
@@ -57,14 +59,14 @@ public class MenuProfil extends JPanel{
 		boutonHome = new JButton("<=");
 		boutonHome.setBackground(new Color(0, 0, 0));
 		boutonHome.setForeground(new Color(133, 6, 6));
-		boutonHome.addActionListener(new ALHome());
+		boutonHome.addActionListener(new ALHome(fenetre));
 		boutonHome.setBounds(0, 0, 85, 21);
 		panelBoutonHome.add(boutonHome);
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(133, 6, 6));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 5, 0);
+		gbc_panel.insets = new Insets(5, 5, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 1;
 		gbc_panel.gridy = 0;
@@ -79,7 +81,7 @@ public class MenuProfil extends JPanel{
 		profil.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		profil.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_profil = new GridBagConstraints();
-		gbc_profil.insets = new Insets(0, 0, 5, 0);
+		gbc_profil.insets = new Insets(5, 5, 5, 5);
 		gbc_profil.fill = GridBagConstraints.BOTH;
 		gbc_profil.gridx = 1;
 		gbc_profil.gridy = 0;
@@ -89,7 +91,7 @@ public class MenuProfil extends JPanel{
 		photo.setForeground(new Color(0, 0, 0));
 		photo.setIcon(new ImageIcon(TCG.class.getResource("/images/logo3resized.png")));
 		GridBagConstraints gbc_photo = new GridBagConstraints();
-		gbc_photo.insets = new Insets(0, 0, 5, 0);
+		gbc_photo.insets = new Insets(5, 5, 5, 5);
 		gbc_photo.gridx = 1;
 		gbc_photo.gridy = 1;
 		panel.add(photo, gbc_photo);
@@ -99,7 +101,7 @@ public class MenuProfil extends JPanel{
 		nomUtilisateur.setFont(new Font("Tahoma", Font.BOLD, 20));
 		nomUtilisateur.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_nomUtilisateur = new GridBagConstraints();
-		gbc_nomUtilisateur.insets = new Insets(0, 0, 5, 0);
+		gbc_nomUtilisateur.insets = new Insets(5, 5, 5, 5);
 		gbc_nomUtilisateur.gridx = 1;
 		gbc_nomUtilisateur.gridy = 2;
 		panel.add(nomUtilisateur, gbc_nomUtilisateur);
@@ -110,7 +112,7 @@ public class MenuProfil extends JPanel{
 		statistiques.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_Statistiques = new GridBagConstraints();
 		gbc_Statistiques.fill = GridBagConstraints.BOTH;
-		gbc_Statistiques.insets = new Insets(0, 0, 5, 0);
+		gbc_Statistiques.insets = new Insets(5, 5, 5, 5);
 		gbc_Statistiques.gridx = 1;
 		gbc_Statistiques.gridy = 3;
 		panel.add(statistiques, gbc_Statistiques);
@@ -120,7 +122,7 @@ public class MenuProfil extends JPanel{
 		nbPartiesJouees.setForeground(new Color(0, 0, 0));
 		nbPartiesJouees.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_nbPartiesJouees = new GridBagConstraints();
-		gbc_nbPartiesJouees.insets = new Insets(0, 0, 5, 0);
+		gbc_nbPartiesJouees.insets = new Insets(5, 5, 5, 5);
 		gbc_nbPartiesJouees.fill = GridBagConstraints.BOTH;
 		gbc_nbPartiesJouees.gridx = 1;
 		gbc_nbPartiesJouees.gridy = 4;
@@ -130,7 +132,7 @@ public class MenuProfil extends JPanel{
 		nbPartiesGagnees.setForeground(new Color(0, 0, 0));
 		nbPartiesGagnees.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_nbPartiesGagnees = new GridBagConstraints();
-		gbc_nbPartiesGagnees.insets = new Insets(0, 0, 5, 0);
+		gbc_nbPartiesGagnees.insets = new Insets(5, 5, 5, 5);
 		gbc_nbPartiesGagnees.fill = GridBagConstraints.BOTH;
 		gbc_nbPartiesGagnees.gridx = 1;
 		gbc_nbPartiesGagnees.gridy = 5;
@@ -140,14 +142,5 @@ public class MenuProfil extends JPanel{
 	
 	public GridBagConstraints getGbc() {
 		return gbc;
-	}
-	
-	private class ALHome implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			fenetre.menuPrincipal2();
-		}
-		
 	}
 }

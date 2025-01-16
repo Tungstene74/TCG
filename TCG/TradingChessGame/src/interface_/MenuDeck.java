@@ -24,8 +24,10 @@ public class MenuDeck extends JPanel{
 	
 	private JButton deckBuilder, consultDeck, boutonHome;
 	
-	public MenuDeck(TCG fenetre, int X,int Y) {
+	public MenuDeck(TCG fenetre) {
 		this.fenetre = fenetre;
+		int X = fenetre.getWidth();
+		int Y = fenetre.getHeight();
 		
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -96,7 +98,7 @@ public class MenuDeck extends JPanel{
 		boutonHome = new JButton("<=");
 		boutonHome.setBackground(new Color(0, 0, 0));
 		boutonHome.setForeground(new Color(133, 6, 6));
-		boutonHome.addActionListener(new ALHome());
+		boutonHome.addActionListener(new ALHome(fenetre));
 		boutonHome.setBounds(0, 0, 85, 21);
 		panelBoutonHome.add(boutonHome);
 	}
@@ -105,12 +107,4 @@ public class MenuDeck extends JPanel{
 		return gbc;
 	}
 	
-	private class ALHome implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			fenetre.menuPrincipal();
-		}
-		
-	}
 }

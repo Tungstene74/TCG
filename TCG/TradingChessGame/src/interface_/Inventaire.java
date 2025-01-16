@@ -31,8 +31,10 @@ public class Inventaire extends JPanel{
 	
 	private JPanel panelCollection;
 
-	public Inventaire(TCG fenetre, int X, int Y) {
+	public Inventaire(TCG fenetre) {
 		this.fenetre = fenetre;
+		int X = fenetre.getWidth();
+		int Y = fenetre.getHeight();
 		
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -61,7 +63,7 @@ public class Inventaire extends JPanel{
 		home = new JButton("Home");
 		home.setBackground(new Color(200, 200, 200));
 		home.setForeground(new Color(0,0,0));
-		home.addActionListener(new ALHome());
+		home.addActionListener(new ALHome(fenetre));
 		GridBagConstraints gbc_home = new GridBagConstraints();
 		gbc_home.fill = GridBagConstraints.BOTH;
 		gbc_home.insets = new Insets(0, 0, 5, 0);
@@ -103,15 +105,6 @@ public class Inventaire extends JPanel{
 	
 	public GridBagConstraints getGbc() {
 		return gbc;
-	}
-	
-	private class ALHome implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			fenetre.menuPrincipal();
-		}
-		
 	}
 	
 }

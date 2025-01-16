@@ -23,8 +23,10 @@ public class ChoixCombat extends JPanel {
 	
 	private JButton rejoindre, creer, local;
 
-	public ChoixCombat(TCG fenetre, int X,int Y) {
+	public ChoixCombat(TCG fenetre) {
 		this.fenetre = fenetre;
+		int X = fenetre.getWidth();
+		int Y = fenetre.getHeight();
 		
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;

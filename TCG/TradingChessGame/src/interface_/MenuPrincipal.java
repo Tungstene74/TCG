@@ -24,8 +24,10 @@ public class MenuPrincipal extends JPanel{
 	
 	private TCG fenetre;
 	
-	public MenuPrincipal(int X,int Y, TCG fenetre) {
+	public MenuPrincipal(TCG fenetre) {
 		this.fenetre = fenetre;
+		int X = fenetre.getWidth();
+		int Y = fenetre.getHeight();
 		
 		setBackground(new Color(133,6,6));
 		gbl = new GridBagLayout();

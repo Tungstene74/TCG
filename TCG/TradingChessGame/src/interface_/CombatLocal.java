@@ -43,9 +43,11 @@ public class CombatLocal extends JPanel {
 	
 	private Piece pieceAbouger;
 	
-	public CombatLocal(int X,int Y, TCG fenetre, PartieLocale partie) {
+	public CombatLocal(TCG fenetre, PartieLocale partie) {
 		this.fenetre = fenetre;
 		this.partie = partie;
+		int X = fenetre.getWidth();
+		int Y = fenetre.getHeight();
 		
 		setBackground(new Color(133,6,6));
 		gbl = new GridBagLayout();

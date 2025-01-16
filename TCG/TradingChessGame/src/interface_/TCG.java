@@ -56,7 +56,7 @@ public class TCG extends JFrame{
 		//récupération de la taille de l'écran
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		X = (int)dim.getWidth(); 
-		Y = (int)dim.getHeight() - 50; 
+		Y = (int)dim.getHeight() - 50;
 		
 		//Paramétrage du panel de base
 		basePanel = new JPanel();
@@ -91,7 +91,7 @@ public class TCG extends JFrame{
 	public void menuPrincipal() {
 		basePanel.removeAll();
 
-		MenuPrincipal menuPrincipal = new MenuPrincipal(X,Y,this);
+		MenuPrincipal menuPrincipal = new MenuPrincipal(this);
 		
 		basePanel.add(menuPrincipal, menuPrincipal.getGbc());
 		
@@ -102,7 +102,7 @@ public class TCG extends JFrame{
 	public void menuPrincipal2() {
 		basePanel.removeAll();
 
-		MenuPrincipal2 menuPrincipal = new MenuPrincipal2(X,Y,this);
+		MenuPrincipal2 menuPrincipal = new MenuPrincipal2(this);
 		
 		basePanel.add(menuPrincipal, menuPrincipal.getGbc());
 		
@@ -140,7 +140,7 @@ public class TCG extends JFrame{
 	public void menuProfil() {
 		basePanel.removeAll();
 
-		MenuProfil menuProfil = new MenuProfil(X,Y, this);
+		MenuProfil menuProfil = new MenuProfil(this);
 		
 		basePanel.add(menuProfil, menuProfil.getGbc());
 		
@@ -162,7 +162,7 @@ public class TCG extends JFrame{
 	public void choixCombat() {
 		basePanel.removeAll();
 
-		ChoixCombat choixCombat = new ChoixCombat(this,X,Y);
+		ChoixCombat choixCombat = new ChoixCombat(this);
 		
 		basePanel.add(choixCombat, choixCombat.getGbc());
 		
@@ -173,7 +173,7 @@ public class TCG extends JFrame{
 	public void collection() {
 		basePanel.removeAll();
 
-		Inventaire inventaire = new Inventaire(this,X,Y);
+		Inventaire inventaire = new Inventaire(this);
 		
 		basePanel.add(inventaire, inventaire.getGbc());
 		
@@ -184,7 +184,7 @@ public class TCG extends JFrame{
 	public void menuDeck() {
 		basePanel.removeAll();
 
-		MenuDeck menuDeck = new MenuDeck(this,X,Y);
+		MenuDeck menuDeck = new MenuDeck(this);
 		
 		basePanel.add(menuDeck, menuDeck.getGbc());
 		
@@ -235,7 +235,7 @@ public class TCG extends JFrame{
 	public void combatLocal(PartieLocale partie) {
 		basePanel.removeAll();
 
-		CombatLocal fight = new CombatLocal(X,Y, this, partie);
+		CombatLocal fight = new CombatLocal(this, partie);
 		
 		basePanel.add(fight, fight.getGbc());
 		
@@ -243,3 +243,5 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 }
+
+
