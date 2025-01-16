@@ -29,11 +29,14 @@ public class PromotionPiece extends JFrame{
 	
 	private Plateau plateau;
 	
+	private CombatLocal combat;
+	
 	public Piece getpieceSelectionnee() {
 		return pieceSelectionnee;
 	}
 
-	public PromotionPiece(Pion p, Plateau plateau) {
+	public PromotionPiece(Pion p, Plateau plateau, CombatLocal combat) {
+		this.combat=combat;
 		this.plateau=plateau;
 		pion = p;
 		
@@ -109,7 +112,9 @@ public class PromotionPiece extends JFrame{
 			pieceSelectionnee=new Dame(pion.getCouleur(), pion.getIdPiecePartie(), pion.getX(), pion.getY());
 			plateau.add(pieceSelectionnee);
 			plateau.supp(pion);
+			combat.updatePiece(pieceSelectionnee);
 			dispose();
+			
 		}
 		
 	}
@@ -121,6 +126,7 @@ public class PromotionPiece extends JFrame{
 			pieceSelectionnee=new Fou(pion.getCouleur(), pion.getIdPiecePartie(), pion.getX(), pion.getY());
 			plateau.add(pieceSelectionnee);
 			plateau.supp(pion);
+			combat.updatePiece(pieceSelectionnee);
 			dispose();
 		}
 		
@@ -133,6 +139,7 @@ public class PromotionPiece extends JFrame{
 			pieceSelectionnee=new Tour(pion.getCouleur(), pion.getIdPiecePartie(), pion.getX(), pion.getY());
 			plateau.add(pieceSelectionnee);
 			plateau.supp(pion);
+			combat.updatePiece(pieceSelectionnee);
 			dispose();
 		}
 		
@@ -145,6 +152,7 @@ public class PromotionPiece extends JFrame{
 			pieceSelectionnee=new Cavalier(pion.getCouleur(), pion.getIdPiecePartie(), pion.getX(), pion.getY());
 			plateau.add(pieceSelectionnee);
 			plateau.supp(pion);
+			combat.updatePiece(pieceSelectionnee);
 			dispose();
 		}
 		

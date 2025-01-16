@@ -165,6 +165,8 @@ public class CombatLocal extends JPanel {
 		
 		Case.setCombat(this);
 		
+		Pouvoir.setCombat(this);
+		
 		System.out.println(arrayButton);
 	}
 	
@@ -280,49 +282,40 @@ public class CombatLocal extends JPanel {
 			}
 		}
 	}
+	
+	public void updatePiece(Piece piece){
+		for (ArrayList<Case> a:this.arrayButton) {
+			for (Case c:a) {
+				if (piece.getX()==c.getAbscisse()&&piece.getY()==c.getOrdonnee()) {
+					c.setPiece(piece);
+					c.putImage(piece);
+					c.revalidate();
+					c.repaint();
+				}				
+			}
+		}		
+	}
 
 	public void update() {
 		
 		for (ArrayList<Case> a:this.arrayButton) {
 			for (Case c:a) {
-				c.setIcon(null);
-				c.revalidate();
-				c.repaint();
+				c.setIcon(null);			
 				
 				for (Piece p : partie.getPlateau().getListepieces()) {
-					/*
-					c.removeAll();
-					c.revalidate();
-					c.repaint();
-					*/
-					//c.removeAll();
-					
-
+				
 					if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
 						c.setPiece(p);
 						c.putImage(p);
 					}
-					/*
-					if (c.getPiece()!=null) 
-						if (c.getPiece().getX()!=c.getAbscisse() | c.getPiece().getY()!=c.getOrdonnee()) {
-							c.setPiece(null);
-
-							c.removeAll();
-
-							
-							
-						}*/
-							
-							
-							/*
-							
-							*/
+					
 				}
-				if (partie.getTour()%2==0) tour.setText("Tour : "+partie.getTour()+" ! Au blanc de jouer !");
-				else tour.setText("Tour : "+partie.getTour()+" ! Au noir de jouer !");
+				c.revalidate();
+				c.repaint();
 				
+				if (partie.getTour()%2==0) tour.setText("Tour : "+partie.getTour()+" ! Au blanc de jouer !");
+				else tour.setText("Tour : "+partie.getTour()+" ! Au noir de jouer !");				
 			}
-	
 		}
 		
 		partie.getPlateau().appliquePouvoirs();

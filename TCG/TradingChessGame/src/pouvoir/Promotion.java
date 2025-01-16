@@ -8,6 +8,8 @@ import interface_.PromotionPiece;
 import pieces.Pion;
 
 public class Promotion extends Pouvoir{
+	
+	//private static CombatLocal combat;
 
 	public Promotion() {
 		super("Promotion", "Quand le pion arrive à la dernière ligne, il peut se transformé en n'importe quel pièce", true);
@@ -24,7 +26,7 @@ public class Promotion extends Pouvoir{
 			b=true;
 		if (b) {
 			System.out.println("promotion");
-			new PromotionPiece((Pion)piece,plateau);
+			new PromotionPiece((Pion)piece,plateau,super.getCombat());
 		}
 		
 	}
