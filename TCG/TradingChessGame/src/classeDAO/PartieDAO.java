@@ -60,8 +60,8 @@ public class PartieDAO extends DAO<Partie>{
 				+ "`id_joueur2`=? "
 				+ "WHERE `id_partie`=?";
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-		st3.setString(1,Integer.toString(id_deck1));
-		st3.setString(2,Integer.toString(id_joueur1));
+		st3.setString(1,Integer.toString(joueur2.mainDeck().getId_deck()));
+		st3.setString(2,Integer.toString(joueur2.getId_joueur()));
 		st3.setString(3,Integer.toString(id_partie));
 		st3.executeUpdate();
 		rs = st3.getGeneratedKeys();
@@ -103,7 +103,7 @@ public class PartieDAO extends DAO<Partie>{
 			id_joueur2  = Integer.parseInt(rs.getString("id_joueur2"));
 			//tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
 		}
-		
+		if (id_joueur2 != 1 && id_joueur2 != 0) {
 		JoueurDAO joueurdao=new JoueurDAO();
 		joueurdao.open();
 		Joueur joueur2= joueurdao.creerjoueur(id_joueur2);
@@ -111,7 +111,9 @@ public class PartieDAO extends DAO<Partie>{
 		
 		obj.setdeck2(deck2);
 		obj.setjoueur2(joueur2);
-		
+		}else {
+			return null;
+		}
 		/*
 		obj.setId_deck(id_deck);
 		obj.setId_joueur(id_joueur);
