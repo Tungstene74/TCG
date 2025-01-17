@@ -130,7 +130,7 @@ public class Case extends JButton{
 			Piece piece = plateau.getPiece(abscisse, ordonnee);
 
 			if (estAteignable) {
-				plateau.deplace(combat.getPieceAbouger(), abscisse, ordonnee);
+				plateau.deplace(combat.getPieceAbouger(), abscisse, ordonnee, combat);
 
 				combat.resetAteignable();
 

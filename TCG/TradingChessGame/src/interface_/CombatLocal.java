@@ -311,6 +311,22 @@ public class CombatLocal extends JPanel {
 		System.out.println(arrayButton);
 	}
 	
+	public TableauPiecePrise getPieceJoueur1() {
+		return pieceJoueur1;
+	}
+
+	public void setPieceJoueur1(TableauPiecePrise pieceJoueur1) {
+		this.pieceJoueur1 = pieceJoueur1;
+	}
+
+	public TableauPiecePrise getPieceJoueur2() {
+		return pieceJoueur2;
+	}
+
+	public void setPieceJoueur2(TableauPiecePrise pieceJoueur2) {
+		this.pieceJoueur2 = pieceJoueur2;
+	}
+
 	private void creationArrayButton() {
 		ArrayList<Case> A0 = new ArrayList<Case>();
 		A0.add(case00); 

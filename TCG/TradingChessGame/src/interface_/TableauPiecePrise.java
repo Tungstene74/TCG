@@ -62,9 +62,8 @@ public class TableauPiecePrise extends JPanel {
 		gbc_label.gridy = i/2;
 		panelPrise.add(label,gbc_label);
 		
-		int l = label.getHeight();
 		ImageIcon icon = new ImageIcon(TCG.class.getResource(p.lienImage()));
-		icon.setImage(icon.getImage().getScaledInstance(l, l,Image.SCALE_SMOOTH));
+		icon.setImage(icon.getImage().getScaledInstance(20, 20,Image.SCALE_SMOOTH));
 		label.setIcon(icon);
 		
 		i++;
