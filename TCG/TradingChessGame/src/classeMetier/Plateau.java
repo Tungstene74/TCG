@@ -3,6 +3,8 @@ package classeMetier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+
+import interface_.CombatLocal;
 import pieces.*;
 import mouvement.*;
 
@@ -10,7 +12,7 @@ public class Plateau {
 	private ArrayList<Piece> listepieces;
 	private int id_partie;
 	private Boolean estTheorique;
-	
+
 	public Boolean getEstTheorique() {
 		return estTheorique;
 	}
@@ -97,6 +99,32 @@ public class Plateau {
 				else {
 					Piece piece_mangee = this.getPiece(new_x,new_y); 
 					if (piece_mangee!=null) {
+						this.supp(piece_mangee);
+					}
+					piece.setX(new_x);
+					piece.setY(new_y);
+				}
+			}
+		}
+	}
+	
+	public void deplace(Piece piece, int new_x, int new_y, CombatLocal combat ) {
+		if (new_x > 7 | new_x<0 | new_y > 7 | new_y<0) { //le plateau va de 0 à 7
+			throw new IndexOutOfBoundsException("Dépassement limite plateau");
+		}
+		else {
+			if (piece==null) {
+				throw new NullPointerException("La piece n'existe pas");
+			}
+			else {
+				if (!piece.caseAteignable(this, new_x, new_y)) {
+					throw new IllegalStateException("Déplacement interdit: "+"("+piece.getX()+", "+piece.getY()+") -> ("+new_x+", "+new_y+")");
+				}
+				else {
+					Piece piece_mangee = this.getPiece(new_x,new_y);
+					if (piece_mangee!=null) {
+						if (piece_mangee.getCouleur()=="blanc") combat.getPieceJoueur2().ajout(piece_mangee);
+						else combat.getPieceJoueur1().ajout(piece_mangee);
 						this.supp(piece_mangee);
 					}
 					piece.setX(new_x);
