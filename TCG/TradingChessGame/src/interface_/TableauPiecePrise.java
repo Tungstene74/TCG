@@ -47,7 +47,7 @@ public class TableauPiecePrise extends JPanel {
 		int y = panelPrise.getHeight()/5;
 		GridBagLayout gbl_panelPrise = new GridBagLayout();
 		gbl_panelPrise.columnWidths = new int[] {y,y};
-		gbl_panelPrise.rowHeights = new int[] {y,y,y,y};
+		gbl_panelPrise.rowHeights = new int[] {y,y,y,y,y,y,y,y};
 		panelPrise.setLayout(gbl_panelPrise);
 	}
 	
