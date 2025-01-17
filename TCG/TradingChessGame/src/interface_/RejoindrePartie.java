@@ -22,37 +22,37 @@ import classeDAO.PartieDAO;
 import classeMetier.Partie;
 
 public class RejoindrePartie extends JPanel{
-	
+
 	private GridBagLayout gbl;
-	
+
 	private GridBagConstraints gbc;
-	
+
 	private TCG fenetre;
-	
+
 	private JLabel lbRejoidre,id_Partie;
-	
+
 	private JTextField textFieldCode;
-	
+
 	private JButton boutonRejoidre,boutonHome;
-	
+
 	private int code;
-	
+
 	private JPanel panel;
-	
+
 	public RejoindrePartie(TCG fenetre) {
 		this.fenetre = fenetre;
-		
+
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		setBackground(new Color(240,240, 240));
 		gbl = new GridBagLayout();
 		gbl.columnWidths = new int[] {0};
 		gbl.rowHeights = new int[] {0, 0, 0, 0, 0, 0};
 		setLayout(gbl);
-		
+
 		lbRejoidre = new JLabel();
 		lbRejoidre.setText("Rejoindre une Partie");
 		lbRejoidre.setOpaque(true);
@@ -64,7 +64,7 @@ public class RejoindrePartie extends JPanel{
 		gbc_lbRejoidre.gridx = 0;
 		gbc_lbRejoidre.gridy = 0;
 		add(lbRejoidre, gbc_lbRejoidre);
-		
+
 		id_Partie = new JLabel("code de la partie :");
 		GridBagConstraints gbc_id_Partie = new GridBagConstraints();
 		gbc_id_Partie.fill = GridBagConstraints.HORIZONTAL;
@@ -72,7 +72,7 @@ public class RejoindrePartie extends JPanel{
 		gbc_id_Partie.gridx = 0;
 		gbc_id_Partie.gridy = 1;
 		add(id_Partie, gbc_id_Partie);
-		
+
 		textFieldCode = new JTextField();
 		textFieldCode.setColumns(20);
 		textFieldCode.addActionListener(new ALCode());
@@ -82,7 +82,7 @@ public class RejoindrePartie extends JPanel{
 		gbc_textFieldCode.gridx = 0;
 		gbc_textFieldCode.gridy = 2;
 		add(textFieldCode, gbc_textFieldCode);
-		
+
 		panel = new JPanel();
 		panel.setBackground(new Color(240,240, 240));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -95,7 +95,7 @@ public class RejoindrePartie extends JPanel{
 		gbl_panel.columnWidths = new int[] {0,0};
 		gbl_panel.rowHeights = new int[] {0};
 		panel.setLayout(gbl_panel);
-		
+
 		boutonRejoidre = new JButton("Confirmer");
 		boutonRejoidre.addActionListener(new ALRejoindre());
 		GridBagConstraints gbc_boutonRejoidre = new GridBagConstraints();
@@ -104,7 +104,7 @@ public class RejoindrePartie extends JPanel{
 		gbc_boutonRejoidre.gridx = 1;
 		gbc_boutonRejoidre.gridy = 0;
 		panel.add(boutonRejoidre, gbc_boutonRejoidre);
-		
+
 		boutonHome = new JButton("retour");
 		boutonHome.addActionListener(new ALHome());
 		GridBagConstraints gbc_boutonHome = new GridBagConstraints();
@@ -114,41 +114,43 @@ public class RejoindrePartie extends JPanel{
 		gbc_boutonHome.gridy = 0;
 		panel.add(boutonHome, gbc_boutonHome);
 	}
-	
+
 	public GridBagConstraints getGbc() {
 		return gbc;
 	}
-	
+
 	private class ALCode implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			code = Integer.parseInt(textFieldCode.getText());
 		}
 	}
-	
+
 	private class ALRejoindre implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent ae) {
-			try {
-				PartieDAO PDAO = new PartieDAO();
-				PDAO.open();
-				Partie p = PDAO.join(code,fenetre.getPlayer());
-				fenetre.gameBoard(p.getjoueur1(),false);
-				//PDAO.close();
+			if(code!=0) {
+				try {
+					PartieDAO PDAO = new PartieDAO();
+					PDAO.open();
+					Partie p = PDAO.join(code,fenetre.getPlayer());
+					fenetre.gameBoard(p.getjoueur1(),false);
+					//PDAO.close();
+				}
+				catch(SQLException e) {
+					e.printStackTrace();
+				}
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
+
 		}
 	}
-	
+
 	private class ALHome implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fenetre.menuPrincipal2();
 		}
-		
+
 	}
 }

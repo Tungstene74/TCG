@@ -60,8 +60,8 @@ public class PartieDAO extends DAO<Partie>{
 				+ "`id_joueur2`=? "
 				+ "WHERE `id_partie`=?";
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-		st3.setString(1,Integer.toString(id_deck1));
-		st3.setString(2,Integer.toString(id_joueur1));
+		st3.setString(1,Integer.toString(joueur2.mainDeck().getId_deck()));
+		st3.setString(2,Integer.toString(joueur2.getId_joueur()));
 		st3.setString(3,Integer.toString(id_partie));
 		st3.executeUpdate();
 		rs = st3.getGeneratedKeys();
