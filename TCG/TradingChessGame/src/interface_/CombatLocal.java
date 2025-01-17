@@ -177,7 +177,7 @@ public class CombatLocal extends JPanel {
 		
 		Pouvoir.setCombat(this);
 		
-		System.out.println(arrayButton);
+		//System.out.println(arrayButton);
 	}
 	
 	public CombatLocal(int X, int Y, TCG fenetre, PartieLocale partie) {
@@ -308,7 +308,7 @@ public class CombatLocal extends JPanel {
 		
 		Pouvoir.setCombat(this);
 		
-		System.out.println(arrayButton);
+		//System.out.println(arrayButton);
 	}
 	
 	private void creationArrayButton() {
@@ -436,14 +436,28 @@ public class CombatLocal extends JPanel {
 			}
 		}		
 	}
+	
+	public String getCouleurInverse(String couleur) {
+		if (couleur=="blanc") {
+			return "noir";
+		}
+		if (couleur=="noir") {
+			return "blanc";
+		}
+		else {
+			return null;
+		}
+	}
 
 	public void update() {
+		
+		Plateau plateau=partie.getPlateau();
 		
 		for (ArrayList<Case> a:this.arrayButton) {
 			for (Case c:a) {
 				c.setIcon(null);			
 				
-				for (Piece p : partie.getPlateau().getListepieces()) {
+				for (Piece p : plateau.getListepieces()) {
 				
 					if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
 						c.setPiece(p);
@@ -459,7 +473,11 @@ public class CombatLocal extends JPanel {
 			}
 		}
 		
-		partie.getPlateau().appliquePouvoirs();
+		
+		
+		plateau.appliquePouvoirs();
+		
+		plateau.estEnEchec(getCouleurInverse(partie.couleurAjouer()));
 	}
 
 	public void resetAteignable() {

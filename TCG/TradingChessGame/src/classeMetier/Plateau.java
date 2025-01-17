@@ -221,7 +221,6 @@ public class Plateau {
 		for (Piece piece:listepieces) {
 			new_plateau.add(piece.copy());
 		}
-		System.out.println("plateau theoriqu:\n"+new_plateau.toString());
 		return new_plateau;
 	}
 	
@@ -233,7 +232,7 @@ public class Plateau {
 			//System.out.println("testechec");
 			if (piecette.caseAteignable(this, roi.getX(), roi.getY())) { //on test si on peut manger le roi
 				b=true;
-				System.out.println("est en echec _________________________");
+				//System.out.println("est en echec _________________________");
 			}
 		}
 		return b;
@@ -245,11 +244,16 @@ public class Plateau {
 		Plateau plateauTheorique = this.copy(); //creer un plateau theorique pour tester si un deplacement va creer un echec
 		plateauTheorique.setEstTheorique(true);
 		Piece pieceTheorique = plateauTheorique.getPiece(piece.getX(), piece.getY()); 
-		if (pieceTheorique.caseAteignable(plateauTheorique, new_x, new_y))
+		if (pieceTheorique.caseAteignable(plateauTheorique, new_x, new_y)) {
 			plateauTheorique.deplace(pieceTheorique, new_x, new_y);
+			//System.out.println("déplacement effectué");
+		}
+			
+		
 		if (plateauTheorique.estEnEchec(couleurRoi)) { //si on peut manger le roi (il y a echec)
 			b=true; //alors oui on a mis le roi en echec
 		}
+		//System.out.println("plateau theorique:\n"+plateauTheorique.toString());
 		return b;
 	}
 	
@@ -295,6 +299,7 @@ public class Plateau {
 		}
 		if (sorties==0) {
 			b=true;
+			System.out.println("echec et mat");
 		}
 		return b;
 	}
