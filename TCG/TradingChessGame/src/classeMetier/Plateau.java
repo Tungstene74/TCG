@@ -228,9 +228,11 @@ public class Plateau {
 		Boolean b=false;
 		Piece roi=this.getRoi(couleur);
 		for (Piece piecette:this.listepieces) { //pour toutes les pieces
-			 //et tout leurs déplacements
-				if (piecette.caseAteignable(this, roi.getX(), roi.getY())) { //on test si on peut manger le roi
-					b=true;
+			//et tout leurs déplacements
+			System.out.println("testechec");
+			if (piecette.caseAteignable(this, roi.getX(), roi.getY())) { //on test si on peut manger le roi
+				b=true;
+				System.out.println("est en echec _________________________");
 			}
 		}
 		return b;
@@ -242,7 +244,8 @@ public class Plateau {
 		Plateau plateauTheorique = this.copy(); //creer un plateau theorique pour tester si un deplacement va creer un echec
 		plateauTheorique.setEstTheorique(true);
 		Piece pieceTheorique = plateauTheorique.getPiece(piece.getX(), piece.getY()); 
-		plateauTheorique.deplace(pieceTheorique, new_x, new_y); 
+		if (pieceTheorique.caseAteignable(plateauTheorique, new_x, new_y))
+			plateauTheorique.deplace(pieceTheorique, new_x, new_y);
 		if (plateauTheorique.estEnEchec(couleurRoi)) { //si on peut manger le roi (il y a echec)
 			b=true; //alors oui on a mis le roi en echec
 		}

@@ -39,7 +39,7 @@ public class MouvTour extends Mouvement {
 				condition=true;
 			}
 			if (new_y<y & x==new_x) {
-				for (int i=y-1;i>new_x;i--) {
+				for (int i=y-1;i>new_y;i--) {
 					int[] co = {x,i};
 					listeCoord.add(co);
 				}
