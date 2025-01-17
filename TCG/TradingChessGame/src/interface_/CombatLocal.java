@@ -451,6 +451,8 @@ public class CombatLocal extends JPanel {
 
 	public void update() {
 		
+		System.out.println("update");
+		
 		Plateau plateau=partie.getPlateau();
 		
 		for (ArrayList<Case> a:this.arrayButton) {
@@ -473,11 +475,10 @@ public class CombatLocal extends JPanel {
 			}
 		}
 		
-		
-		
 		plateau.appliquePouvoirs();
 		
-		plateau.estEnEchec(getCouleurInverse(partie.couleurAjouer()));
+		//comme on a déjà ajouté un tour avant l'update, on regarde la mise en echec de la couleur du tour actuel
+		plateau.estEnEchecEtMat(partie.couleurAjouer()); 
 	}
 
 	public void resetAteignable() {
