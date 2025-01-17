@@ -315,23 +315,25 @@ public class Plateau {
 			for (Piece piece:this.listepieces) { //on teste pour toutes les pieces
 				for (int new_x=0;new_x>=7;new_x++) { //un déplacement sur de nouvelles coordonnées
 					for (int new_y=0;new_y>=7;new_y++) {
-						if (piece.getCouleur()==couleur & piece.caseAteignable(this, new_x, new_y)) {
+						if (/*piece.getCouleur()==couleur & <-faux */piece.caseAteignable(this, new_x, new_y)) {
 							// si la piece déplacée est bien de la couleur de notre roi, qu'on veut protéger, et que le mouvement est possible
-							if (!this.metEnEchec(piece, new_x, new_y)) { //si ce déplacement ne met pas en echec le roi
+							if (/*!this.metEnEchec(piece, new_x, new_y)*/ true) { //si ce déplacement ne met pas en echec le roi <- déjà dans caseAteignable
 								sorties+=1; 
 							}
 						}
 					}
 				}
 			}
-		}
-		if (sorties==0) {
-			b=true;
-			System.out.println("echec et mat");
+			
+			if (sorties==0) {
+				b=true;
+				System.out.println("echec et mat");
+			}
+
 		}
 		return b;
 	}
-	
+
 	//a modifier
 	public void generePlateau(Deck deckblanc, Deck decknoir) {
 		int i=0;
