@@ -221,6 +221,7 @@ public class Plateau {
 		for (Piece piece:listepieces) {
 			new_plateau.add(piece.copy());
 		}
+		System.out.println("plateau theoriqu:\n"+new_plateau.toString());
 		return new_plateau;
 	}
 	
@@ -229,7 +230,7 @@ public class Plateau {
 		Piece roi=this.getRoi(couleur);
 		for (Piece piecette:this.listepieces) { //pour toutes les pieces
 			//et tout leurs déplacements
-			System.out.println("testechec");
+			//System.out.println("testechec");
 			if (piecette.caseAteignable(this, roi.getX(), roi.getY())) { //on test si on peut manger le roi
 				b=true;
 				System.out.println("est en echec _________________________");
@@ -352,6 +353,14 @@ public class Plateau {
 		this.add(new Fou("noir",29,5,7));
 		this.add(new Cavalier("noir",30,6,7));
 		this.add(new Tour("noir",31,7,7));
+	}
+	
+	public String toString() {
+		String str="";
+		for (Piece piece:this.listepieces) {
+			str+=piece.toString()+"\n";
+		}
+		return str;
 	}
 }
 
