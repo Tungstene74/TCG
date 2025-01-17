@@ -242,6 +242,17 @@ public class TCG extends JFrame{
 		basePanel.revalidate();
 		basePanel.repaint();
 	}
+	
+	public void mainCombatLocal(PartieLocale partie) {
+		basePanel.removeAll();
+
+		CombatLocal fight = new CombatLocal(X,Y,this, partie);
+		
+		basePanel.add(fight, fight.getGbc());
+		
+		basePanel.revalidate();
+		basePanel.repaint();
+	}
 }
 
 
