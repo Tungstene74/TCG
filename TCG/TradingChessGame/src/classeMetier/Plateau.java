@@ -1,11 +1,14 @@
 package classeMetier;
 
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import classeDAO.PlateauDAO;
 import interface_.Case;
+import interface_.Combat;
 import interface_.CombatLocal;
 import pieces.*;
 import mouvement.*;
@@ -176,6 +179,15 @@ public class Plateau {
 					piece.setX(new_x);
 					piece.setY(new_y);
 					
+					if (combat instanceof Combat) {
+						PlateauDAO plateauDAO = new PlateauDAO();
+						try {
+							plateauDAO.open();
+							plateauDAO.updateMoi(this);
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
 				}
 			}
 		}

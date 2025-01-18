@@ -222,8 +222,11 @@ public class CombatLocal extends JPanel {
 		
 		Pouvoir.setCombat(this);
 		
+		
 		//System.out.println(arrayButton);
 	}
+	
+	
 	
 	public CombatLocal(int X, int Y, TCG fenetre, PartieLocale partie) {
 		this.fenetre = fenetre;
@@ -572,14 +575,23 @@ public class CombatLocal extends JPanel {
 						c.setPiece(p);
 						c.putImage(p);
 					}
-					
 				}
 				c.revalidate();
 				c.repaint();
-				
-				if (partie.getTour()%2==0) tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
-				else tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");				
 			}
+		}
+		
+		
+		
+		if (partie.getTour()%2==0) {
+			tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
+			if(this instanceof Combat && ((Combat)this).jCreator==false) ((Combat)this).enable(false);
+			else ((Combat)this).enable(true);
+		}
+		else {
+			tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");
+			if(this instanceof Combat && ((Combat)this).jCreator==true) ((Combat)this).enable(false);
+			else ((Combat)this).enable(true);
 		}
 		
 		plateau.appliquePouvoirs();
@@ -609,6 +621,8 @@ public class CombatLocal extends JPanel {
 		if(plateau.estEnPat(partie.couleurAjouer())) {
 			Victoire egalite=new Victoire(this.fenetre);
 		}
+		
+		
 	}
 
 	public void resetAteignable() {
