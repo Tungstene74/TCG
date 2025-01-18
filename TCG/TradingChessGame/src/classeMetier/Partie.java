@@ -15,6 +15,16 @@ public class Partie {
 	private Joueur joueur2;
 	private Plateau plateau;
 	
+	public Joueur joueuraJouer() {
+		if (tour_joueur%2==0){
+			return joueur1;
+		}
+		if (tour_joueur%2==1){
+			return joueur2;
+		}
+		return null;
+	}
+	
 	/*
 	public Partie(int couleur) {
 		this.tour_joueur=couleur;
