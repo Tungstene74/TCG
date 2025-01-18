@@ -633,7 +633,7 @@ public class CombatLocal extends JPanel {
 			}
 		}
 	}
-	
+
 	private void echiquier(JPanel panel) {
 		for (int i=0;i<=7;i++) {
 			ArrayList<Case> arrayCase = arrayButton.get(i);

@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import classeDAO.JoueurDAO;
 import classeMetier.Joueur;
@@ -76,7 +78,9 @@ public class EcranConnection extends JPanel{
 		
 		nomDutilisateur = new JTextField();
 		nomDutilisateur.setColumns(20);
-		nomDutilisateur.addActionListener(new ALIdentifiant());
+		//nomDutilisateur.addActionListener(new ALIdentifiant());
+		nomDutilisateur.getDocument().addDocumentListener(new ALPassword()); //<--modif
+		
 		GridBagConstraints gbc_nomDutilisateur = new GridBagConstraints();
 		gbc_nomDutilisateur.insets = new Insets(0, 10, 10, 10);
 		gbc_nomDutilisateur.fill = GridBagConstraints.HORIZONTAL;
@@ -95,7 +99,10 @@ public class EcranConnection extends JPanel{
 		passwordField = new JPasswordField();
 		passwordField.setHorizontalAlignment(SwingConstants.LEFT);
 		passwordField.setColumns(20);
-		passwordField.addActionListener(new ALPassword());
+		
+		//passwordField.addActionListener(new ALPassword());
+		passwordField.getDocument().addDocumentListener(new ALIdentifiant()); //<--modif
+		
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 10, 10, 10);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
@@ -137,8 +144,41 @@ public class EcranConnection extends JPanel{
 		return gbc;
 	}
 	
+	private class ALIdentifiant implements DocumentListener{
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			 identifiant = nomDutilisateur.getText();
+             //System.out.println("Identifiant mis à jour : " + identifiant);
+		}
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			identifiant = nomDutilisateur.getText();
+			//System.out.println("Identifiant mis à jour : " + identifiant);
+		}
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+		}
+	}
+	
+	private class ALPassword implements DocumentListener{
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			mdp = passwordField.getPassword();
+			//System.out.println("Mot de passe mis à jour : " + mdp.toString());
+		}
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			mdp = passwordField.getPassword();
+			//System.out.println("Mot de passe mis à jour : " + mdp.toString());
+		}
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+		}
+	}
+	/*
 	private class ALIdentifiant implements ActionListener{
 		@Override
+	
 		public void actionPerformed(ActionEvent e) {
 			identifiant = nomDutilisateur.getText();
 		}
@@ -149,7 +189,7 @@ public class EcranConnection extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			mdp = passwordField.getPassword();
 		}
-	}
+	}*/
 	
 	private class ALConnection implements ActionListener{
 		@Override
