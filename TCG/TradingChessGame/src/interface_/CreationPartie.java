@@ -16,9 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import classeDAO.*;
 import classeMetier.*;
+
 
 public class CreationPartie extends JPanel{
 	
@@ -74,7 +77,10 @@ public class CreationPartie extends JPanel{
 		
 		textFieldCode = new JTextField();
 		textFieldCode.setColumns(20);
-		textFieldCode.addActionListener(new ALCode());
+		
+		//textFieldCode.addActionListener(new ALCode());
+		textFieldCode.getDocument().addDocumentListener(new ALCode()); //<--modif
+		
 		GridBagConstraints gbc_textFieldCode = new GridBagConstraints();
 		gbc_textFieldCode.insets = new Insets(0, 10, 10, 10);
 		gbc_textFieldCode.fill = GridBagConstraints.HORIZONTAL;
@@ -117,13 +123,29 @@ public class CreationPartie extends JPanel{
 	public GridBagConstraints getGbc() {
 		return gbc;
 	}
-
+	
+	private class ALCode implements DocumentListener{
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			code = Integer.parseInt(textFieldCode.getText());
+			System.out.println("code mis à jour : " + code);
+		}
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			code = Integer.parseInt(textFieldCode.getText());
+			System.out.println("code mis à jour : " + code);
+		}
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+		}
+	}
+	/*
 	private class ALCode implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			code = Integer.parseInt(textFieldCode.getText());
 		}
-	}
+	}*/
 	
 	private class ALCreer implements ActionListener{
 		@Override

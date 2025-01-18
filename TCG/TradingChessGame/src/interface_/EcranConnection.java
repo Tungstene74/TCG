@@ -78,8 +78,9 @@ public class EcranConnection extends JPanel{
 		
 		nomDutilisateur = new JTextField();
 		nomDutilisateur.setColumns(20);
+		
 		//nomDutilisateur.addActionListener(new ALIdentifiant());
-		nomDutilisateur.getDocument().addDocumentListener(new ALPassword()); //<--modif
+		nomDutilisateur.getDocument().addDocumentListener(new ALIdentifiant()); //<--modif
 		
 		GridBagConstraints gbc_nomDutilisateur = new GridBagConstraints();
 		gbc_nomDutilisateur.insets = new Insets(0, 10, 10, 10);
@@ -101,7 +102,7 @@ public class EcranConnection extends JPanel{
 		passwordField.setColumns(20);
 		
 		//passwordField.addActionListener(new ALPassword());
-		passwordField.getDocument().addDocumentListener(new ALIdentifiant()); //<--modif
+		passwordField.getDocument().addDocumentListener(new ALPassword()); //<--modif
 		
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 10, 10, 10);
