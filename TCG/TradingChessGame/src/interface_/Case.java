@@ -150,7 +150,7 @@ public class Case extends JButton{
 				partieLocale.ajouttour();
 				combat.update();
 			}
-
+			
 			if (piece!=null) { // on pensera à ajouter un if avec la couleur 
 				if (piece.getCouleur()== partieLocale.couleurAjouer()) {
 					combat.resetAteignable(); 
