@@ -4,9 +4,13 @@ import interface_.Combat;
 
 public class PartieLocale {
 	private Plateau plateau;
-	private int tour;
+	protected int tour;
 	private Boolean estEnCour;
 	
+	public void setTour(int tour) {
+		this.tour = tour;
+	}
+
 	public Plateau getPlateau(){
 		return this.plateau;
 	}

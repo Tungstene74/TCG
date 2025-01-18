@@ -5,21 +5,19 @@ import classeDAO.*;
 import interface_.*;
 import pieces.*;
 
-public class Partie {
+public class Partie extends PartieLocale{
 	
 	private int id_partie;
-	private int tour_joueur;
 	private Deck deck1;
 	private Deck deck2;
 	private Joueur joueur1;
 	private Joueur joueur2;
-	private Plateau plateau;
 	
 	public Joueur joueuraJouer() {
-		if (tour_joueur%2==0){
+		if (super.tour%2==0){
 			return joueur1;
 		}
-		if (tour_joueur%2==1){
+		if (super.tour%2==1){
 			return joueur2;
 		}
 		return null;
@@ -29,14 +27,6 @@ public class Partie {
 	public Partie(int couleur) {
 		this.tour_joueur=couleur;
 	}*/
-
-	public void setTour_joueur(int tour_joueur) {
-		this.tour_joueur = tour_joueur;
-	}
-	
-	public int getTour_joueur() {
-		return tour_joueur;
-	}
 
 	public int getId_partie() {
 		return id_partie;
@@ -56,14 +46,6 @@ public class Partie {
 	
 	public void setjoueur2(Joueur joueur2) {
 		this.joueur2 = joueur2;
-	}
-
-	public Plateau getPlateau() {
-		return plateau;
-	}
-
-	public void setPlateau(Plateau plateau) {
-		this.plateau = plateau;
 	}
 
 	public void setId_partie(int id_partie) {
@@ -90,25 +72,20 @@ public class Partie {
 		Boolean b=false;
 		if (idPartie==this.id_partie) {
 			this.joueur2 = joueur2;
+			this.deck2= joueur2.mainDeck();
 			b=true;
 		}
 		return b;
 	}
+	
+	
 
-	public Partie(Joueur joueur1, int idPartie) {
-		this.tour_joueur=0;
-		this.deck1 = joueur1.mainDeck();
+	public Partie(Joueur joueur1, int id_partie) {
+		super();
+		this.id_partie = id_partie;
 		this.joueur1 = joueur1;
-		this.id_partie=idPartie;
+		this.deck1 = joueur1.mainDeck();
 		
-		//initialisation du plateau
-		this.plateau=new Plateau(id_partie);
-		
-		/*
-		this.plateau.plateauClassique();
-		//test
-		Tour t1 = new Tour("blanc");
-		this.plateau.add(t1);*/
 	}
 
 
