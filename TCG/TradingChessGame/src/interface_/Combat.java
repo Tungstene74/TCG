@@ -22,6 +22,14 @@ public class Combat extends CombatLocal {
 		else pseudoJoueur.setText(opponent.getIdentifiant());
 		
 		this.opponent = opponent;
-		
+	}
+	
+	@Override
+	public void enable(boolean b) {
+		for(ArrayList<Case> array : arrayButton) {
+			for (Case c : array) {
+				c.setEnabled(b);
+			}
+		}
 	}
 }

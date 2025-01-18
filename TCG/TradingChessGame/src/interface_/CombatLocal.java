@@ -553,6 +553,11 @@ public class CombatLocal extends JPanel {
 
 	public void update() {
 		
+		if(this instanceof Combat) {
+			if (fenetre.getPlayer()==((Partie) partie).joueuraJouer()) ((Combat)this).enable(false);
+			else ((Combat)this).enable(true);
+		}
+		
 		System.out.println("update");
 		
 		Plateau plateau=partie.getPlateau();
@@ -604,8 +609,6 @@ public class CombatLocal extends JPanel {
 		if(plateau.estEnPat(partie.couleurAjouer())) {
 			Victoire egalite=new Victoire(this.fenetre);
 		}
-		
-		
 	}
 
 	public void resetAteignable() {
