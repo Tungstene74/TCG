@@ -133,7 +133,7 @@ public class Case extends JButton{
 				plateau.deplace(combat.getPieceAbouger(), abscisse, ordonnee, combat);
 
 				combat.resetAteignable();
-
+				
 				partie.ajouttour();
 				combat.update();
 			}

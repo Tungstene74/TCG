@@ -493,6 +493,9 @@ public class CombatLocal extends JPanel {
 		
 		plateau.appliquePouvoirs();
 		
+		if (plateau.getHistoriqueDesCoups().size()!=0)
+			System.out.println(plateau.getHistoriqueDesCoups().getLast());
+		
 		//comme on a déjà ajouté un tour avant l'update, on regarde la mise en echec de la couleur du tour actuel
 		plateau.estEnEchecEtMat(partie.couleurAjouer()); 
 	}

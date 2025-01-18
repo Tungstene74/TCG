@@ -25,9 +25,9 @@ public class MouvRoi extends Mouvement{
 
 
 	@Override
-	public void effet(Piece piece, int new_x, int new_y,Plateau plateau) {
+	public void effet(int x, int y, int new_x, int new_y,Plateau plateau) {
 		// TODO Auto-generated method stub
-		plateau.deplace(piece.getX(), piece.getY(), new_x, new_y);
+		//plateau.deplace(piece.getX(), piece.getY(), new_x, new_y);
 	}
 
 }

@@ -5,6 +5,18 @@ import classeMetier.Piece;
 import classeMetier.Plateau;
 
 public class MouvPion extends Mouvement{
+	
+	//private static Piece piece_qui_a_avancee_de_2_cases;
+	
+	/*
+	public static Piece getPiece_qui_a_avancee_de_2_cases() {
+		return piece_qui_a_avancee_de_2_cases;
+	}
+
+	public static void setPiece_qui_a_avancee_de_2_cases(Piece piece_qui_a_avancee_de_2_cases) {
+		MouvPion.piece_qui_a_avancee_de_2_cases = piece_qui_a_avancee_de_2_cases;
+	}*/
+
 	@Override
 	public Boolean estPossibleNormal(Piece piece, int new_x, int new_y, Plateau plateau) {
 		int x=piece.getX();
@@ -33,12 +45,14 @@ public class MouvPion extends Mouvement{
 			if (piece.getCouleur()=="blanc" & new_y==y+2 & y==1 & new_x==x) {//si on pars du début et qu'on se déplace de 2 cases
 				if (plateau.getPiece(x, y+1)==null & pieceMangee==null) { //si il n'y a pas de pieces
 					b=true;
+					//pieceQuiAavanceede2cases=piece;
 				}
 			}
 
 			if (piece.getCouleur()=="noir" & new_y==y-2 & y==6 & new_x==x) { //pareil
 				if (plateau.getPiece(x, y-1)==null & pieceMangee==null) {
 					b=true;
+					//pieceQuiAavanceede2cases=piece;
 				}
 			}
 		}
@@ -47,9 +61,9 @@ public class MouvPion extends Mouvement{
 	}
 
 	@Override
-	public void effet(Piece piece, int new_x, int new_y,Plateau plateau) {
+	public void effet(int x, int y, int new_x, int new_y,Plateau plateau) {
 		// TODO Auto-generated method stub
-		plateau.deplace(piece.getX(), piece.getY(), new_x, new_y);
+		//plateau.deplace(piece, new_x, new_y);
 	}
 	
 }
