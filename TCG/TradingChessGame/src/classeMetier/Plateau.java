@@ -355,10 +355,10 @@ public class Plateau {
 					}
 				}
 			}
-		}
-		if (sorties==0) {
-			b=true;
-			System.out.println("mat");
+			if (sorties==0) {
+				b=true;
+				System.out.println("pat");
+			}
 		}
 		return b;
 	}
