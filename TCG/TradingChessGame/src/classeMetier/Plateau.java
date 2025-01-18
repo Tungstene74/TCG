@@ -1,9 +1,11 @@
 package classeMetier;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import interface_.Case;
 import interface_.CombatLocal;
 import pieces.*;
 import mouvement.*;
@@ -147,10 +149,9 @@ public class Plateau {
 				else {
 					Piece piece_mangee = this.getPiece(new_x,new_y);
 					if (piece_mangee!=null) {
-						if (piece_mangee.getCouleur()=="blanc") 
-							combat.getPieceJoueur2().ajout(piece_mangee);
+						if (piece_mangee.getCouleur()=="blanc") combat.getPieceJoueur2().ajout(piece_mangee);
 						else combat.getPieceJoueur1().ajout(piece_mangee);
-							this.supp(piece_mangee);
+						this.supp(piece_mangee);
 					}
 					piece.setX(new_x);
 					piece.setY(new_y);
@@ -329,6 +330,7 @@ public class Plateau {
 			}
 		}
 		if (sorties==0) {
+			
 			b=true;
 		}
 		return b;
@@ -353,6 +355,19 @@ public class Plateau {
 			
 			if (sorties==0) {
 				b=true;
+				for (ArrayList<Case> array : Case.getCombat().getArrayButton()) {
+					for(Case c : array) {
+						try {
+							if (c.getPiece() instanceof Roi && c.getPiece().getCouleur()==couleur) {
+								c.imageEchec((Roi)c.getPiece());
+								c.setBackground(new Color(133,6,6));
+							}
+						}
+						catch(NullPointerException e) {
+							System.out.println("null");
+						}
+					}
+				}
 				System.out.println("echec et mat");
 			}
 
