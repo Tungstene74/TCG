@@ -1,18 +1,28 @@
 package classeMetier;
 
+import interface_.Combat;
 import interface_.CombatLocal;
 
 public abstract class Pouvoir {
 	private String nom;
 	private String description;
 	private Boolean estClassique;
-	private static CombatLocal combat;
+	private static CombatLocal combatLocal;
+	private static Combat combat;
 	
 	public static void setCombat(CombatLocal combat_) {
+		combatLocal=combat_;
+	}
+	
+	public static void setCombat(Combat combat_) {
 		combat=combat_;
 	}
 
-	public static CombatLocal getCombat() {
+	public static CombatLocal getCombatLocal() {
+		return combatLocal;
+	}
+	
+	public static Combat getCombat() {
 		return combat;
 	}
 

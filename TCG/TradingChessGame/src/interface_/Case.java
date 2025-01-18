@@ -26,7 +26,7 @@ public class Case extends JButton{
 
 	private ImageIcon icon;
 
-	private static PartieLocale partie;
+	private static PartieLocale partieLocale;
 
 	private static CombatLocal combat;
 
@@ -73,13 +73,13 @@ public class Case extends JButton{
 	}
 
 	public static void setPartie(PartieLocale partie_) {
-		partie=partie_;
+		partieLocale=partie_;
 	}
 
-	public static PartieLocale getPartie() {
-		return partie;
+	public static PartieLocale getPartieLocale() {
+		return partieLocale;
 	}
-
+	
 	public static void setCombat(CombatLocal combat_) {
 		combat=combat_;
 	}
@@ -139,7 +139,7 @@ public class Case extends JButton{
 		@Override
 		public void actionPerformed(ActionEvent e) { // quand 
 
-			Plateau plateau = partie.getPlateau();
+			Plateau plateau = partieLocale.getPlateau();
 			Piece piece = plateau.getPiece(abscisse, ordonnee);
 
 			if (estAteignable) {
@@ -147,12 +147,12 @@ public class Case extends JButton{
 
 				combat.resetAteignable();
 				
-				partie.ajouttour();
+				partieLocale.ajouttour();
 				combat.update();
 			}
 
 			if (piece!=null) { // on pensera à ajouter un if avec la couleur 
-				if (piece.getCouleur()== partie.couleurAjouer()) {
+				if (piece.getCouleur()== partieLocale.couleurAjouer()) {
 					combat.resetAteignable(); 
 
 					combat.setPieceAbouger(piece);

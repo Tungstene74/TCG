@@ -662,13 +662,13 @@ public class CombatLocal extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			new Victoire(fenetre,couleur);
 		}
-		
+
 	}
-	
-private class ALVote implements ActionListener{
-		
+
+	private class ALVote implements ActionListener{
+
 		private String couleur;
-		
+
 		public ALVote(String couleur) {
 			this.couleur = couleur;
 		}
@@ -688,6 +688,6 @@ private class ALVote implements ActionListener{
 			}
 			if (voteNoir==true&&voteBlanc==true) new Victoire(fenetre);
 		}
-		
+
 	}
 }

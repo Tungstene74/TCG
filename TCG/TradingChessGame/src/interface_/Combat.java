@@ -5,18 +5,26 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import classeMetier.Joueur;
+import classeMetier.Partie;
 import classeMetier.PartieLocale;
+import classeMetier.Piece;
+import classeMetier.Plateau;
+import classeMetier.Pouvoir;
+import pieces.Roi;
 
 public class Combat extends JPanel {
 
-	private Case 
+	private CaseDistante
 	case00,case01,case02,case03,case04,case05,case06,case07,
 	case10,case11,case12,case13,case14,case15,case16,case17,
 	case20,case21,case22,case23,case24,case25,case26,case27,
@@ -31,11 +39,21 @@ public class Combat extends JPanel {
 	
 	private JPanel panelAdversaire, panelJoueur, plateau, echiquier;
 	
+	private JButton concederNoir, concederBlanc, voteEgaliteNoir, voteEgaliteBlanc;
+	
+	private TableauPiecePrise pieceJoueur1, pieceJoueur2;
+	
 	private JLabel pseudoAdversaire, pseudoJoueur, tour;
 	
 	private static ArrayList<ArrayList<Case>>  arrayButton;
 	
+	private boolean voteBlanc, voteNoir;
+	
 	private Joueur opponent;
+	
+	private PartieLocale partie;
+	
+	private Piece pieceAbouger;
 	
 	private TCG fenetre;
 	
@@ -57,14 +75,13 @@ public class Combat extends JPanel {
 		panelAdversaire = new JPanel();
 		panelAdversaire.setBackground(new Color(192,192,192));
 		GridBagConstraints gbc_panelAdversaire = new GridBagConstraints();
-		gbc_panelAdversaire.insets = new Insets(0, 0, 0, 5);
 		gbc_panelAdversaire.fill = GridBagConstraints.BOTH;
 		gbc_panelAdversaire.gridx = 0;
 		gbc_panelAdversaire.gridy = 0;
 		add(panelAdversaire, gbc_panelAdversaire);
 		GridBagLayout gbl_panelAdversaire = new GridBagLayout();
 		gbl_panelAdversaire.columnWidths = new int[] {(X-Y)/2};
-		gbl_panelAdversaire.rowHeights = new int[] {50, Y-55};
+		gbl_panelAdversaire.rowHeights = new int[] {50, 50, 50, Y-150};
 		panelAdversaire.setLayout(gbl_panelAdversaire);
 		
 		if (jCreator==true)pseudoAdversaire = new JLabel(opponent.getIdentifiant());
@@ -78,6 +95,36 @@ public class Combat extends JPanel {
 		gbc_pseudoAdversaire.gridy = 0;
 		panelAdversaire.add(pseudoAdversaire, gbc_pseudoAdversaire);
 		
+		//tableau des pieces prises blanches
+		pieceJoueur2 = new TableauPiecePrise();
+		GridBagConstraints gbc_pieceJoueur2 = new GridBagConstraints();
+		gbc_pieceJoueur2.fill = GridBagConstraints.BOTH;
+		gbc_pieceJoueur2.gridx = 0;
+		gbc_pieceJoueur2.gridy = 3;
+		panelAdversaire.add(pieceJoueur2, gbc_pieceJoueur2);
+
+		voteEgaliteNoir = new JButton("Vote pour égalité : Non");
+		voteEgaliteNoir.setForeground(Color.BLACK);
+		voteEgaliteNoir.setHorizontalAlignment(SwingConstants.CENTER);
+		voteEgaliteNoir.setBackground(new Color(192,192,192));
+		voteEgaliteNoir.addActionListener(new ALVote("noir"));
+		GridBagConstraints gbc_voteEgaliteNoir = new GridBagConstraints();
+		gbc_voteEgaliteNoir.fill = GridBagConstraints.BOTH;
+		gbc_voteEgaliteNoir.gridx = 0;
+		gbc_voteEgaliteNoir.gridy = 2;
+		panelAdversaire.add(voteEgaliteNoir, gbc_voteEgaliteNoir);
+
+		concederBlanc = new JButton("Concéder au Blanc");
+		concederBlanc.setForeground(Color.BLACK);
+		concederBlanc.setHorizontalAlignment(SwingConstants.CENTER);
+		concederBlanc.setBackground(new Color(192,192,192));
+		concederBlanc.addActionListener(new ALConcede("blanc"));
+		GridBagConstraints gbc_concederBlanc = new GridBagConstraints();
+		gbc_concederBlanc.fill = GridBagConstraints.BOTH;
+		gbc_concederBlanc.gridx = 0;
+		gbc_concederBlanc.gridy = 1;
+		panelAdversaire.add(concederBlanc, gbc_concederBlanc);
+		
 		panelJoueur = new JPanel();
 		panelJoueur.setBackground(new Color(192,192,192));
 		GridBagConstraints gbc_panelJoueur = new GridBagConstraints();
@@ -87,7 +134,7 @@ public class Combat extends JPanel {
 		add(panelJoueur, gbc_panelJoueur);
 		GridBagLayout gbl_panelJoueur = new GridBagLayout();
 		gbl_panelJoueur.columnWidths = new int[] {(X-Y)/2};
-		gbl_panelJoueur.rowHeights = new int[] {50, Y-55};
+		gbl_panelJoueur.rowHeights = new int[] {50, 50 ,50, Y-150};
 		panelJoueur.setLayout(gbl_panelJoueur);
 		
 		if (jCreator==true)pseudoJoueur = new JLabel(fenetre.getPlayer().getIdentifiant());
@@ -100,6 +147,36 @@ public class Combat extends JPanel {
 		gbc_pseudoJoueur.gridx = 0;
 		gbc_pseudoJoueur.gridy = 0;
 		panelJoueur.add(pseudoJoueur, gbc_pseudoJoueur);
+		
+		concederNoir = new JButton("Concéder au Noir");
+		concederNoir.setForeground(Color.WHITE);
+		concederNoir.setHorizontalAlignment(SwingConstants.CENTER);
+		concederNoir.setBackground(new Color(192,192,192));
+		concederNoir.addActionListener(new ALConcede("noir"));
+		GridBagConstraints gbc_concederNoir = new GridBagConstraints();
+		gbc_concederNoir.fill = GridBagConstraints.BOTH;
+		gbc_concederNoir.gridx = 0;
+		gbc_concederNoir.gridy = 1;
+		panelJoueur.add(concederNoir, gbc_concederNoir);
+		
+		voteEgaliteBlanc = new JButton("Vote pour égalité : Non");
+		voteEgaliteBlanc.setForeground(Color.WHITE);
+		voteEgaliteBlanc.setHorizontalAlignment(SwingConstants.CENTER);
+		voteEgaliteBlanc.setBackground(new Color(192,192,192));
+		voteEgaliteBlanc.addActionListener(new ALVote("blanc"));
+		GridBagConstraints gbc_voteEgaliteBlanc = new GridBagConstraints();
+		gbc_voteEgaliteBlanc.fill = GridBagConstraints.BOTH;
+		gbc_voteEgaliteBlanc.gridx = 0;
+		gbc_voteEgaliteBlanc.gridy = 2;
+		panelJoueur.add(voteEgaliteBlanc, gbc_voteEgaliteBlanc);
+		
+		//tableau des pieces prises noires
+		pieceJoueur1 = new TableauPiecePrise();
+		GridBagConstraints gbc_pieceJoueur1 = new GridBagConstraints();
+		gbc_pieceJoueur1.fill = GridBagConstraints.BOTH;
+		gbc_pieceJoueur1.gridx = 0;
+		gbc_pieceJoueur1.gridy = 3;
+		panelJoueur.add(pieceJoueur1, gbc_pieceJoueur1);
 		
 		plateau = new JPanel();
 		plateau.setBackground(new Color(133, 6, 6));
@@ -140,6 +217,40 @@ public class Combat extends JPanel {
 		creationArrayButton();
 		
 		echiquier(echiquier);
+		
+		CaseDistante.setPartie(partie);
+		
+		CaseDistante.setCombat(this);
+		
+		Pouvoir.setCombat(this);
+	}
+	
+	public TableauPiecePrise getPieceJoueur1() {
+		return pieceJoueur1;
+	}
+
+	public void setPieceJoueur1(TableauPiecePrise pieceJoueur1) {
+		this.pieceJoueur1 = pieceJoueur1;
+	}
+
+	public TableauPiecePrise getPieceJoueur2() {
+		return pieceJoueur2;
+	}
+
+	public void setPieceJoueur2(TableauPiecePrise pieceJoueur2) {
+		this.pieceJoueur2 = pieceJoueur2;
+	}
+	
+	public Piece getPieceAbouger() {
+		return pieceAbouger;
+	}
+
+	public void setPieceAbouger(Piece pieceAbouger) {
+		this.pieceAbouger = pieceAbouger;
+	}
+	
+	public ArrayList<ArrayList<Case>> getArrayButton(){
+		return this.arrayButton;
 	}
 	
 	private void creationArrayButton() {
@@ -236,20 +347,154 @@ public class Combat extends JPanel {
 	}
 	
 	private void echiquier(JPanel panel) {
-		int i = 0;
-		for (ArrayList<Case> a : arrayButton) {
-			int j = 0;
-			for (Case c: a) {
-				c = new Case(j,i);
-				c.addActionListener(null);
+		for (int i=0;i<=7;i++) {
+			ArrayList<Case> arrayCase = arrayButton.get(i);
+			for (int j=0;j<=7;j++) {
+				Case c = new Case(j,i);
+				arrayCase.set(j, c);
+				placementInitial(c);
 				panel.add(c,c.getGbc());
-				j++;
+				//System.out.println(c);
 			}
-			i++;
 		}
 	}
 
 	public GridBagConstraints getGbc() {
 		return gbc;
+	}
+	
+	private void placementInitial(Case tile) {
+		for (Piece p : partie.getPlateau().getListepieces()) {
+			if (p.getX()==tile.getAbscisse()&&p.getY()==tile.getOrdonnee()) {
+				tile.setPiece(p);
+				tile.putImage(p);
+			}
+		}
+	}
+	
+	public void updatePiece(Piece piece){
+		for (ArrayList<Case> a:this.arrayButton) {
+			for (Case c:a) {
+				if (piece.getX()==c.getAbscisse()&&piece.getY()==c.getOrdonnee()) {
+					c.setPiece(piece);
+					c.putImage(piece);
+					c.revalidate();
+					c.repaint();
+				}				
+			}
+		}		
+	}
+	
+	public String getCouleurInverse(String couleur) {
+		if (couleur=="blanc") {
+			return "noir";
+		}
+		if (couleur=="noir") {
+			return "blanc";
+		}
+		else {
+			return null;
+		}
+	}
+
+	public void update() {
+		
+		System.out.println("update");
+		
+		Plateau plateau=partie.getPlateau();
+		
+		for (ArrayList<Case> a:this.arrayButton) {
+			for (Case c:a) {
+				c.setIcon(null);			
+				
+				for (Piece p : plateau.getListepieces()) {
+				
+					if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
+						c.setPiece(p);
+						c.putImage(p);
+					}
+					
+				}
+				c.revalidate();
+				c.repaint();
+				
+				if (partie.getTour()%2==0) tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
+				else tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");				
+			}
+		}
+		
+		plateau.appliquePouvoirs();
+		
+		if (plateau.getHistoriqueDesCoups().size()!=0)
+			System.out.println(plateau.getHistoriqueDesCoups().getLast());
+		
+		//comme on a déjà ajouté un tour avant l'update, on regarde la mise en echec de la couleur du tour actuel
+		if(plateau.estEnEchecEtMat(partie.couleurAjouer())) {
+			for (ArrayList<Case> array : this.getArrayButton()) {
+				for(Case c : array) {
+					try {
+						if (c.getPiece() instanceof Roi && c.getPiece().getCouleur()==partie.couleurAjouer()) {
+							c.imageEchec((Roi)c.getPiece());
+							c.setBackground(new Color(133,6,6));
+						}
+					}
+					catch(NullPointerException e) {
+						System.out.println("null");
+					}
+				}
+			}
+			if (partie.couleurAjouer()=="blanc") new Victoire(fenetre,"noir");
+			else new Victoire(fenetre,"blanc");
+		}
+	}
+
+	public void resetAteignable() {
+		for (ArrayList<Case> a:arrayButton) {
+			for (Case c: a) {
+				c.normalColor();
+				c.setEstAteignable(false);
+			}
+		}
+	}
+	
+	private class ALVote implements ActionListener{
+
+		private String couleur;
+
+		public ALVote(String couleur) {
+			this.couleur = couleur;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (couleur=="blanc") {
+				voteBlanc = !voteBlanc;
+				if (voteBlanc==true) voteEgaliteBlanc.setText("Vote pour égalité : Oui");
+				else voteEgaliteBlanc.setText("Vote pour égalité : Non");
+			}
+			else {
+				voteNoir = !voteNoir;
+				voteEgaliteNoir.setText("Vote pour égalité : "+voteNoir);
+				if (voteNoir==true) voteEgaliteNoir.setText("Vote pour égalité : Oui");
+				else voteEgaliteNoir.setText("Vote pour égalité : Non");
+			}
+			if (voteNoir==true&&voteBlanc==true) new Victoire(fenetre);
+		}
+
+	}
+
+	private class ALConcede implements ActionListener{
+
+		private String couleur;
+
+		public ALConcede(String couleur) {
+			this.couleur = couleur;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new Victoire(fenetre,couleur);
+		}
+
 	}
 }
