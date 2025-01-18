@@ -16,7 +16,6 @@ import javax.swing.SwingConstants;
 
 import classeMetier.Joueur;
 import classeMetier.Partie;
-import classeMetier.PartieLocale;
 import classeMetier.Piece;
 import classeMetier.Plateau;
 import classeMetier.Pouvoir;
@@ -51,7 +50,7 @@ public class Combat extends JPanel {
 	
 	private Joueur opponent;
 	
-	private PartieLocale partie;
+	private Partie partie;
 	
 	private Piece pieceAbouger;
 	

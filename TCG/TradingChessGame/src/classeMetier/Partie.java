@@ -72,6 +72,7 @@ public class Partie extends PartieLocale{
 		Boolean b=false;
 		if (idPartie==this.id_partie) {
 			this.joueur2 = joueur2;
+			this.deck2= joueur2.mainDeck();
 			b=true;
 		}
 		return b;
