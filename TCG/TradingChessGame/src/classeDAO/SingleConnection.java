@@ -18,7 +18,7 @@ public class SingleConnection {
 		String url="";
 		if (mode_conection== "en ligne") {
 		 url="jdbc:mysql://4.tcp.eu.ngrok.io:18562 /"+databaseName+"?serverTimezone=UTC";
-		}else { url="jdbc:mysql://2.tcp.eu.ngrok.io:15295 /"+databaseName+"?serverTimezone=UTC";
+		}else { url="jdbc:mysql://localhost:3306 /"+databaseName+"?serverTimezone=UTC";
 		}
 		String login="root"; // dans l'idal un login de connexion pour l'application, et non root...
 		String password=""; // mot de passe avec xampp
