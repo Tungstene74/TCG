@@ -4,7 +4,7 @@ import interface_.Combat;
 
 public class PartieLocale {
 	private Plateau plateau;
-	private int tour;
+	protected int tour;
 	private Boolean estEnCour;
 	
 	public Plateau getPlateau(){
