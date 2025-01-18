@@ -26,7 +26,7 @@ public class Promotion extends Pouvoir{
 			b=true;
 		if (b) {
 			//System.out.println("promotion");
-			new PromotionPiece((Pion)piece,plateau,super.getCombat());
+			new PromotionPiece((Pion)piece,plateau,super.getCombatLocal());
 		}
 		
 	}
