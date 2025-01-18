@@ -147,6 +147,7 @@ public class CreationPartie extends JPanel{
 							if(current.getjoueur2()!=null) {
 							cancel();
 							PlateauDAO PlDAO = new PlateauDAO();
+							PlDAO.open();
 							PlDAO.create(current.getPlateau());
 							fenetre.gameBoard(current.getjoueur2(), true, current);
 							}

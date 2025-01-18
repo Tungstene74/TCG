@@ -85,6 +85,7 @@ public class Partie extends PartieLocale{
 		this.id_partie = id_partie;
 		this.joueur1 = joueur1;
 		this.deck1 = joueur1.mainDeck();
+		super.getPlateau().setId_partie(id_partie);
 		
 	}
 
