@@ -18,5 +18,9 @@ public class Fou extends Piece{
 		this.addMouvement(new MouvFou());
 		this.setImage("/images/fou"+couleur+".png");
 	}
+	
+	public Piece copy() {
+		return (new Fou(this.getCouleur(),this.getIdPiecePartie(),this.getX(),this.getY()));
+	}
 
 }

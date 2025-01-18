@@ -1,8 +1,10 @@
 package classeMetier;
 import java.util.ArrayList;
 
+import pieces.Pion;
 
-public class Piece {
+
+public abstract class Piece {
 	private int idPiecePartie; //id sur le plateaux
 	private int idPiece; //id de la pièce
 	//private ArrayList<int[]> mouvement; //les vecteur mouvement en [(x,y),…]
@@ -145,10 +147,18 @@ public class Piece {
 		return b;
 	}
 	
+	public abstract Piece copy();
+	
+	/*
 	public Piece copy() {
+		switch(idPiece) {
+		case 0: Pion new_pion = new Pion(idPiece,idPiecePartie);
+		}
+		
 		Piece new_piece=new Piece(this.idPiece, this.idPiecePartie, this.nom, this.mouvements, this.pouvoirs, this.image,this.classe,this.couleur, this.x, this.y);
+		
 		return new_piece;
-	}
+	}*/
 
 	/*
 	    public Piece(int idP, ArrayList<int[]> mouvement, String pouvoirs, String Nom, int x, int y, String image){

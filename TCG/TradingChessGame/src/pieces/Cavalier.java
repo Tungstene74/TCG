@@ -19,4 +19,8 @@ public class Cavalier extends Piece{
 		this.addMouvement(new MouvCavalier());
 	}
 
+	public Piece copy() {
+		return (new Cavalier(this.getCouleur(),this.getIdPiecePartie(),this.getX(),this.getY()));
+	}
+	
 }

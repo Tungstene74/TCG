@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import classeMetier.Mouvement;
 import classeMetier.Piece;
 import classeMetier.Plateau;
+import pieces.Roi;
+import pieces.Tour;
 
 public class MouvTour extends Mouvement {
 	
@@ -57,6 +59,11 @@ public class MouvTour extends Mouvement {
 	public void effet(int x, int y, int new_x, int new_y,Plateau plateau) {
 		// TODO Auto-generated method stub
 		//plateau.deplace(piece.getX(), piece.getY(), new_x, new_y);
+		if (plateau.getPiece(x, y).getClasse()=="tour") {
+			Tour tour=(Tour)plateau.getPiece(x, y);
+		tour.setaBouge(true);
+		}
+		
 	}
 	
 }
