@@ -152,7 +152,7 @@ public class Case extends JButton{
 			}
 			
 			if (piece!=null) { // on pensera à ajouter un if avec la couleur 
-				if (piece.getCouleur()== partieLocale.couleurAjouer()) {
+				if (piece.getCouleur()== partieLocale.couleurAjouer() & !piece.getEstMangee()) {
 					combat.resetAteignable(); 
 
 					combat.setPieceAbouger(piece);

@@ -600,6 +600,12 @@ public class CombatLocal extends JPanel {
 			if (partie.couleurAjouer()=="blanc") new Victoire(fenetre,"noir");
 			else new Victoire(fenetre,"blanc");
 		}
+		
+		if(plateau.estEnPat(partie.couleurAjouer())) {
+			Victoire egalite=new Victoire(this.fenetre);
+		}
+		
+		
 	}
 
 	public void resetAteignable() {
