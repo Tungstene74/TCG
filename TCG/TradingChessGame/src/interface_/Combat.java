@@ -55,7 +55,7 @@ public class Combat extends CombatLocal {
 			@Override
 			public void run() {
 				try {
-					partie.setPlateau(null);.updateMoi(partie.getPlateau());
+					plateauDAO.updateMoi(partie.getPlateau());
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
