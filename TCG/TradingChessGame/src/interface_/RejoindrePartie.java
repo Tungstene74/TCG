@@ -106,7 +106,7 @@ public class RejoindrePartie extends JPanel{
 		panel.add(boutonRejoidre, gbc_boutonRejoidre);
 
 		boutonHome = new JButton("retour");
-		boutonHome.addActionListener(new ALHome());
+		boutonHome.addActionListener(new ALHome(fenetre));
 		GridBagConstraints gbc_boutonHome = new GridBagConstraints();
 		gbc_boutonHome.insets = new Insets(0, 10, 10, 10);
 		gbc_boutonHome.fill = GridBagConstraints.HORIZONTAL;
@@ -143,14 +143,5 @@ public class RejoindrePartie extends JPanel{
 			}
 
 		}
-	}
-
-	private class ALHome implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			fenetre.menuPrincipal2();
-		}
-
 	}
 }
