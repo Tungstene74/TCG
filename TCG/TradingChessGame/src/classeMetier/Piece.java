@@ -109,8 +109,19 @@ public class Piece {
 		return str;
 	}
 	
-	public Boolean deplace(int x, int y, Plateau plateau) {
-		return null;
+	public Mouvement getMouvement(int new_x, int new_y, Plateau plateau) {
+		Mouvement mouv=null;
+		for (Mouvement mouvTest : this.getMouvements()) {
+			if (mouvTest.estPossible(this, new_x, new_y, plateau))
+				mouv=mouvTest;
+		}
+		return mouv;
+	}
+	
+	public void appliqueEffet(int new_x,int new_y,Plateau plateau) {
+		Mouvement mouv=this.getMouvement(new_x, new_y, plateau);
+		if (mouv!=null)
+			mouv.effet(x, y, new_x, new_y, plateau);	
 	}
 	
 	public Boolean mangeableOuNull(Plateau plateau, int x, int y) {

@@ -47,7 +47,7 @@ public class TableauPiecePrise extends JPanel {
 		int y = panelPrise.getHeight()/5;
 		GridBagLayout gbl_panelPrise = new GridBagLayout();
 		gbl_panelPrise.columnWidths = new int[] {y,y};
-		gbl_panelPrise.rowHeights = new int[] {y,y,y,y};
+		gbl_panelPrise.rowHeights = new int[] {y,y,y,y,y,y,y,y};
 		panelPrise.setLayout(gbl_panelPrise);
 	}
 	
@@ -62,9 +62,8 @@ public class TableauPiecePrise extends JPanel {
 		gbc_label.gridy = i/2;
 		panelPrise.add(label,gbc_label);
 		
-		int l = label.getHeight();
 		ImageIcon icon = new ImageIcon(TCG.class.getResource(p.lienImage()));
-		icon.setImage(icon.getImage().getScaledInstance(l, l,Image.SCALE_SMOOTH));
+		icon.setImage(icon.getImage().getScaledInstance(20, 20,Image.SCALE_SMOOTH));
 		label.setIcon(icon);
 		
 		i++;

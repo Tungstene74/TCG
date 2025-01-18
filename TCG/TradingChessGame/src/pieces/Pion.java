@@ -13,12 +13,14 @@ public class Pion extends Piece {
 			super(0, "pion", new ArrayList<Mouvement>(), new ArrayList<Pouvoir>(), "","pion",couleur);
 			// on définit les différents déplacements
 			this.addMouvement(new MouvPion());
+			this.addMouvement(new EnPassant());
 			this.addPouvoir(new Promotion());
 		}
 		
 		public Pion(String couleur, int idPiecePartie, int x, int y) {
 			super(0, idPiecePartie, "pion", new ArrayList<Mouvement>(), new ArrayList<Pouvoir>(), "","pion",couleur,x,y);
 			this.addMouvement(new MouvPion());
+			this.addMouvement(new EnPassant());
 			this.addPouvoir(new Promotion());
 		}
 }

@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import classeMetier.*;
+import pieces.Roi;
 
 public class Case extends JButton{
 
@@ -105,6 +106,18 @@ public class Case extends JButton{
 		revalidate();
 		repaint();
 	}
+	
+	public void imageEchec(Roi piece) {
+		removeAll();
+
+		icon = new ImageIcon(TCG.class.getResource("/images/roi"+piece.getCouleur()+"echec.png")); //il faudra généré les images une seule fois!!!
+		icon.setImage(icon.getImage().getScaledInstance(size, size,Image.SCALE_SMOOTH));
+		setIcon(icon);
+
+		revalidate();
+		repaint();
+
+	}
 
 	public GridBagConstraints getGbc() {
 		return gbc;
@@ -130,10 +143,10 @@ public class Case extends JButton{
 			Piece piece = plateau.getPiece(abscisse, ordonnee);
 
 			if (estAteignable) {
-				plateau.deplace(combat.getPieceAbouger(), abscisse, ordonnee);
+				plateau.deplace(combat.getPieceAbouger(), abscisse, ordonnee, combat);
 
 				combat.resetAteignable();
-
+				
 				partie.ajouttour();
 				combat.update();
 			}

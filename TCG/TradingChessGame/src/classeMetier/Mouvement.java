@@ -8,8 +8,10 @@ public abstract class Mouvement {
 	public Boolean estPossible(Piece piece, int new_x, int new_y, Plateau plateau) {
 		Boolean b=false;
 		if (!plateau.getEstTheorique()) {
-			if (!plateau.metEnEchec(piece, new_x, new_x) & estPossibleNormal(piece, new_x, new_y, plateau))
+			if (estPossibleNormal(piece, new_x, new_y, plateau)) {
+				if (!plateau.metEnEchec(piece, new_x, new_y))
 					b=true;
+			}
 		}
 		if (plateau.getEstTheorique()) {
 			if (estPossibleNormal(piece, new_x, new_y, plateau))
@@ -19,5 +21,5 @@ public abstract class Mouvement {
 	}
 	
 	public abstract Boolean estPossibleNormal(Piece piece, int new_x, int new_y, Plateau plateau);
-	public abstract void effet(Piece piece, int new_x, int new_y, Plateau plateau);
+	public abstract void effet(int x, int y, int new_x, int new_y, Plateau plateau); //l'effet du mouvement, en dehors du déplacement en lui même
 }

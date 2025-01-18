@@ -1,8 +1,12 @@
 package classeMetier;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+
+import interface_.Case;
+import interface_.CombatLocal;
 import pieces.*;
 import mouvement.*;
 
@@ -10,7 +14,18 @@ public class Plateau {
 	private ArrayList<Piece> listepieces;
 	private int id_partie;
 	private Boolean estTheorique;
+	private ArrayList<String> historiqueDesCoups;
 	
+	
+
+	public ArrayList<String> getHistoriqueDesCoups() {
+		return historiqueDesCoups;
+	}
+
+	public void setHistoriqueDesCoups(ArrayList<String> historiqueDesCoups) {
+		this.historiqueDesCoups = historiqueDesCoups;
+	}
+
 	public Boolean getEstTheorique() {
 		return estTheorique;
 	}
@@ -37,6 +52,7 @@ public class Plateau {
 
 	public Plateau(int id_partie) {
 		listepieces = new ArrayList<Piece>();
+		historiqueDesCoups=new ArrayList<String>();
 		this.id_partie=id_partie;
 		estTheorique=false;
 	}
@@ -55,6 +71,7 @@ public class Plateau {
 		return matrice;
 	}
 	
+
 	public void add(Piece piece) {
 		listepieces.add(piece);
 	}
@@ -83,7 +100,7 @@ public class Plateau {
 	}
 	
 	public void deplace(Piece piece, int new_x, int new_y) {
-		if (new_x > 7 | new_x<0 | new_y > 7 | new_y<0) { //le plateau va de 0 à 7
+		if (new_x > 7 | new_x < 0 | new_y > 7 | new_y < 0) { //le plateau va de 0 à 7
 			throw new IndexOutOfBoundsException("Dépassement limite plateau");
 		}
 		else {
@@ -99,8 +116,49 @@ public class Plateau {
 					if (piece_mangee!=null) {
 						this.supp(piece_mangee);
 					}
+					this.enregistreCoup(piece, new_x, new_y); //fct incomptète, utile uniquement pour le en passant
+					piece.appliqueEffet(new_x, new_y, this);
 					piece.setX(new_x);
 					piece.setY(new_y);
+				}
+			}
+		}
+	}
+	
+	public void enregistreCoup(Piece piece, int new_x, int new_y) {
+		String str="0:"+piece.getIdPiece()+":"+piece.getX()+piece.getY()+":"+new_x+new_y;
+		// 0=mouvement normal, puis l'id de la piece, sa position initial puis final exemple:
+		// 0:0:31:32 = je bouge le pion en x=3 y=1 vers x=3 y=2
+		this.historiqueDesCoups.add(str);
+		//System.out.println(str);
+	}
+	
+	//pas touche a cette fonction
+	public void deplace(Piece piece, int new_x, int new_y, CombatLocal combat ) {
+		if (new_x > 7 | new_x < 0 | new_y > 7 | new_y < 0) { //le plateau va de 0 à 7
+			throw new IndexOutOfBoundsException("Dépassement limite plateau");
+		}
+		else {
+			if (piece==null) {
+				throw new NullPointerException("La piece n'existe pas");
+			}
+			else {
+				if (!piece.caseAteignable(this, new_x, new_y)) {
+					throw new IllegalStateException("Déplacement interdit: "+"("+piece.getX()+", "+piece.getY()+") -> ("+new_x+", "+new_y+")");
+				}
+				else {
+					Piece piece_mangee = this.getPiece(new_x,new_y);
+					if (piece_mangee!=null) {
+						if (piece_mangee.getCouleur()=="blanc") combat.getPieceJoueur2().ajout(piece_mangee);
+						else combat.getPieceJoueur1().ajout(piece_mangee);
+						this.supp(piece_mangee);
+					}
+					piece.appliqueEffet(new_x, new_y, this);
+					this.enregistreCoup(piece, new_x, new_y); //fct incomptète, utile uniquement pour le en passant
+					
+					piece.setX(new_x);
+					piece.setY(new_y);
+					
 				}
 			}
 		}
@@ -221,7 +279,6 @@ public class Plateau {
 		for (Piece piece:listepieces) {
 			new_plateau.add(piece.copy());
 		}
-		System.out.println("plateau theoriqu:\n"+new_plateau.toString());
 		return new_plateau;
 	}
 	
@@ -233,7 +290,7 @@ public class Plateau {
 			//System.out.println("testechec");
 			if (piecette.caseAteignable(this, roi.getX(), roi.getY())) { //on test si on peut manger le roi
 				b=true;
-				System.out.println("est en echec _________________________");
+				//System.out.println("est en echec _________________________");
 			}
 		}
 		return b;
@@ -245,11 +302,16 @@ public class Plateau {
 		Plateau plateauTheorique = this.copy(); //creer un plateau theorique pour tester si un deplacement va creer un echec
 		plateauTheorique.setEstTheorique(true);
 		Piece pieceTheorique = plateauTheorique.getPiece(piece.getX(), piece.getY()); 
-		if (pieceTheorique.caseAteignable(plateauTheorique, new_x, new_y))
+		if (pieceTheorique.caseAteignable(plateauTheorique, new_x, new_y)) {
 			plateauTheorique.deplace(pieceTheorique, new_x, new_y);
+			//System.out.println("déplacement effectué");
+		}
+			
+		
 		if (plateauTheorique.estEnEchec(couleurRoi)) { //si on peut manger le roi (il y a echec)
 			b=true; //alors oui on a mis le roi en echec
 		}
+		//System.out.println("plateau theorique:\n"+plateauTheorique.toString());
 		return b;
 	}
 	
@@ -271,11 +333,12 @@ public class Plateau {
 			}
 		}
 		if (sorties==0) {
+			
 			b=true;
 		}
 		return b;
 	}
-	
+
 	public Boolean estEnEchecEtMat(String couleur) { //on teste si pour n'importe quel coup de la couleur actuel, on restera en echec
 		Boolean b=false;
 		int sorties=0; //nombres de coups possible pour se sortir d'un echec
@@ -283,22 +346,38 @@ public class Plateau {
 			for (Piece piece:this.listepieces) { //on teste pour toutes les pieces
 				for (int new_x=0;new_x>=7;new_x++) { //un déplacement sur de nouvelles coordonnées
 					for (int new_y=0;new_y>=7;new_y++) {
-						if (piece.getCouleur()==couleur & piece.caseAteignable(this, new_x, new_y)) {
+						if (/*piece.getCouleur()==couleur & <-faux */piece.caseAteignable(this, new_x, new_y)) {
 							// si la piece déplacée est bien de la couleur de notre roi, qu'on veut protéger, et que le mouvement est possible
-							if (!this.metEnEchec(piece, new_x, new_y)) { //si ce déplacement ne met pas en echec le roi
+							if (/*!this.metEnEchec(piece, new_x, new_y)*/ true) { //si ce déplacement ne met pas en echec le roi <- déjà dans caseAteignable
 								sorties+=1; 
 							}
 						}
 					}
 				}
 			}
-		}
-		if (sorties==0) {
-			b=true;
+			
+			if (sorties==0) {
+				b=true;
+				for (ArrayList<Case> array : Case.getCombat().getArrayButton()) {
+					for(Case c : array) {
+						try {
+							if (c.getPiece() instanceof Roi && c.getPiece().getCouleur()==couleur) {
+								c.imageEchec((Roi)c.getPiece());
+								c.setBackground(new Color(133,6,6));
+							}
+						}
+						catch(NullPointerException e) {
+							System.out.println("null");
+						}
+					}
+				}
+				System.out.println("echec et mat");
+			}
+
 		}
 		return b;
 	}
-	
+
 	//a modifier
 	public void generePlateau(Deck deckblanc, Deck decknoir) {
 		int i=0;
