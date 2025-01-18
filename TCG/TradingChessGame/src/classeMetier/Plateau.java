@@ -15,7 +15,7 @@ public class Plateau {
 	private int id_partie;
 	private Boolean estTheorique;
 	private ArrayList<String> historiqueDesCoups;
-	
+	private ArrayList<ArrayList<String>> historiqueEchequier;
 	
 
 	public ArrayList<String> getHistoriqueDesCoups() {
@@ -53,6 +53,7 @@ public class Plateau {
 	public Plateau(int id_partie) {
 		listepieces = new ArrayList<Piece>();
 		historiqueDesCoups=new ArrayList<String>();
+		this.historiqueEchequier=new ArrayList<ArrayList<String>>();
 		this.id_partie=id_partie;
 		estTheorique=false;
 	}
@@ -133,6 +134,21 @@ public class Plateau {
 		//System.out.println(str);
 	}
 	
+	/*
+	public void enregistreEchequier() {
+		ArrayList<String> hist = new ArrayList<String>();
+		for (Piece piece:this.listepieces) {
+			String str=piece.getIdPiecePartie()+"("+piece.getX()+","+piece.getY()+")";
+			for(String str0:hist) {
+				if (Integer.parseInt(str0.subSequence(0, 1))<=str.subSequence(0, 1))
+					hist.add(str);
+			}
+			
+		}
+		hist.sort(null);
+		this.historiqueEchequier.add(hist);
+	}*/
+	
 	//pas touche a cette fonction
 	public void deplace(Piece piece, int new_x, int new_y, CombatLocal combat ) {
 		if (new_x > 7 | new_x < 0 | new_y > 7 | new_y < 0) { //le plateau va de 0 à 7
@@ -152,6 +168,7 @@ public class Plateau {
 						if (piece_mangee.getCouleur()=="blanc") combat.getPieceJoueur2().ajout(piece_mangee);
 						else combat.getPieceJoueur1().ajout(piece_mangee);
 						this.supp(piece_mangee);
+						piece_mangee.setEstMangee(true);
 					}
 					piece.appliqueEffet(new_x, new_y, this);
 					this.enregistreCoup(piece, new_x, new_y); //fct incomptète, utile uniquement pour le en passant
@@ -181,6 +198,7 @@ public class Plateau {
 					Piece piece_mangee = this.getPiece(new_x,new_y); 
 					if (piece_mangee!=null) {
 						this.supp(piece_mangee);
+						piece_mangee.setEstMangee(true);
 					}
 					piece.setX(new_x);
 					piece.setY(new_y);
@@ -282,6 +300,12 @@ public class Plateau {
 		return new_plateau;
 	}
 	
+	
+	public Boolean verifTripleReptition() {
+		Boolean b=false;
+		return b;
+	}
+	
 	public Boolean estEnEchec(String couleur) { //permet de voir si le déplacement d'une piece cree un echec
 		Boolean b=false;
 		Piece roi=this.getRoi(couleur);
@@ -315,7 +339,7 @@ public class Plateau {
 		return b;
 	}
 	
-	public Boolean estEnMat(String couleur) {
+	public Boolean estEnPat(String couleur) {
 		Boolean b=false;
 		int sorties=0; //nombres de coups possible pour se sortir d'un echec
 		if (!estEnEchec(couleur)) { //si la couleur n'est pas en echec
@@ -324,17 +348,17 @@ public class Plateau {
 					for (int new_y=0;new_y<=7;new_y++) {
 						if (piece.getCouleur()==couleur & piece.caseAteignable(this, new_x, new_y)) {
 							// si la piece déplacée est bien de la couleur de notre roi, qu'on veut protéger, et que le mouvement est possible
-							if (!this.metEnEchec(piece, new_x, new_y)) { //si ce déplacement ne met pas en echec le roi
-								sorties+=1; 
+							if (/* !this.metEnEchec(piece, new_x, new_y) */ true) { 
+								sorties+=1; // le nombres de coups possibles
 							}
 						}
 					}
 				}
 			}
-		}
-		if (sorties==0) {
-			b=true;
-			System.out.println("mat");
+			if (sorties==0) {
+				b=true;
+				System.out.println("pat");
+			}
 		}
 		return b;
 	}

@@ -153,6 +153,7 @@ public class Case extends JButton{
 			}
 			
 			if (piece!=null) { // on pensera à ajouter un if avec la couleur 
+<<<<<<< HEAD
 				if (piece.getCouleur()== partie.couleurAjouer()) {
 					combat.resetAteignable(); 
 
@@ -202,6 +203,9 @@ public class Case extends JButton{
 			
 			if (piece!=null) { // on pensera à ajouter un if avec la couleur 
 				if (piece.getCouleur()== partie.couleurAjouer()) {
+=======
+				if (piece.getCouleur()== partieLocale.couleurAjouer() & !piece.getEstMangee()) {
+>>>>>>> branch 'main' of https://github.com/Tungstene74/TCG.git
 					combat.resetAteignable(); 
 
 					combat.setPieceAbouger(piece);

@@ -18,6 +18,7 @@ public abstract class Piece {
 	private String couleur;
 	private String descriptionMvt;//Description du mouvement de la pièce
 	private String classe;
+	private Boolean estMangee;
 	
 	public String lienImage() {
 		String str="/images/"+this.nom+this.couleur+".png";
@@ -34,6 +35,7 @@ public abstract class Piece {
 		this.y=-1;
 		this.couleur=null;
 		this.image=lienImage();
+		this.estMangee=false;
 		Nbp+=1;
 	}
 
@@ -48,6 +50,7 @@ public abstract class Piece {
 		this.y=-1;
 		this.couleur=couleur;
 		this.image=lienImage();
+		this.estMangee=false;
 		Nbp+=1;
 	}
 
@@ -63,6 +66,7 @@ public abstract class Piece {
 		this.y=y;
 		this.couleur=couleur;
 		this.image=lienImage();
+		this.estMangee=false;
 		Nbp+=1;
 	}
 	
@@ -269,6 +273,16 @@ public abstract class Piece {
 	public void addPouvoir(Pouvoir pouvoir) {
 		this.pouvoirs.add(pouvoir);
 	}
+
+	public Boolean getEstMangee() {
+		return estMangee;
+	}
+
+	public void setEstMangee(Boolean estMangee) {
+		this.estMangee = estMangee;
+	}
+	
+	
 	
 	/*
 
