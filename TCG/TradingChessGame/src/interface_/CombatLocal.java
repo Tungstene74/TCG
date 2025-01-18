@@ -18,7 +18,7 @@ import pieces.Roi;
 
 public class CombatLocal extends JPanel {
 
-	private Case 
+	protected Case 
 	case00,case01,case02,case03,case04,case05,case06,case07,
 	case10,case11,case12,case13,case14,case15,case16,case17,
 	case20,case21,case22,case23,case24,case25,case26,case27,
@@ -28,28 +28,28 @@ public class CombatLocal extends JPanel {
 	case60,case61,case62,case63,case64,case65,case66,case67,
 	case70,case71,case72,case73,case74,case75,case76,case77;
 
-	private GridBagLayout gbl;
-	private GridBagConstraints gbc;
+	protected GridBagLayout gbl;
+	protected GridBagConstraints gbc;
 	
-	private JButton concederNoir, concederBlanc, voteEgaliteNoir, voteEgaliteBlanc;
+	protected JButton concederNoir, concederBlanc, voteEgaliteNoir, voteEgaliteBlanc;
 	
-	private JLabel pseudoAdversaire, pseudoJoueur;
+	protected JLabel pseudoAdversaire, pseudoJoueur;
 	
-	private JPanel panelAdversaire, panelJoueur, plateau, echiquier;
+	protected JPanel panelAdversaire, panelJoueur, plateau, echiquier;
 	
-	private TableauPiecePrise pieceJoueur1, pieceJoueur2;
+	protected TableauPiecePrise pieceJoueur1, pieceJoueur2;
 	
-	private JLabel tour;
+	protected JLabel tour;
 	
-	private ArrayList<ArrayList<Case>>  arrayButton;
+	protected ArrayList<ArrayList<Case>>  arrayButton;
 	
-	private PartieLocale partie;
+	protected PartieLocale partie;
 	
-	private TCG fenetre;
+	protected TCG fenetre;
 	
-	private Piece pieceAbouger;
+	protected Piece pieceAbouger;
 	
-	private boolean voteBlanc, voteNoir;
+	protected boolean voteBlanc, voteNoir;
 	
 	public CombatLocal(TCG fenetre, PartieLocale partie) {
 		this.fenetre = fenetre;
@@ -517,7 +517,7 @@ public class CombatLocal extends JPanel {
 	}
 	
 	
-	private void placementInitial(Case tile) {
+	protected void placementInitial(Case tile) {
 		for (Piece p : partie.getPlateau().getListepieces()) {
 			if (p.getX()==tile.getAbscisse()&&p.getY()==tile.getOrdonnee()) {
 				tile.setPiece(p);
@@ -615,32 +615,13 @@ public class CombatLocal extends JPanel {
 		for (int i=0;i<=7;i++) {
 			ArrayList<Case> arrayCase = arrayButton.get(i);
 			for (int j=0;j<=7;j++) {
-				Case c = new Case(j,i);
-				arrayCase.set(j, c);
-				placementInitial(c);
-				panel.add(c,c.getGbc());
-				//System.out.println(c);
+					Case c = new Case(j,i);
+					arrayCase.set(j, c);
+					placementInitial(c);
+					panel.add(c,c.getGbc());
 			}
 		}
 	}
-		/*
-		int i = 0;
-		for (ArrayList<Case> a : arrayButton) {
-			int j = 0;
-			for (Case c: a) {
-				c = new Case(j,i);
-				placementInitial(c);
-				panel.add(c,c.getGbc());
-				j++;
-				a.set(j, c);
-				System.out.println(c);
-				
-			}
-			i++;
-			System.out.println(a);
-		}
-		System.out.println(arrayButton);
-	}*/
 	
 	public GridBagConstraints getGbc() {
 		return gbc;

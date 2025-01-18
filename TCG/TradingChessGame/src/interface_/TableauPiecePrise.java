@@ -13,7 +13,7 @@ import pieces.*;
 
 public class TableauPiecePrise extends JPanel {
 	
-	private int score,i;
+	private int score,i,y;
 	
 	private JLabel labelScore;
 	
@@ -44,7 +44,7 @@ public class TableauPiecePrise extends JPanel {
 		gbc_panelPrise.gridx = 0;
 		gbc_panelPrise.gridy = 1;
 		add(panelPrise,gbc_panelPrise);
-		int y = panelPrise.getHeight()/5;
+		y = panelPrise.getHeight()/8;
 		GridBagLayout gbl_panelPrise = new GridBagLayout();
 		gbl_panelPrise.columnWidths = new int[] {y,y};
 		gbl_panelPrise.rowHeights = new int[] {y,y,y,y,y,y,y,y};
@@ -57,7 +57,7 @@ public class TableauPiecePrise extends JPanel {
 		JLabel label = new JLabel();
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.fill = GridBagConstraints.BOTH;
-		gbc_label.insets = new Insets(5,5,5,5);
+		gbc_label.insets = new Insets(10,10,10,10);
 		gbc_label.gridx = i%2;
 		gbc_label.gridy = i/2;
 		panelPrise.add(label,gbc_label);
