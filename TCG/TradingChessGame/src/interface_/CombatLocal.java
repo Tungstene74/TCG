@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import classeMetier.*;
+import pieces.Roi;
 
 public class CombatLocal extends JPanel {
 
@@ -583,6 +584,19 @@ public class CombatLocal extends JPanel {
 		
 		//comme on a déjà ajouté un tour avant l'update, on regarde la mise en echec de la couleur du tour actuel
 		if(plateau.estEnEchecEtMat(partie.couleurAjouer())) {
+			for (ArrayList<Case> array : this.getArrayButton()) {
+				for(Case c : array) {
+					try {
+						if (c.getPiece() instanceof Roi && c.getPiece().getCouleur()==partie.couleurAjouer()) {
+							c.imageEchec((Roi)c.getPiece());
+							c.setBackground(new Color(133,6,6));
+						}
+					}
+					catch(NullPointerException e) {
+						System.out.println("null");
+					}
+				}
+			}
 			if (partie.couleurAjouer()=="blanc") new Victoire(fenetre,"noir");
 			else new Victoire(fenetre,"blanc");
 		}

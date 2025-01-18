@@ -358,19 +358,6 @@ public class Plateau {
 			
 			if (sorties==0) {
 				b=true;
-				for (ArrayList<Case> array : Case.getCombat().getArrayButton()) {
-					for(Case c : array) {
-						try {
-							if (c.getPiece() instanceof Roi && c.getPiece().getCouleur()==couleur) {
-								c.imageEchec((Roi)c.getPiece());
-								c.setBackground(new Color(133,6,6));
-							}
-						}
-						catch(NullPointerException e) {
-							System.out.println("null");
-						}
-					}
-				}
 				System.out.println("echec et mat");
 			}
 
