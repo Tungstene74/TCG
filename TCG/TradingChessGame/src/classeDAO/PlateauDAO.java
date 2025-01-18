@@ -109,7 +109,7 @@ public class PlateauDAO extends DAO<Plateau>{
 				//listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));			
 			}
 		
-		obj.setListepieces(listepieces);
+		//obj.setListepieces(listepieces);
 	}
 
 	@Override
