@@ -23,4 +23,8 @@ public class Pion extends Piece {
 			this.addMouvement(new EnPassant());
 			this.addPouvoir(new Promotion());
 		}
+		
+		public Piece copy() {
+			return (new Pion(this.getCouleur(),this.getIdPiecePartie(),this.getX(),this.getY()));
+		}
 }

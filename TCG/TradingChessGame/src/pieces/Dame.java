@@ -21,4 +21,8 @@ public class Dame extends Piece{
 			this.addMouvement(new MouvFou());
 			this.addMouvement(new MouvTour());
 		}
+		
+		public Piece copy() {
+			return (new Dame(this.getCouleur(),this.getIdPiecePartie(),this.getX(),this.getY()));
+		}
 }

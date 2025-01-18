@@ -3,9 +3,10 @@ package mouvement;
 import classeMetier.Mouvement;
 import classeMetier.Piece;
 import classeMetier.Plateau;
+import pieces.Roi;
 
 public class MouvRoi extends Mouvement{
-	Boolean roque;
+	//Boolean roque;
 	
 	@Override
 	public Boolean estPossibleNormal(Piece piece, int new_x, int new_y, Plateau plateau) {
@@ -28,6 +29,9 @@ public class MouvRoi extends Mouvement{
 	public void effet(int x, int y, int new_x, int new_y,Plateau plateau) {
 		// TODO Auto-generated method stub
 		//plateau.deplace(piece.getX(), piece.getY(), new_x, new_y);
+		//System.out.println(plateau.getPiece(x, y).toString());
+		Roi roi=(Roi)plateau.getPiece(x, y);
+		roi.setaBouge(true);
 	}
 
 }
