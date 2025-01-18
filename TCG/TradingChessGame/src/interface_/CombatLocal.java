@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -583,7 +582,10 @@ public class CombatLocal extends JPanel {
 			System.out.println(plateau.getHistoriqueDesCoups().getLast());
 		
 		//comme on a déjà ajouté un tour avant l'update, on regarde la mise en echec de la couleur du tour actuel
-		plateau.estEnEchecEtMat(partie.couleurAjouer()); 
+		if(plateau.estEnEchecEtMat(partie.couleurAjouer())) {
+			if (partie.couleurAjouer()=="blanc") new Victoire(fenetre,"noir");
+			else new Victoire(fenetre,"blanc");
+		}
 	}
 
 	public void resetAteignable() {
