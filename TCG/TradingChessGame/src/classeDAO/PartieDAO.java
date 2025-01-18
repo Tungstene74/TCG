@@ -124,6 +124,24 @@ public class PartieDAO extends DAO<Partie>{
 
 		return obj;
 	}
+	
+	public Partie tours(Partie obj) throws SQLException {
+		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?";
+		PreparedStatement st = connect.prepareStatement(sqlQuery);
+		st.setString(1,Integer.toString(obj.getId_partie()));
+		rs = st.executeQuery();
+
+		int tour_joueur  = 0;
+		// Affichage du resultat
+		while(rs.next()) {
+			
+			tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
+		}
+		obj.setTour(tour_joueur);
+
+		return obj;
+	}
+	
 
 	@Override
 	public void delete(Partie obj)throws SQLException  { //suprime la partie de la base de donné 
