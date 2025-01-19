@@ -55,12 +55,8 @@ public class Combat extends CombatLocal {
 	@Override
 	public void update() {
 		super.update();
-<<<<<<< HEAD
 		
-		Plateau plateau =partie.getPlateau();
-=======
 		Plateau plateau = partie.getPlateau();
->>>>>>> branch 'main' of https://github.com/Tungstene74/TCG.git
 		if(this instanceof Combat) {
 			PlateauDAO PlDAO = new PlateauDAO();
 			try {
