@@ -79,25 +79,6 @@ public class Partie extends PartieLocale{
 		return b;
 	}
 	
-	
-	
-
-	@Override
-	public void ajouttour() {
-		super.ajouttour();
-		if(this instanceof Partie) {
-			PartieDAO PDAO = new PartieDAO();
-			try {
-				PDAO.open();
-				PDAO.tours_plus(this);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-
-		}
-	}
 
 	public Partie(Joueur joueur1, int id_partie) {
 		super();

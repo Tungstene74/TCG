@@ -55,6 +55,7 @@ public class Combat extends CombatLocal {
 	@Override
 	public void update() {
 		super.update();
+		
 		Plateau plateau =partie.getPlateau();
 		if(this instanceof Combat) {
 			PlateauDAO PlDAO = new PlateauDAO();
@@ -68,6 +69,7 @@ public class Combat extends CombatLocal {
 			
 
 		}
+		
 	}
 
 
@@ -94,12 +96,11 @@ public class Combat extends CombatLocal {
 		public void run() {
 			try {
 				partieDAO.tours((Partie)partie);
-				//partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
+				partie.setPlateau(plateauDAO.update(partie.getPlateau()));
 				if (partie.getTour()%2==0) {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
 					if(jCreator==false) {
 						combat.enable(false);
-						partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
 					}
 					else combat.enable(true);
 				}
@@ -107,7 +108,6 @@ public class Combat extends CombatLocal {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");
 					if(jCreator==true) {
 						combat.enable(false);
-						partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
 					}
 					else combat.enable(true);
 				}
