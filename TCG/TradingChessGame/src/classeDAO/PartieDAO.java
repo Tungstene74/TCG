@@ -142,6 +142,31 @@ public class PartieDAO extends DAO<Partie>{
 		return obj;
 	}
 	
+	public Partie tours_plus(Partie obj) throws SQLException {
+		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?";
+		PreparedStatement st = connect.prepareStatement(sqlQuery);
+		st.setString(1,Integer.toString(obj.getId_partie()));
+		rs = st.executeQuery();
+
+		int tour_joueur  = 0;
+		// Affichage du resultat
+		while(rs.next()) {
+			
+			tour_joueur  = Integer.parseInt(rs.getString("tour_joueur"));
+		}
+		
+		sqlQuery = "UPDATE `partie` "
+				+ "SET `tour_joueur`=?,"
+				+ "WHERE `id_partie`=?";
+		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+		st3.setString(1,Integer.toString(tour_joueur+1));
+		st3.setString(2,Integer.toString(obj.getId_partie()));
+		st3.executeUpdate();
+		rs = st3.getGeneratedKeys();
+		
+		return obj;
+	}
+	
 
 	@Override
 	public void delete(Partie obj)throws SQLException  { //suprime la partie de la base de donné 
