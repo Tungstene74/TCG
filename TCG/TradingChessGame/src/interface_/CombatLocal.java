@@ -653,7 +653,8 @@ public class CombatLocal extends JPanel {
 			Victoire egalite=new Victoire(this.fenetre);
 		}
 		
-<<<<<<< Upstream, based on origin/main
+//<<<<<<< Upstream, based on origin/main
+
 		if(this instanceof Combat) {
 			PlateauDAO PlDAO = new PlateauDAO();
 			try {
@@ -662,27 +663,29 @@ public class CombatLocal extends JPanel {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-=======
-		if(plateau.estEnEchec(partie.couleurAjouer())) {
-			for (ArrayList<Case> array : this.getArrayButton()) {
-				for(Case c : array) {
-					if (c.getPiece()!=null) {
-						if (c.getPiece().getClasse()=="roi" && c.getPiece().getCouleur()==partie.couleurAjouer()) {
-							//c.imageEchec((Roi)c.getPiece());
-							System.out.println("est en echec "+c.getAbscisse()+","+c.getOrdonnee());
-							c.setBackground(new Color(133,6,6));
-						}
-					}
-
-				}
->>>>>>> 595f984 brak
 			}
 		}
-	}
+			//=======
+			if(plateau.estEnEchec(partie.couleurAjouer())) {
+				for (ArrayList<Case> array : this.getArrayButton()) {
+					for(Case c : array) {
+						if (c.getPiece()!=null) {
+							if (c.getPiece().getClasse()=="roi" && c.getPiece().getCouleur()==partie.couleurAjouer()) {
+								//c.imageEchec((Roi)c.getPiece());
+								System.out.println("est en echec "+c.getAbscisse()+","+c.getOrdonnee());
+								c.setBackground(new Color(133,6,6));
+							}
+						}
 
-	public void resetAteignable() {
-		for (ArrayList<Case> a:arrayButton) {
-			for (Case c: a) {
+					}
+					//>>>>>>> 595f984 brak
+				}
+			}
+		}
+
+		public void resetAteignable() {
+			for (ArrayList<Case> a:arrayButton) {
+				for (Case c: a) {
 				c.normalColor();
 				c.setEstAteignable(false);
 			}
