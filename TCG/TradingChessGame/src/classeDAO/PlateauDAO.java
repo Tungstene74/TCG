@@ -19,9 +19,6 @@ public class PlateauDAO extends DAO<Plateau>{
 				String sqlQuery = "INSERT INTO `variable_partie`(`id_piece`, `id_partie`, `id_piece_partie`, `Couleur`, `x`, `y`, `pouvoir_utilise`) "
 						+ "VALUES (?,?,?,?,?,?,?)";
 				PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-				System.out.println(piece.getIdPiece());
-				System.out.println(obj.getId_partie());
-				System.out.println(i);
 				st3.setString(1,Integer.toString(piece.getIdPiece()));
 				st3.setString(2,Integer.toString(obj.getId_partie()));
 				st3.setString(3,Integer.toString(i));
