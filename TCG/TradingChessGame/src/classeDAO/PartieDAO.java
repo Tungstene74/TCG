@@ -126,6 +126,7 @@ public class PartieDAO extends DAO<Partie>{
 	}
 	
 	public Partie tours(Partie obj) throws SQLException {
+		System.out.println("tours");
 		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?";
 		PreparedStatement st = connect.prepareStatement(sqlQuery);
 		st.setString(1,Integer.toString(obj.getId_partie()));
@@ -143,6 +144,7 @@ public class PartieDAO extends DAO<Partie>{
 	}
 	
 	public Partie tours_plus(Partie obj) throws SQLException {
+		System.out.println("tours_plus");
 		String sqlQuery = "SELECT * FROM `partie` WHERE id_partie=?";
 		PreparedStatement st = connect.prepareStatement(sqlQuery);
 		st.setString(1,Integer.toString(obj.getId_partie()));
