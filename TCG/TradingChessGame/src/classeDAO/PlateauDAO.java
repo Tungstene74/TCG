@@ -70,16 +70,16 @@ public class PlateauDAO extends DAO<Plateau>{
 					rs = st3.getGeneratedKeys();
 				
 			}else if (apparait == 1) {
-					sqlQuery = "UPDATE `variable_partie` SET `id_piece`=?,`id_partie`=?,`Couleur`=?,`x`=?,`y`=?,`pouvoir_utilise`=? "
-							+ "WHERE `id_piece_partie`=?";
+					sqlQuery = "UPDATE `variable_partie` SET `Couleur`=?,`x`=?,`y`=?,`pouvoir_utilise`=? "
+							+ "WHERE `id_piece_partie`=? AND `id_piece`=? AND `id_partie`=?";
 					PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-					st3.setString(1,Integer.toString(piece.getIdPiece()));
-					st3.setString(2,Integer.toString(obj.getId_partie()));
-					st3.setString(3,piece.getCouleur());
-					st3.setString(4,Integer.toString(piece.getX()));
-					st3.setString(5,Integer.toString(piece.getY()));
-					st3.setString(6,Integer.toString(0));
-					st3.setString(7,Integer.toString(piece.getIdPiecePartie()));
+					st3.setString(1,piece.getCouleur());
+					st3.setString(2,Integer.toString(piece.getX()));
+					st3.setString(3,Integer.toString(piece.getY()));
+					st3.setString(4,Integer.toString(0));
+					st3.setString(5,Integer.toString(piece.getIdPiecePartie()));
+					st3.setString(6,Integer.toString(piece.getIdPiece()));
+					st3.setString(7,Integer.toString(obj.getId_partie()));
 					st3.executeUpdate();
 					rs = st3.getGeneratedKeys();
 				
@@ -88,7 +88,7 @@ public class PlateauDAO extends DAO<Plateau>{
 		return obj;
 	}
 	
-	public void updateMoi(Plateau obj) throws SQLException {
+	public Plateau updateMoi(Plateau obj) throws SQLException {
 		ArrayList<Piece> listepieces = new ArrayList<Piece>();
 			String sqlQuery = "SELECT * FROM `variable_partie` "
 					+ "WHERE id_partie=? "
@@ -118,6 +118,7 @@ public class PlateauDAO extends DAO<Plateau>{
 			}
 		
 		//obj.setListepieces(listepieces);
+			return obj;
 	}
 
 	@Override

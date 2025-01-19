@@ -73,7 +73,7 @@ public class Combat extends CombatLocal {
 		public void run() {
 			try {
 				partieDAO.tours((Partie)partie);
-				partie.setPlateau(plateauDAO.update(partie.getPlateau()));
+				partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
 				if (partie.getTour()%2==0) {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
 					if(jCreator==false)combat.enable(false);
