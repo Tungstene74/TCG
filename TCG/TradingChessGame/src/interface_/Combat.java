@@ -113,6 +113,7 @@ public class Combat extends CombatLocal {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		partie.getPlateau().redraw(combat);
 		}
 		
 	}
