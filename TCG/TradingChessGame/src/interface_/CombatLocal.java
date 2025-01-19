@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import classeDAO.PlateauDAO;
 import classeMetier.*;
 import pieces.Roi;
 
@@ -607,6 +609,21 @@ public class CombatLocal extends JPanel {
 		if (plateau.getHistoriqueDesCoups().size()!=0)
 			System.out.println(plateau.getHistoriqueDesCoups().getLast());
 		
+		/*if(plateau.estEnEchec(partie.couleurAjouer())) {
+			for (ArrayList<Case> array : this.getArrayButton()) {
+				for(Case c : array) {
+					try {
+						if (c.getPiece() instanceof Roi && c.getPiece().getCouleur()==partie.couleurAjouer()) {
+							c.setBackground(new Color(133,6,6));
+						}
+					}
+					catch(NullPointerException e) {
+						System.out.println("null");
+					}
+				}
+			}
+		}*/
+		
 		//comme on a déjà ajouté un tour avant l'update, on regarde la mise en echec de la couleur du tour actuel
 		if(plateau.estEnEchecEtMat(partie.couleurAjouer())) {
 			for (ArrayList<Case> array : this.getArrayButton()) {
@@ -630,7 +647,16 @@ public class CombatLocal extends JPanel {
 			Victoire egalite=new Victoire(this.fenetre);
 		}
 		
-		
+		if(this instanceof Combat) {
+			PlateauDAO PlDAO = new PlateauDAO();
+			try {
+				PlDAO.open();
+				PlDAO.update(plateau);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void resetAteignable() {

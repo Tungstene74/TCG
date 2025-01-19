@@ -51,7 +51,7 @@ public class Combat extends CombatLocal {
 	}
 	
 	
-	
+	/*
 	@Override
 	public void update() {
 		super.update();
@@ -69,7 +69,7 @@ public class Combat extends CombatLocal {
 		}
 		
 	}
-
+	*/
 
 
 	private class TimerTaskUpdate extends TimerTask{
