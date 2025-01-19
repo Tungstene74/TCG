@@ -47,7 +47,7 @@ public class Combat extends CombatLocal {
 	
 	public void boucleUpdate() {
 		Timer timer = new Timer();
-		timer.schedule(new TimerTaskUpdate(this),5000,5000);
+		timer.schedule(new TimerTaskUpdate(this),5000,2500);
 	}
 	
 	
@@ -55,7 +55,7 @@ public class Combat extends CombatLocal {
 	@Override
 	public void update() {
 		super.update();
-		Plateau plateau =partie.getPlateau();
+		Plateau plateau = partie.getPlateau();
 		if(this instanceof Combat) {
 			PlateauDAO PlDAO = new PlateauDAO();
 			try {
@@ -65,8 +65,6 @@ public class Combat extends CombatLocal {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-
 		}
 	}
 
