@@ -96,7 +96,7 @@ public class PlateauDAO extends DAO<Plateau>{
 			PreparedStatement st = connect.prepareStatement(sqlQuery);
 			st.setString(1,Integer.toString(obj.getId_partie()));
 			rs = st.executeQuery();
-		
+			
 		// Affichage du resultat
 			while(rs.next()) {
 				int id_piece_partie = Integer.parseInt(rs.getString("id_piece_partie"));
