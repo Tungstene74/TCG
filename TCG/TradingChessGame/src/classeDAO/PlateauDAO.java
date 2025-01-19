@@ -110,9 +110,9 @@ public class PlateauDAO extends DAO<Plateau>{
 				System.out.println(id_piece_partie);
 				System.out.println(new_x);
 				System.out.println(new_y);
-
+				
 				if (x!=new_x | y!=new_y) {
-					obj.deplace(piece, new_x, new_y);
+					//obj.deplace(piece, new_x, new_y);
 				}
 				//listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));			
 			}

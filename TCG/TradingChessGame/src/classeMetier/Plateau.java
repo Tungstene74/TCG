@@ -177,8 +177,8 @@ public class Plateau {
 					//piece.appliqueEffet(new_x, new_y, this);
 					//this.enregistreCoup(piece, new_x, new_y); //fct incomptète, utile uniquement pour le en passant
 					
-					//piece.setX(new_x);
-					//piece.setY(new_y);
+					piece.setX(new_x);
+					piece.setY(new_y);
 					
 					if (combat instanceof Combat) {
 						PlateauDAO plateauDAO = new PlateauDAO();
