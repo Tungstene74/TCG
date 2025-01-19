@@ -37,6 +37,7 @@ public class PlateauDAO extends DAO<Plateau>{
 
 	@Override
 	public Plateau update(Plateau obj) throws SQLException {
+		System.out.println("update--");
 		for (int i = 0; i < obj.getListepieces().size(); i++) {
 				Piece piece = obj.getListepieces().get(i);
 				String sqlQuery = "SELECT * FROM `variable_partie` WHERE id_partie= ? AND id_piece_partie=? AND id_piece=?;";
@@ -89,6 +90,7 @@ public class PlateauDAO extends DAO<Plateau>{
 	}
 	
 	public Plateau updateMoi(Plateau obj) throws SQLException {
+		System.out.println("updateMoi");
 		ArrayList<Piece> listepieces = new ArrayList<Piece>();
 			String sqlQuery = "SELECT * FROM `variable_partie` "
 					+ "WHERE id_partie=? "
@@ -107,9 +109,6 @@ public class PlateauDAO extends DAO<Plateau>{
 				//String Couleur  = rs.getString("Couleur");
 				int new_x  = Integer.parseInt(rs.getString("x"));
 				int new_y  = Integer.parseInt(rs.getString("y"));
-				System.out.println(id_piece_partie);
-				System.out.println(new_x);
-				System.out.println(new_y);
 				
 				if (x!=new_x | y!=new_y) {
 					//obj.deplace(piece, new_x, new_y);
