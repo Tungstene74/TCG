@@ -100,6 +100,7 @@ public class PlateauDAO extends DAO<Plateau>{
 			while(rs.next()) {
 				int id_piece_partie = Integer.parseInt(rs.getString("id_piece_partie"));
 				Piece piece=obj.getPieceIdPiecePartie(id_piece_partie);
+				if (piece != null) {
 				int x=piece.getX();
 				int y=piece.getY();
 				//int id_piece  = Integer.parseInt(rs.getString("id_piece"));
@@ -109,7 +110,8 @@ public class PlateauDAO extends DAO<Plateau>{
 				int yN=Integer.parseInt(rs.getString("y"));
 				int xN=Integer.parseInt(rs.getString("x"));
 				System.out.println(id_piece_partie+"("+x+","+y+")"+","+"("+xN+","+yN+")");
-				//listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));			
+				//listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));		
+				}
 			}
 		
 		//obj.setListepieces(listepieces);
