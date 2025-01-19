@@ -645,8 +645,12 @@ public class CombatLocal extends JPanel {
 					}
 				}
 			}
-			if (partie.couleurAjouer()=="blanc") new Victoire(fenetre,"noir");
-			else new Victoire(fenetre,"blanc");
+			if (partie.couleurAjouer()=="blanc") {
+				if (!(this instanceof Combat)) new Victoire(fenetre,"noir");
+			}
+			else{
+				if (!(this instanceof Combat)) new Victoire(fenetre,"blanc");
+			}
 		}
 		
 		if(plateau.estEnPat(partie.couleurAjouer())) {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import classeDAO.JoueurDAO;
 import classeDAO.PartieDAO;
 import classeDAO.PlateauDAO;
 import classeMetier.Joueur;
@@ -30,6 +31,11 @@ public class Combat extends CombatLocal {
 		else pseudoJoueur.setText(opponent.getIdentifiant());
 		
 		this.opponent = opponent;
+		
+		concederNoir.setEnabled(jCreator); 
+		concederBlanc.setEnabled(!jCreator); 
+		voteEgaliteNoir.setEnabled(!jCreator); 
+		voteEgaliteBlanc.setEnabled(jCreator);
 		
 		enable(jCreator);
 		
@@ -93,6 +99,7 @@ public class Combat extends CombatLocal {
 		@Override
 		public void run() {
 			try {
+				
 				partie.getPlateau().redraw(combat);
 				if (partie.getTour()%2==0) {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
@@ -113,11 +120,29 @@ public class Combat extends CombatLocal {
 					else combat.enable(true);
 				}
 				partieDAO.tours((Partie)partie);
-
-			} catch (SQLException e) {
+				if (partie.getPlateau().estEnEchecEtMat("blanc")) {
+					cancel();
+					new Victoire(fenetre,"noir");
+					if (!jCreator) fenetre.getPlayer().setNbPartiesG(fenetre.getPlayer().getNbPartiesG()+1);
+					fenetre.getPlayer().setNbPartiesJ(fenetre.getPlayer().getNbPartiesJ()+1);
+					JoueurDAO playerDAO = new JoueurDAO();
+					playerDAO.open();
+					playerDAO.update(fenetre.getPlayer());
+				}
+				if (partie.getPlateau().estEnEchecEtMat("noir")) {
+					cancel();
+					new Victoire(fenetre,"blanc");
+					if (jCreator) fenetre.getPlayer().setNbPartiesG(fenetre.getPlayer().getNbPartiesG()+1);
+					fenetre.getPlayer().setNbPartiesJ(fenetre.getPlayer().getNbPartiesJ()+1);
+					JoueurDAO playerDAO = new JoueurDAO();
+					playerDAO.open();
+					playerDAO.update(fenetre.getPlayer());
+				}
+			} 
+			catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
+			
 		}
 		
 	}
