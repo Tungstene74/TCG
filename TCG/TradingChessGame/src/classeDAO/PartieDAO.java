@@ -156,8 +156,8 @@ public class PartieDAO extends DAO<Partie>{
 		}
 		
 		sqlQuery = "UPDATE `partie` "
-				+ "SET `tour_joueur`=?,"
-				+ "WHERE `id_partie`=?";
+				+ "SET `tour_joueur`=?"
+				+ "WHERE `id_partie`=? ";
 		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 		st3.setString(1,Integer.toString(tour_joueur+1));
 		st3.setString(2,Integer.toString(obj.getId_partie()));
