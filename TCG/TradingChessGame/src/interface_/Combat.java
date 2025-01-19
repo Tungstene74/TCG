@@ -93,13 +93,13 @@ public class Combat extends CombatLocal {
 		@Override
 		public void run() {
 			try {
-				partieDAO.tours((Partie)partie);
-				partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
 				partie.getPlateau().redraw(combat);
 				if (partie.getTour()%2==0) {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
 					if(jCreator==false) {
 						combat.enable(false);
+						partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
+
 					}
 					else combat.enable(true);
 				}
@@ -107,9 +107,12 @@ public class Combat extends CombatLocal {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");
 					if(jCreator==true) {
 						combat.enable(false);
+						partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
+
 					}
 					else combat.enable(true);
 				}
+				partieDAO.tours((Partie)partie);
 
 			} catch (SQLException e) {
 				e.printStackTrace();
