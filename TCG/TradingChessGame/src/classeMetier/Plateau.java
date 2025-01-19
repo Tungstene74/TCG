@@ -183,6 +183,7 @@ public class Plateau {
 						PlateauDAO plateauDAO = new PlateauDAO();
 						try {
 							plateauDAO.open();
+							plateauDAO.updateMoi(this);
 						} catch (SQLException e) {
 							e.printStackTrace();
 						}

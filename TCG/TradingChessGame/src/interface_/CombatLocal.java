@@ -585,13 +585,9 @@ public class CombatLocal extends JPanel {
 		
 		if (partie.getTour()%2==0) {
 			tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
-			if(this instanceof Combat && ((Combat)this).jCreator==false) ((Combat)this).enable(false);
-			else ((Combat)this).enable(true);
 		}
 		else {
 			tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");
-			if(this instanceof Combat && ((Combat)this).jCreator==true) ((Combat)this).enable(false);
-			else ((Combat)this).enable(true);
 		}
 		
 		plateau.appliquePouvoirs();

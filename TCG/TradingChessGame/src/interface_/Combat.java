@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import classeDAO.PartieDAO;
 import classeDAO.PlateauDAO;
 import classeMetier.Joueur;
 import classeMetier.Partie;
@@ -44,22 +45,48 @@ public class Combat extends CombatLocal {
 	}
 	
 	public void boucleUpdate() {
-		PlateauDAO plateauDAO = new PlateauDAO();
-		try {
-			plateauDAO.open();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				try {
-					plateauDAO.updateMoi(partie.getPlateau());
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+		timer.schedule(new TimerTaskUpdate(this),0,1000);
+	}
+	
+	private class TimerTaskUpdate extends TimerTask{
+		
+		private Combat combat;
+		private PlateauDAO plateauDAO;
+		private PartieDAO partieDAO;
+		
+		public TimerTaskUpdate(Combat combat) {
+			this.combat = combat;
+			plateauDAO = new PlateauDAO();
+			partieDAO = new PartieDAO();
+			try {
+				plateauDAO.open();
+				partieDAO.open();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		},0, 1000);
+		}
+		
+		@Override
+		public void run() {
+			try {
+				partieDAO.tours((Partie)partie);
+				partie.setPlateau(plateauDAO.update(partie.getPlateau()));
+				if (partie.getTour()%2==0) {
+					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
+					if(jCreator==false)combat.enable(false);
+					else combat.enable(true);
+				}
+				else {
+					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");
+					if(jCreator==true) combat.enable(false);
+					else combat.enable(true);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }
