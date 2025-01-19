@@ -106,6 +106,9 @@ public class PlateauDAO extends DAO<Plateau>{
 				//String Couleur  = rs.getString("Couleur");
 				piece.setX(Integer.parseInt(rs.getString("x")));
 				piece.setY(Integer.parseInt(rs.getString("y")));
+				int yN=Integer.parseInt(rs.getString("y"));
+				int xN=Integer.parseInt(rs.getString("x"));
+				System.out.println("("+x+","+y+")"+","+"("+xN+","+yN+")");
 				//listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));			
 			}
 		
