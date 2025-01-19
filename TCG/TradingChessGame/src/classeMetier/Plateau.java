@@ -471,16 +471,9 @@ public class Plateau {
 	}
 	
 	public void redraw(Combat combat) {
-		/*for(ArrayList<Case> arrayCase : combat.getArrayButton()){
-			for(Case c : arrayCase) {
-				c.setPiece(null);
-				c.putImage(null);
-			}
-		}
-		*/
 		for(Piece piece : listepieces) {
-			combat.getArrayButton().get(piece.getY()).get(piece.getX()).setPiece(piece);
-			combat.getArrayButton().get(piece.getY()).get(piece.getX()).putImage(piece);
+			combat.getArrayButton().get(7-piece.getY()).get(piece.getX()).setPiece(piece);
+			combat.getArrayButton().get(7-piece.getY()).get(piece.getX()).putImage(piece);
 		}
 	}
 }

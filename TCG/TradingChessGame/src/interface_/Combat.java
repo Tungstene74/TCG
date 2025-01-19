@@ -95,6 +95,7 @@ public class Combat extends CombatLocal {
 			try {
 				partieDAO.tours((Partie)partie);
 				partie.setPlateau(plateauDAO.update(partie.getPlateau()));
+				partie.getPlateau().redraw(combat);
 				if (partie.getTour()%2==0) {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
 					if(jCreator==false) {
@@ -113,7 +114,7 @@ public class Combat extends CombatLocal {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		partie.getPlateau().redraw(combat);
+		
 		}
 		
 	}
