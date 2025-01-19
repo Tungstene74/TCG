@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import classeDAO.PartieDAO;
 import classeDAO.PlateauDAO;
 import interface_.Case;
 import interface_.Combat;
@@ -181,9 +182,12 @@ public class Plateau {
 					
 					if (combat instanceof Combat) {
 						PlateauDAO plateauDAO = new PlateauDAO();
+						PartieDAO partieDAO = new PartieDAO();
 						try {
 							plateauDAO.open();
 							plateauDAO.updateMoi(this);
+							partieDAO.open();
+							partieDAO.tours_plus((Partie)combat.getPartie());
 						} catch (SQLException e) {
 							e.printStackTrace();
 						}

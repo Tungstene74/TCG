@@ -511,6 +511,18 @@ public class CombatLocal extends JPanel {
 	
 	
 	
+	public PartieLocale getPartie() {
+		return partie;
+	}
+
+
+
+	public void setPartie(PartieLocale partie) {
+		this.partie = partie;
+	}
+
+
+
 	public Piece getPieceAbouger() {
 		return pieceAbouger;
 	}

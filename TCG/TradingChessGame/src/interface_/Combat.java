@@ -46,8 +46,10 @@ public class Combat extends CombatLocal {
 	
 	public void boucleUpdate() {
 		Timer timer = new Timer();
-		timer.schedule(new TimerTaskUpdate(this),0,1000);
+		timer.schedule(new TimerTaskUpdate(this),5000,5000);
 	}
+	
+	
 	
 	private class TimerTaskUpdate extends TimerTask{
 		
