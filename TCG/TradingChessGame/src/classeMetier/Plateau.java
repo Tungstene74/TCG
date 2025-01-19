@@ -185,7 +185,7 @@ public class Plateau {
 						PartieDAO partieDAO = new PartieDAO();
 						try {
 							plateauDAO.open();
-							plateauDAO.updateMoi(this);
+							plateauDAO.update(this);
 							partieDAO.open();
 							partieDAO.tours_plus((Partie)combat.getPartie());
 						} catch (SQLException e) {
