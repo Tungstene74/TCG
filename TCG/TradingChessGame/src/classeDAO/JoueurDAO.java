@@ -116,7 +116,7 @@ public class JoueurDAO extends DAO<Joueur>{
 	@Override
 	public Joueur update(Joueur obj) throws SQLException {
 			String sqlQuery = "UPDATE `joueur` "
-					+ "SET ,`argent`=?,`NbPartiesG`=?,`NbPartiesJ`=? "
+					+ "SET `argent`=?,`NbPartiesG`=?,`NbPartiesJ`=? "
 					+ "WHERE `id_joueur`=? AND `identifiant`=? AND `mdp`=?";
 			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 			
