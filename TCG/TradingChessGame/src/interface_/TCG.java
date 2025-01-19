@@ -36,6 +36,7 @@ public class TCG extends JFrame{
 	private JPanel basePanel;
 	private Joueur player;
 	
+	//pour lancer l'application
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -49,7 +50,7 @@ public class TCG extends JFrame{
 		});
 	}
 	
-	public TCG() {
+	public TCG() {//Constructeur
 		//Definition du titre de la fenêtre
 		setTitle("Trading Chess Game v2");
 		
@@ -70,7 +71,6 @@ public class TCG extends JFrame{
 		//Paramétrage de la fenêtre
 		setBackground(new Color(0, 0, 0));
 		setContentPane(basePanel);
-		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -79,27 +79,28 @@ public class TCG extends JFrame{
 	}
 	
 	public void ecranTitre() {
-		basePanel.removeAll();
+		basePanel.removeAll();//efface tous ce qu'il y a sur basePanel
 		
-		EcranTitre ecranTitre = new EcranTitre(this);
+		EcranTitre ecranTitre = new EcranTitre(this); //creation du panel ecranTitre
 		
-		basePanel.add(ecranTitre, ecranTitre.getGbc());
+		basePanel.add(ecranTitre, ecranTitre.getGbc()); // ajout à basePanel
 		
+		//repaint BasePanel
 		basePanel.revalidate();
 		basePanel.repaint();
 	}
-	public void menuPrincipal() {
+	public void menuPrincipal() {//obselète
 		basePanel.removeAll();
 
-		MenuPrincipal menuPrincipal = new MenuPrincipal(this);
+		MenuPrincipal menuPrincipal = new MenuPrincipal(this);//création du menu principal
 		
-		basePanel.add(menuPrincipal, menuPrincipal.getGbc());
+		basePanel.add(menuPrincipal, menuPrincipal.getGbc());//ajout du MP au panel de base
 		
 		basePanel.revalidate();
 		basePanel.repaint();
 	}
 	
-	public void menuPrincipal2() {
+	public void menuPrincipal2() {//actuelle
 		basePanel.removeAll();
 
 		MenuPrincipal2 menuPrincipal = new MenuPrincipal2(this);
@@ -110,23 +111,25 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
-	public static void dessinEchiquier(JPanel panel) {
+	public static void dessinEchiquier(JPanel panel) {//dessin de l'echiquier sur le panel 8x8 passer en paramètre
 		for(int i=1; i<=8;i++) {
 			for (int j=1; j<=8;j++) {
 				if ((j+i)%2==0) {
-					JLabel caseNoir = new JLabel();
-					caseNoir.setOpaque(true);
-					caseNoir.setBackground(Color.BLACK);
-					GridBagConstraints gbc_caseNoir = new GridBagConstraints();
+					JLabel caseNoir = new JLabel();//case noir de l'échiquier
+					caseNoir.setOpaque(true); //les JLAbel sont transparent de base donc on les rend opaque
+					caseNoir.setBackground(Color.BLACK);// changement de couleur de fond
+					//ajout au Layout
+					GridBagConstraints gbc_caseNoir = new GridBagConstraints(); 
 					gbc_caseNoir.fill = GridBagConstraints.BOTH;
 					gbc_caseNoir.gridx = j;
 					gbc_caseNoir.gridy = i;
 					panel.add(caseNoir,gbc_caseNoir);
 				}
 				else {
-					JLabel caseBlanche = new JLabel();
+					JLabel caseBlanche = new JLabel();//case blanche de l'échiquier
 					caseBlanche.setOpaque(true);
-					caseBlanche.setBackground(new Color(222, 184, 135));
+					caseBlanche.setBackground(new Color(222, 184, 135));//couleur bois
+					//ajout au Layout
 					GridBagConstraints gbc_caseBlanche = new GridBagConstraints();
 					gbc_caseBlanche.fill = GridBagConstraints.BOTH;
 					gbc_caseBlanche.gridx = j;
@@ -137,7 +140,7 @@ public class TCG extends JFrame{
 		}
 	}
 	
-	public void menuProfil() {
+	public void menuProfil() {// panel du menu du profil du joueur
 		basePanel.removeAll();
 
 		MenuProfil menuProfil = new MenuProfil(this);
@@ -148,7 +151,7 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
-	public void gameBoard(Joueur opponent, boolean jCreator, Partie partie) {
+	public void gameBoard(Joueur opponent, boolean jCreator, Partie partie) {// plateau de combat
 		basePanel.removeAll();
 
 		Combat fight = new Combat(this,partie,jCreator, opponent);
@@ -159,7 +162,7 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
-	public void choixCombat() {
+	public void choixCombat() { //pour choisir entre créer ou rejoidre une partie en ligne ou faire une partie locale
 		basePanel.removeAll();
 
 		ChoixCombat choixCombat = new ChoixCombat(this);
@@ -170,7 +173,8 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
-	public void collection() {
+	//obselète
+	public void collection() {// écran de la collection/inventaire de pièce 
 		basePanel.removeAll();
 
 		Inventaire inventaire = new Inventaire(this);
@@ -181,7 +185,8 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
-	public void menuDeck() {
+	//obselète
+	public void menuDeck() {// écran de conception de deck
 		basePanel.removeAll();
 
 		MenuDeck menuDeck = new MenuDeck(this);
@@ -192,7 +197,7 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
-	public void connection() {
+	public void connection() { // écran de connection pour se connecter à son compte joueur
 		basePanel.removeAll();
 
 		EcranConnection ecranConnection = new EcranConnection(this);
@@ -202,6 +207,8 @@ public class TCG extends JFrame{
 		basePanel.revalidate();
 		basePanel.repaint();
 	}
+	
+	// setter et getter de joueur
 	public Joueur getPlayer() {
 		return player;
 	}
@@ -210,6 +217,7 @@ public class TCG extends JFrame{
 		this.player = player;
 	}
 	
+	//écran de création de partie
 	public void creationPartie() {
 		basePanel.removeAll();
 
@@ -221,6 +229,7 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
+	//ecran pour rejoindre une partie
 	public void rejoindrePartie() {
 		basePanel.removeAll();
 
@@ -232,6 +241,7 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
+	// plateau de jeu lors d'un combat local
 	public void combatLocal(PartieLocale partie) {
 		basePanel.removeAll();
 
@@ -243,6 +253,7 @@ public class TCG extends JFrame{
 		basePanel.repaint();
 	}
 	
+	//lancement rapide d'un combat local via MainCombatLocal 
 	public void mainCombatLocal(PartieLocale partie) {
 		basePanel.removeAll();
 
