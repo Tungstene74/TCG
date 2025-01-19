@@ -109,6 +109,10 @@ public class PlateauDAO extends DAO<Plateau>{
 				//String Couleur  = rs.getString("Couleur");
 				int new_x  = Integer.parseInt(rs.getString("x"));
 				int new_y  = Integer.parseInt(rs.getString("y"));
+				System.out.println(id_piece_partie);
+				System.out.println(new_x);
+				System.out.println(new_y);
+
 				if (x!=new_x | y!=new_y) {
 					obj.deplace(piece, new_x, new_y);
 				}
