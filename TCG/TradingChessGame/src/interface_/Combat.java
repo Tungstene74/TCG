@@ -9,6 +9,7 @@ import classeDAO.PartieDAO;
 import classeDAO.PlateauDAO;
 import classeMetier.Joueur;
 import classeMetier.Partie;
+import classeMetier.Plateau;
 
 
 public class Combat extends CombatLocal {
@@ -51,6 +52,26 @@ public class Combat extends CombatLocal {
 	
 	
 	
+	@Override
+	public void update() {
+		super.update();
+		Plateau plateau =partie.getPlateau();
+		if(this instanceof Combat) {
+			PlateauDAO PlDAO = new PlateauDAO();
+			try {
+				PlDAO.open();
+				PlDAO.update(plateau);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+		}
+	}
+
+
+
 	private class TimerTaskUpdate extends TimerTask{
 		
 		private Combat combat;
