@@ -39,10 +39,11 @@ public class PlateauDAO extends DAO<Plateau>{
 	public Plateau update(Plateau obj) throws SQLException {
 		for (int i = 0; i < obj.getListepieces().size(); i++) {
 				Piece piece = obj.getListepieces().get(i);
-				String sqlQuery = "SELECT * FROM `variable_partie` WHERE id_partie= ? AND id_piece_partie=?;";
+				String sqlQuery = "SELECT * FROM `variable_partie` WHERE id_partie= ? AND id_piece_partie=? AND id_piece=?;";
 				PreparedStatement st = connect.prepareStatement(sqlQuery);
 				st.setString(1,Integer.toString(obj.getId_partie()));
 				st.setString(2,Integer.toString(piece.getIdPiecePartie()));
+				st.setString(3,Integer.toString(piece.getIdPiece()));
 				rs = st.executeQuery();
 			
 
