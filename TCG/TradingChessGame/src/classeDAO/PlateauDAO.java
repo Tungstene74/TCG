@@ -50,13 +50,11 @@ public class PlateauDAO extends DAO<Plateau>{
 
 			// Affichage du resultat
 				while(rs.next()) {
-					System.out.println("apparait");
 					apparait = 1;
 				}
 			
 			
 			if (apparait == 0) {
-					System.out.println("apparait pas");
 					sqlQuery = "INSERT INTO `variable_partie`(`id_piece`, `id_partie`, `id_piece_partie`, `Couleur`, `x`, `y`, `pouvoir_utilise`) "
 							+ "VALUES (?,?,?,?,?,?,?)";
 					PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
@@ -71,7 +69,6 @@ public class PlateauDAO extends DAO<Plateau>{
 					rs = st3.getGeneratedKeys();
 				
 			}else if (apparait == 1) {
-					System.out.println("apparait bien");
 					sqlQuery = "UPDATE `variable_partie` SET `id_piece`=?,`id_partie`=?,`Couleur`=?,`x`=?,`y`=?,`pouvoir_utilise`=? "
 							+ "WHERE `id_piece_partie`=?";
 					PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
