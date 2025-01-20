@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public abstract class Mouvement {
 	
-	//public ArrayList<int[]> casesAteignables(Plateau plateau, Piece piece);
 	public Boolean estPossible(Piece piece, int new_x, int new_y, Plateau plateau) {
 		Boolean b=false;
 		if (!plateau.getEstTheorique()) {

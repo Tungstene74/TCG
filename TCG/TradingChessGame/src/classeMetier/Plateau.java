@@ -121,7 +121,7 @@ public class Plateau {
 					if (piece_mangee!=null) {
 						this.supp(piece_mangee);
 					}
-					this.enregistreCoup(piece, new_x, new_y); //fct incomptète, utile uniquement pour le en passant
+					this.enregistreCoup(piece, new_x, new_y);
 					piece.appliqueEffet(new_x, new_y, this);
 					piece.setX(new_x);
 					piece.setY(new_y);
@@ -174,8 +174,8 @@ public class Plateau {
 						this.supp(piece_mangee);
 						piece_mangee.setEstMangee(true);
 					}
-					//piece.appliqueEffet(new_x, new_y, this);
-					//this.enregistreCoup(piece, new_x, new_y); //fct incomptète, utile uniquement pour le en passant
+					piece.appliqueEffet(new_x, new_y, this);
+					this.enregistreCoup(piece, new_x, new_y); //fct incomptète, utile uniquement pour le en passant
 					
 					piece.setX(new_x);
 					piece.setY(new_y);
@@ -221,6 +221,7 @@ public class Plateau {
 				}
 			}
 		}
+		System.out.println(this.toString());
 	}
 	
 	public Piece getPieceIdPiecePartie(int idPiecePartie) {
@@ -322,7 +323,7 @@ public class Plateau {
 		return b;
 	}
 	
-	public Boolean estEnEchec(String couleur) { //permet de voir si le déplacement d'une piece cree un echec
+	public Boolean estEnEchec(String couleur) { //permet de voir si un roi est en echec
 		Boolean b=false;
 		Piece roi=this.getRoi(couleur);
 		for (Piece piecette:this.listepieces) { //pour toutes les pieces

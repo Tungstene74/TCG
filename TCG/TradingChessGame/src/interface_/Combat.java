@@ -10,6 +10,7 @@ import classeDAO.PartieDAO;
 import classeDAO.PlateauDAO;
 import classeMetier.Joueur;
 import classeMetier.Partie;
+import classeMetier.Piece;
 import classeMetier.Plateau;
 
 
@@ -105,8 +106,8 @@ public class Combat extends CombatLocal {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
 					if(jCreator==false) {
 						combat.enable(false);
-						partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
-
+						plateauDAO.updateMoi(partie.getPlateau());
+						//partie.setPlateau(
 					}
 					else combat.enable(true);
 				}
@@ -114,12 +115,53 @@ public class Combat extends CombatLocal {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");
 					if(jCreator==true) {
 						combat.enable(false);
-						partie.setPlateau(plateauDAO.updateMoi(partie.getPlateau()));
-
+						plateauDAO.updateMoi(partie.getPlateau());
+						//partie.setPlateau()
 					}
 					else combat.enable(true);
 				}
 				partieDAO.tours((Partie)partie);
+				
+				Plateau plateau=partie.getPlateau();
+				
+				// consomme beaucoup (repaint des pièces)
+				for (ArrayList<Case> a:combat.arrayButton) {
+					for (Case c:a) {
+
+						Piece piece=plateau.getPiece(c.getAbscisse(), c.getOrdonnee());
+
+						if (piece==null) {
+							c.setIcon(null);	
+							c.revalidate();
+							c.repaint();
+						}
+
+						else {
+							if (piece!=c.getPiece()) {
+								c.setPiece(piece);
+								c.putImage(piece);
+								c.revalidate();
+								c.repaint();
+							}	
+						}
+
+						for (Piece p : plateau.getListepieces()) {
+							if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
+
+								c.setPiece(p);
+								c.putImage(p);
+							}
+							if (p.getX()!=c.getAbscisse()&&p.getY()!=c.getOrdonnee()) {
+								c.setPiece(plateau.getPiece(c.getAbscisse(), c.getOrdonnee()));
+								//c.putImage(p);
+							}
+						}
+						c.revalidate();
+						c.repaint();
+					}
+				}
+		
+				
 				if (partie.getPlateau().estEnEchecEtMat("blanc")) {
 					cancel();
 					new Victoire(fenetre,"noir");

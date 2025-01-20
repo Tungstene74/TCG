@@ -534,6 +534,14 @@ public class CombatLocal extends JPanel {
 	}
 	
 	
+	
+	
+	public void setArrayButton(ArrayList<ArrayList<Case>> arrayButton) {
+		this.arrayButton = arrayButton;
+	}
+
+
+
 	protected void placementInitial(Case tile) {
 		for (Piece p : partie.getPlateau().getListepieces()) {
 			if (p.getX()==tile.getAbscisse()&&p.getY()==tile.getOrdonnee()) {
@@ -578,31 +586,45 @@ public class CombatLocal extends JPanel {
 		System.out.println("update");
 		
 		Plateau plateau=partie.getPlateau();
-		
+
 		for (ArrayList<Case> a:this.arrayButton) {
 			for (Case c:a) {
-				c.setIcon(null);			
 				
+				Piece piece=plateau.getPiece(c.getAbscisse(), c.getOrdonnee());
+
+				if (piece==null) {
+					c.setIcon(null);	
+					c.revalidate();
+					c.repaint();
+				}
+
+				else {
+					if (piece!=c.getPiece()) {
+						c.setPiece(piece);
+						c.putImage(piece);
+						c.revalidate();
+						c.repaint();
+					}	
+				}
+
+				/*
 				for (Piece p : plateau.getListepieces()) {
-				
 					if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
 
 						c.setPiece(p);
 						c.putImage(p);
 					}
-					
 					if (p.getX()!=c.getAbscisse()&&p.getY()!=c.getOrdonnee()) {
 						c.setPiece(plateau.getPiece(c.getAbscisse(), c.getOrdonnee()));
 						//c.putImage(p);
 					}
 				}
 				c.revalidate();
-				c.repaint();
+				c.repaint();*/
 			}
 		}
-		
-		
-		
+
+
 		if (partie.getTour()%2==0) {
 			tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
 		}
@@ -681,6 +703,28 @@ public class CombatLocal extends JPanel {
 						}
 
 					}
+				}
+			}
+			
+			for (ArrayList<Case> a:this.arrayButton) {
+				for (Case c:a) {
+					c.setIcon(null);			
+					
+					for (Piece p : plateau.getListepieces()) {
+					
+						if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
+
+							c.setPiece(p);
+							c.putImage(p);
+						}
+						
+						if (p.getX()!=c.getAbscisse()&&p.getY()!=c.getOrdonnee()) {
+							c.setPiece(plateau.getPiece(c.getAbscisse(), c.getOrdonnee()));
+							//c.putImage(p);
+						}
+					}
+					c.revalidate();
+					c.repaint();
 				}
 			}
 		}
