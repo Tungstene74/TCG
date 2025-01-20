@@ -106,7 +106,7 @@ public class Combat extends CombatLocal {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
 					if(jCreator==false) {
 						combat.enable(false);
-						plateauDAO.updateMoi(partie.getPlateau());
+						plateauDAO.updateMoi(partie.getPlateau(), combat);
 								
 						//partie.setPlateau(
 					}
@@ -116,7 +116,7 @@ public class Combat extends CombatLocal {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au noir de jouer !");
 					if(jCreator==true) {
 						combat.enable(false);
-						plateauDAO.updateMoi(partie.getPlateau());
+						plateauDAO.updateMoi(partie.getPlateau(), combat);
 						//partie.setPlateau()
 					}
 					else combat.enable(true);

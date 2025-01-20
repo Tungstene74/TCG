@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import classeMetier.Piece;
 import classeMetier.Plateau;
+import interface_.Combat;
 
 public class PlateauDAO extends DAO<Plateau>{
 	private ResultSet rs;
@@ -34,7 +35,7 @@ public class PlateauDAO extends DAO<Plateau>{
 
 	@Override
 	public Plateau update(Plateau obj) throws SQLException {
-		System.out.println("update--");	
+		//System.out.println("update--");	
 		
 		for (int i = 0; i < obj.getListepieces().size(); i++) {
 				Piece piece = obj.getListepieces().get(i);
@@ -87,8 +88,8 @@ public class PlateauDAO extends DAO<Plateau>{
 		return obj;
 	}
 	
-	public Plateau updateMoi(Plateau obj) throws SQLException {
-		System.out.println("updateMoi");
+	public Plateau updateMoi(Plateau obj,Combat combat) throws SQLException {
+		//System.out.println("updateMoi");
 		ArrayList<Piece> listepieces = new ArrayList<Piece>();
 			String sqlQuery = "SELECT * FROM `variable_partie` "
 					+ "WHERE id_partie=? "
@@ -106,29 +107,36 @@ public class PlateauDAO extends DAO<Plateau>{
 				int y=piece.getY();
 				//int id_piece  = Integer.parseInt(rs.getString("id_piece"));
 				//String Couleur  = rs.getString("Couleur");
-				piece.setX(Integer.parseInt(rs.getString("x")));
-				piece.setY(Integer.parseInt(rs.getString("y")));
 				int yN=Integer.parseInt(rs.getString("y"));
 				int xN=Integer.parseInt(rs.getString("x"));
-				if (xN==9 & yN==9)
+				piece.setX(xN);
+				piece.setY(yN);
+				if (xN==9 & yN==9) {
+					System.out.println("Le miam miam se fait");
+					if (piece.getCouleur()=="blanc") combat.getPieceJoueur2().ajout(piece);
+					else combat.getPieceJoueur1().ajout(piece);
 					obj.supp(piece);
-				System.out.println(id_piece_partie+"("+x+","+y+")"+","+"("+xN+","+yN+")");
+					piece.setEstMangee(true);
+				}
 				//listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));		
 				}
 			}
-			System.out.println(obj.toString());
+			//System.out.println(obj.toString());
 		
 		//obj.setListepieces(listepieces);
 			return obj;
 	}
 	
 	public void deletePiece(Plateau obj, Piece piece) throws SQLException {
+		System.out.println("deletePiece appeler");
 		String sqlQuery1 = "UPDATE `variable_partie` SET `x`=?,`y`=? "
-				+ "WHERE `id_partie`=?";
+				+ "WHERE `id_piece_partie`=? AND `id_piece`=? AND `id_partie`=?";
 		PreparedStatement st1 = connect.prepareStatement(sqlQuery1, Statement.RETURN_GENERATED_KEYS);
 		st1.setString(1,Integer.toString(9));
 		st1.setString(2,Integer.toString(9));
-		st1.setString(3,Integer.toString(obj.getId_partie()));
+		st1.setString(3,Integer.toString(piece.getIdPiecePartie()));
+		st1.setString(4,Integer.toString(piece.getIdPiece()));
+		st1.setString(5,Integer.toString(obj.getId_partie()));;
 		st1.executeUpdate();
 		rs = st1.getGeneratedKeys();
 	
