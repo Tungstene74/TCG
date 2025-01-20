@@ -97,10 +97,18 @@ public class Combat extends CombatLocal {
 			}
 		}
 		
+		private void suppressionPartie() {
+			try {
+				plateauDAO.updateMoi(partie.getPlateau(), combat);
+				partieDAO.delete((Partie)combat.partie);
+			} catch (SQLException e) {
+				//e.printStackTrace();
+			}
+		}
+		
 		@Override
 		public void run() {
 			try {
-				
 				partie.getPlateau().redraw(combat);
 				if (partie.getTour()%2==0) {
 					tour.setText("Tour : "+(partie.getTour()+1)+" ! Au blanc de jouer !");
@@ -152,6 +160,7 @@ public class Combat extends CombatLocal {
 				if (partie.getPlateau().estEnEchecEtMat("blanc")) {
 					cancel();
 					new Victoire(fenetre,"noir");
+					suppressionPartie();
 					if (!jCreator) fenetre.getPlayer().setNbPartiesG(fenetre.getPlayer().getNbPartiesG()+1);
 					fenetre.getPlayer().setNbPartiesJ(fenetre.getPlayer().getNbPartiesJ()+1);
 					JoueurDAO playerDAO = new JoueurDAO();
@@ -161,6 +170,7 @@ public class Combat extends CombatLocal {
 				if (partie.getPlateau().estEnEchecEtMat("noir")) {
 					cancel();
 					new Victoire(fenetre,"blanc");
+					suppressionPartie();
 					if (jCreator) fenetre.getPlayer().setNbPartiesG(fenetre.getPlayer().getNbPartiesG()+1);
 					fenetre.getPlayer().setNbPartiesJ(fenetre.getPlayer().getNbPartiesJ()+1);
 					JoueurDAO playerDAO = new JoueurDAO();
