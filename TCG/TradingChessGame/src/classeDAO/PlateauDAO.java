@@ -34,17 +34,7 @@ public class PlateauDAO extends DAO<Plateau>{
 
 	@Override
 	public Plateau update(Plateau obj) throws SQLException {
-		System.out.println("update--");
-		
-		String sqlQuery1 = "UPDATE `variable_partie` SET `x`=?,`y`=? "
-				+ "WHERE `id_partie`=?";
-		PreparedStatement st1 = connect.prepareStatement(sqlQuery1, Statement.RETURN_GENERATED_KEYS);
-		st1.setString(1,Integer.toString(9));
-		st1.setString(2,Integer.toString(9));
-		st1.setString(3,Integer.toString(obj.getId_partie()));
-		st1.executeUpdate();
-		rs = st1.getGeneratedKeys();
-		
+		System.out.println("update--");	
 		
 		for (int i = 0; i < obj.getListepieces().size(); i++) {
 				Piece piece = obj.getListepieces().get(i);
@@ -128,6 +118,18 @@ public class PlateauDAO extends DAO<Plateau>{
 		//obj.setListepieces(listepieces);
 			return obj;
 	}
+	
+	public void deletePiece(Plateau obj, Piece piece) throws SQLException {
+		String sqlQuery1 = "UPDATE `variable_partie` SET `x`=?,`y`=? "
+				+ "WHERE `id_partie`=?";
+		PreparedStatement st1 = connect.prepareStatement(sqlQuery1, Statement.RETURN_GENERATED_KEYS);
+		st1.setString(1,Integer.toString(9));
+		st1.setString(2,Integer.toString(9));
+		st1.setString(3,Integer.toString(obj.getId_partie()));
+		st1.executeUpdate();
+		rs = st1.getGeneratedKeys();
+	
+}
 
 	@Override
 	public void delete(Plateau obj) throws SQLException {
