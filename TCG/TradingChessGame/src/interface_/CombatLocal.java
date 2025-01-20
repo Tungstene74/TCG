@@ -657,7 +657,7 @@ public class CombatLocal extends JPanel {
 			Victoire egalite=new Victoire(this.fenetre);
 		}
 		
-//<<<<<<< Upstream, based on origin/main
+
 
 		if(this instanceof Combat) {
 			PlateauDAO PlDAO = new PlateauDAO();
@@ -669,7 +669,6 @@ public class CombatLocal extends JPanel {
 				e.printStackTrace();
 			}
 		}
-			//=======
 			if(plateau.estEnEchec(partie.couleurAjouer())) {
 				for (ArrayList<Case> array : this.getArrayButton()) {
 					for(Case c : array) {
@@ -682,7 +681,6 @@ public class CombatLocal extends JPanel {
 						}
 
 					}
-					//>>>>>>> 595f984 brak
 				}
 			}
 		}
