@@ -188,7 +188,7 @@ public class Plateau {
 							
 							plateauDAO.update(this);
 							if (!(this.listepieces.contains(piece))) {
-								plateauDAO.deletePiece(this, piece);
+								plateauDAO.deletePiece(this, piece_mangee);
 							}
 							
 							partieDAO.open();
