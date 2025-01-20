@@ -711,7 +711,7 @@ public class CombatLocal extends JPanel {
 					c.setIcon(null);			
 					
 					for (Piece p : plateau.getListepieces()) {
-					
+						
 						if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
 
 							c.setPiece(p);

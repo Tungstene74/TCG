@@ -185,7 +185,12 @@ public class Plateau {
 						PartieDAO partieDAO = new PartieDAO();
 						try {
 							plateauDAO.open();
+							
 							plateauDAO.update(this);
+							if (!(this.listepieces.contains(piece))) {
+								plateauDAO.deletePiece(this, piece);
+							}
+							
 							partieDAO.open();
 							partieDAO.tours_plus((Partie)combat.getPartie());
 						} catch (SQLException e) {

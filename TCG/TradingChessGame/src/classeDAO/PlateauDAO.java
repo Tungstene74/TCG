@@ -116,6 +116,7 @@ public class PlateauDAO extends DAO<Plateau>{
 				//listepieces.add(Méthode_pour_faire_les_pèce_de_floca(id_piece,Couleur,x,y));		
 				}
 			}
+			System.out.println(obj.toString());
 		
 		//obj.setListepieces(listepieces);
 			return obj;
@@ -135,12 +136,12 @@ public class PlateauDAO extends DAO<Plateau>{
 
 	@Override
 	public void delete(Plateau obj) throws SQLException {
-			String sqlQuery = "DELETE FROM `variable_partie` WHERE id_partie=?";
-			PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-			st3.setString(1,Integer.toString(obj.getId_partie()));
-			st3.executeUpdate();
-			rs = st3.getGeneratedKeys();
-		
+		String sqlQuery = "DELETE FROM `variable_partie` WHERE id_partie=?";
+		PreparedStatement st3 = connect.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+		st3.setString(1,Integer.toString(obj.getId_partie()));
+		st3.executeUpdate();
+		rs = st3.getGeneratedKeys();
+	
 	}
 
 }

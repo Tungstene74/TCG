@@ -54,7 +54,7 @@ public class Combat extends CombatLocal {
 	
 	public void boucleUpdate() {
 		Timer timer = new Timer();
-		timer.schedule(new TimerTaskUpdate(this),5000,2500);
+		timer.schedule(new TimerTaskUpdate(this),10000,5000);
 	}
 	
 	
@@ -107,6 +107,7 @@ public class Combat extends CombatLocal {
 					if(jCreator==false) {
 						combat.enable(false);
 						plateauDAO.updateMoi(partie.getPlateau());
+								
 						//partie.setPlateau(
 					}
 					else combat.enable(true);
@@ -144,20 +145,6 @@ public class Combat extends CombatLocal {
 								c.repaint();
 							}	
 						}
-
-						for (Piece p : plateau.getListepieces()) {
-							if (p.getX()==c.getAbscisse()&&p.getY()==c.getOrdonnee()) {
-
-								c.setPiece(p);
-								c.putImage(p);
-							}
-							if (p.getX()!=c.getAbscisse()&&p.getY()!=c.getOrdonnee()) {
-								c.setPiece(plateau.getPiece(c.getAbscisse(), c.getOrdonnee()));
-								//c.putImage(p);
-							}
-						}
-						c.revalidate();
-						c.repaint();
 					}
 				}
 		
