@@ -34,8 +34,8 @@ public class Combat extends CombatLocal {
 		
 		concederNoir.setEnabled(jCreator); 
 		concederBlanc.setEnabled(!jCreator); 
-		voteEgaliteNoir.setEnabled(!jCreator); 
-		voteEgaliteBlanc.setEnabled(jCreator);
+		voteEgaliteNoir.setEnabled(false); 
+		voteEgaliteBlanc.setEnabled(false);
 		
 		enable(jCreator);
 		
