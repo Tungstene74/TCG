@@ -21,6 +21,7 @@ public class EnPassant extends Mouvement{
 		if (plateau.getHistoriqueDesCoups().size()!=0) {
 			int pre_y_precedant_coup=Integer.parseInt(plateau.getHistoriqueDesCoups().getLast().substring(5,6));
 			int new_y_precedant_coup=Integer.parseInt(plateau.getHistoriqueDesCoups().getLast().substring(8,9));
+			int new_x_precedant_coup=Integer.parseInt(plateau.getHistoriqueDesCoups().getLast().substring(7,8));
 			int id_precedant_coup=Integer.parseInt(plateau.getHistoriqueDesCoups().getLast().substring(2,3));
 			Boolean precedant_a_bouge_de_2_cases_et_est_un_pion=false;
 			//System.out.println(pre_y_precedant_coup+","+new_y_precedant_coup+","+id_precedant_coup);
@@ -31,7 +32,7 @@ public class EnPassant extends Mouvement{
 			//(piece.getCouleur()=="noir" & new_y==y-1)
 
 			if (pieceMangee!=null) {
-				if (pieceMangee.getCouleur()!=piece.getCouleur() & ((new_x==x+1 | new_x==x-1) & y==new_y_precedant_coup & precedant_a_bouge_de_2_cases_et_est_un_pion )) {
+				if (pieceMangee.getCouleur()!=piece.getCouleur() & ((new_x==x+1 | new_x==x-1) & (new_x_precedant_coup==new_x) & y==new_y_precedant_coup & precedant_a_bouge_de_2_cases_et_est_un_pion )) {
 					if ((piece.getCouleur()=="blanc" & new_y==y+1) )  
 						b=true;
 					if ((piece.getCouleur()=="noir" & new_y==y-1) )  { 
