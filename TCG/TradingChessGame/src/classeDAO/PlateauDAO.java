@@ -35,6 +35,17 @@ public class PlateauDAO extends DAO<Plateau>{
 	@Override
 	public Plateau update(Plateau obj) throws SQLException {
 		System.out.println("update--");
+		
+		String sqlQuery1 = "UPDATE `variable_partie` SET `x`=?,`y`=? "
+				+ "WHERE `id_partie`=?";
+		PreparedStatement st1 = connect.prepareStatement(sqlQuery1, Statement.RETURN_GENERATED_KEYS);
+		st1.setString(1,Integer.toString(9));
+		st1.setString(2,Integer.toString(9));
+		st1.setString(3,Integer.toString(obj.getId_partie()));
+		st1.executeUpdate();
+		rs = st1.getGeneratedKeys();
+		
+		
 		for (int i = 0; i < obj.getListepieces().size(); i++) {
 				Piece piece = obj.getListepieces().get(i);
 				String sqlQuery = "SELECT * FROM `variable_partie` WHERE id_partie= ? AND id_piece_partie=? AND id_piece=?;";
