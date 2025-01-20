@@ -13,11 +13,11 @@ public class SingleConnection {
 		
 		SingleConnection.connect=null;
 		
-		String mode_conection = "en ligne";
+		String mode_conection = "";
 		
 		String url="";
 		if (mode_conection== "en ligne") {
-		 url="jdbc:mysql://4.tcp.eu.ngrok.io:18562 /"+databaseName+"?serverTimezone=UTC";
+		 url="jdbc:mysql:// /"+databaseName+"?serverTimezone=UTC";//base de donner en ligne désormer fermer 
 		}else { url="jdbc:mysql://localhost:3306 /"+databaseName+"?serverTimezone=UTC";
 		}
 		String login="root"; // dans l'idal un login de connexion pour l'application, et non root...
