@@ -151,7 +151,7 @@ public class Case extends JButton{
 				combat.update();
 			}
 
-			if (piece!=null) { // on pensera à ajouter un if avec la couleur 
+			if (piece!=null) { 
 				if (piece.getCouleur()== partie.couleurAjouer()) {
 
 					if (piece.getCouleur()== partie.couleurAjouer() & !piece.getEstMangee()) {
